@@ -1,0 +1,78 @@
+<!-- src/llm_comparison/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Model Comparison</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>LLM Model Comparison</h1>
+    
+    <div class="container">
+        <div class="filters">
+            <div class="filter-section">
+                <h3>Model Type</h3>
+                <label><input type="checkbox" class="model-filter" value="all" checked> All</label>
+                <label><input type="checkbox" class="model-filter" value="OpenAI" checked> GPT Models</label>
+                <label><input type="checkbox" class="model-filter" value="Anthropic" checked> Claude Models</label>
+                <label><input type="checkbox" class="model-filter" value="Google" checked> Gemini Models</label>
+                <label><input type="checkbox" class="model-filter" value="Meta" checked> Llama Models</label>
+                <label><input type="checkbox" class="model-filter" value="Mistral" checked> Mistral Models</label>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Benchmark</h3>
+                <select id="benchmark-selector">
+                    <option value="lmsys">LMSYS Benchmark</option>
+                    <option value="mmlu">MMLU</option>
+                    <option value="mt-bench">MT-Bench</option>
+                    <option value="hellaswag">HellaSwag</option>
+                    <option value="truthfulqa">TruthfulQA</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Price per 1M tokens</h3>
+                <div>
+                    <label>Minimum: <input type="number" id="min-price" min="0" step="0.1"></label>
+                    <label>Maximum: <input type="number" id="max-price" min="0" step="0.1"></label>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <div id="model-counter">Showing 0 of 0 models</div>
+                <div id="last-updated">Last updated: -</div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="llm-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Price per 1M Tokens</th>
+                        <th>Price (Input)</th>
+                        <th>Price (Output)</th>
+                        <th>Context Window</th>
+                        <th>Release Date</th>
+                        <th>Developer</th>
+                        <th>Score</th>
+                        <th>API Link</th>
+                    </tr>
+                </thead>
+                <tbody id="llm-table-body">
+                    <!-- Table rows will be populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Data is updated regularly from various benchmark sources. This site is for informational purposes only.</p>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
