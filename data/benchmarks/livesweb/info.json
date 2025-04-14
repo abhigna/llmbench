@@ -1,0 +1,44 @@
+{
+    "name": "LiveSWEBench",
+    "description": "Benchmark for evaluating AI software engineering capabilities",
+    "methodology": "Percentage of successfully resolved programming tasks",
+    "source_url": "https://livesweb.ai",
+    "metrics": [
+      {
+        "id": "percent_resolved",
+        "name": "Percent Resolved",
+        "description": "Percentage of tasks successfully completed",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "agent",
+        "name": "Agentic Programming",
+        "description": "Autonomous completion of high-level tasks"
+      },
+      {
+        "id": "edit",
+        "name": "Targeted Editing",
+        "description": "Direct instruction to edit specific files"
+      },
+      {
+        "id": "autocomplete",
+        "name": "Autocomplete",
+        "description": "Completion of partial code snippets"
+      },
+      {
+        "id": "average",
+        "name": "Average",
+        "description": "Average score across all tasks",
+        "is_aggregate": true
+      }
+    ],
+    "display": {
+      "primary_metric": "percent_resolved",
+      "primary_dimension": "average",
+      "chart_type": "radar"
+    }
+  }

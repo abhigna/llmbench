@@ -1,0 +1,41 @@
+{
+    "name": "Chatbot Arena",
+    "description": "Community-driven evaluation for LLM chatbots based on human preference",
+    "methodology": "Bradley-Terry model based on human votes",
+    "source_url": "https://lmarena.ai/leaderboard",
+    "metrics": [
+      {
+        "id": "arena_score",
+        "name": "Arena Score",
+        "description": "Elo-like rating based on pairwise win rates",
+        "min": 0,
+        "max": 2000,
+        "better": "higher"
+      },
+      {
+        "id": "win_rate",
+        "name": "Win Rate",
+        "description": "Percentage of wins against other models",
+        "min": 0,
+        "max": 1,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Performance across all question types"
+      },
+      {
+        "id": "style_adjusted",
+        "name": "Style-Adjusted",
+        "description": "Performance adjusted for style factors (length, formatting)"
+      }
+    ],
+    "display": {
+      "primary_metric": "arena_score",
+      "primary_dimension": "overall",
+      "chart_type": "bar"
+    }
+  }

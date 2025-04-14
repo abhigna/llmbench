@@ -1,0 +1,40 @@
+{
+    "date": "2025-04-13",
+    "source_url": "https://livesweb.ai",
+    "scores": [
+      {
+        "model_id": "claude-3-7-sonnet",
+        "dimensions": {
+          "average": {
+            "percent_resolved": 39.32
+          },
+          "agent": {
+            "percent_resolved": 37.74
+          },
+          "edit": {
+            "percent_resolved": 40.91
+          },
+          "autocomplete": {
+            "percent_resolved": null
+          }
+        }
+      },
+      {
+        "model_id": "gemini-2-5-pro",
+        "dimensions": {
+          "average": {
+            "percent_resolved": 46.89
+          },
+          "agent": {
+            "percent_resolved": 41.51
+          },
+          "edit": {
+            "percent_resolved": 52.27
+          },
+          "autocomplete": {
+            "percent_resolved": null
+          }
+        }
+      }
+    ]
+  }

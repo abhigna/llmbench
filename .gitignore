@@ -21,3 +21,5 @@ ENV/
 .vscode/
 *.swp
 *.swo
+
+SPEC.md

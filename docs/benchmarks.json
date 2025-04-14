@@ -1,0 +1,16 @@
+[
+    {
+      "id": "lmsys",
+      "name": "lmsys Chatbot Arena",
+      "description": "Community-driven evaluation based on human preference",
+      "source_url": "https://lmarena.ai/leaderboard",
+      "last_updated": "2025-04-13"
+    },
+    {
+      "id": "livesweb",
+      "name": "LiveSWEBench",
+      "description": "Software engineering capability evaluation",
+      "source_url": "https://livesweb.ai",
+      "last_updated": "2025-04-13"
+    }
+  ]
