@@ -3,6 +3,7 @@
     "description": "Benchmark for evaluating AI software engineering capabilities",
     "methodology": "Percentage of successfully resolved programming tasks",
     "source_url": "https://livesweb.ai",
+    "type": "task_based",
     "metrics": [
       {
         "id": "percent_resolved",

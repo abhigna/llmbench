@@ -53,6 +53,11 @@ def main():
         "--source-url", required=True,
         help="URL of the benchmark source"
     )
+    add_parser.add_argument(
+        "--type", required=True,
+        choices=["human_pref", "task_based", "knowledge", "reasoning", "other"],
+        help="Type of the benchmark"
+    )
     
     # List benchmarks command
     subparsers.add_parser("list-benchmarks", help="List available benchmarks")
@@ -119,7 +124,8 @@ def main():
             "name": args.name,
             "description": args.description,
             "source_url": args.source_url,
-            "last_updated": today
+            "last_updated": today,
+            "type": args.type
         })
         
         # Save updated benchmarks
@@ -136,6 +142,7 @@ def main():
             "description": args.description,
             "methodology": "",
             "source_url": args.source_url,
+            "type": args.type,
             "metrics": [
                 {
                     "id": "score",

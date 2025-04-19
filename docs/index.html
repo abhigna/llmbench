@@ -10,44 +10,20 @@
 <body>
     <h1>LLM Benchmark Comparison</h1>
     
-    <div class="benchmark-info">
-        <h2 id="benchmark-title">Loading benchmark...</h2>
-        <p id="benchmark-description"></p>
-    </div>
-    
     <div class="container">
         <div class="filters">
             <div class="filter-section">
-                <h3>Organization</h3>
-                <label><input type="checkbox" class="org-filter" value="all" checked> All</label>
-                <label><input type="checkbox" class="org-filter" value="OpenAI" checked> OpenAI</label>
-                <label><input type="checkbox" class="org-filter" value="Anthropic" checked> Anthropic</label>
-                <label><input type="checkbox" class="org-filter" value="Google" checked> Google</label>
-                <label><input type="checkbox" class="org-filter" value="Meta" checked> Meta</label>
-                <label><input type="checkbox" class="org-filter" value="Mistral" checked> Mistral</label>
-                <label><input type="checkbox" class="org-filter" value="DeepSeek" checked> DeepSeek</label>
-                <label><input type="checkbox" class="org-filter" value="xAI" checked> xAI</label>
-                <label><input type="checkbox" class="org-filter" value="Cohere" checked> Cohere</label>
-                <label><input type="checkbox" class="org-filter" value="Alibaba" checked> Alibaba</label>
+                <h3>Type</h3>
+                <label><input type="checkbox" class="type-filter" value="all" checked> All</label>
+                <label><input type="checkbox" class="type-filter" value="human_pref" checked> Human Preference</label>
+                <label><input type="checkbox" class="type-filter" value="task_based" checked> Task-based</label>
+                <!-- Add more types as needed -->
             </div>
             
-            <div class="filter-section">
-                <h3>Benchmark</h3>
-                <select id="benchmark-selector">
-                    <option value="loading">Loading benchmarks...</option>
-                </select>
-            </div>
-            
-            <div class="filter-section">
-                <h3>Released After Year</h3>
-                <div>
-                    <label>Year: <input type="number" id="min-year" min="2022" max="2025" value="2022"></label>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <div id="model-counter">Showing 0 of 0 models</div>
-                <div id="last-updated">Last updated: -</div>
+            <div class="filter-section benchmark-info">
+                <h3 id="benchmark-title">Benchmark Overview</h3>
+                <div id="model-counter">Showing 0 models</div>
+                <div id="last-updated">Data Sources Updated: -</div>
             </div>
         </div>
         
@@ -56,17 +32,14 @@
                 <thead>
                     <tr>
                         <th>Model</th>
-                        <th>Organization</th>
-                        <th>Release Date</th>
-                        <th>Context Window</th>
-                        <th>Score</th>
-                        <th>Rank</th>
+                        <th>Weighted Score</th>
+                        <!-- Benchmark columns will be added dynamically -->
                     </tr>
                 </thead>
                 <tbody id="llm-table-body">
                     <!-- Table rows will be populated dynamically -->
                     <tr>
-                        <td colspan="6">Loading data...</td>
+                        <td colspan="99">Loading data...</td>
                     </tr>
                 </tbody>
             </table>

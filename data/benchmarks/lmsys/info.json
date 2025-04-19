@@ -3,6 +3,7 @@
     "description": "Community-driven evaluation for LLM chatbots based on human preference",
     "methodology": "Bradley-Terry model based on human votes",
     "source_url": "https://lmarena.ai/leaderboard",
+    "type": "human_pref",
     "metrics": [
       {
         "id": "arena_score",
