@@ -5,7 +5,7 @@ import logging
 import sys
 from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional, Tuple # Added Tuple
 import asyncio
 import requests # Added for fallback HTTP request
 
@@ -46,7 +46,7 @@ class ModelInfo(BaseModel):
 
 # Model for a single Benchmark Score
 class BenchmarkScore(BaseModel):
-    model_id: str = Field(..., description="The ID of the model (e.g., 'claude-3-7-sonnet')")
+    model_id: str = Field(..., description="The ID of the model (e.g., 'claude-3-5-sonnet')") # This will be updated
     dimensions: Dict[str, Dict[str, Any]] = Field(
         ...,
         description="Scores for different dimensions, with metrics inside each dimension"
@@ -173,7 +173,7 @@ class BenchmarkUpdateAgent:
             self.base_openai_client = OpenAI(
                 base_url="https://openrouter.ai/api/v1",
                 api_key=OPENROUTER_API_KEY,
-                timeout=60.0, # Increase timeout
+                timeout=120.0, # Increased timeout further
             )
             self.client = instructor.from_openai(
                 self.base_openai_client, mode=instructor.Mode.TOOLS # Use TOOLS mode for broader compatibility including Azure
@@ -293,6 +293,7 @@ class BenchmarkUpdateAgent:
              return False
 
         models_were_updated = False # Flag to track if self.models changed
+        id_mapping: Dict[str, str] = {} # Store original_id -> canonical_id
 
         try:
             # --- Step 1: Extract Data (using base client, with validation/correction) ---
@@ -304,23 +305,53 @@ class BenchmarkUpdateAgent:
                 logging.error(f"Failed to extract benchmark data for '{benchmark_id}'. Aborting update.")
                 return False # Critical step failed
 
-            # --- Step 2: Save Extracted Data ---
-            output_file = benchmark_dir / f"{today}.json"
-            try:
-                with open(output_file, "w", encoding='utf-8') as f:
-                    f.write(extracted_data.model_dump_json(indent=2))
-                logging.info(f"Successfully saved extracted data to {output_file}")
-            except Exception as e:
-                 # Log error but don't necessarily fail the whole process yet
-                 logging.error(f"Error saving extracted benchmark data to {output_file}: {e}")
-                 # Decide if this is critical. Let's continue to classification for now.
-
-            # --- Step 3: Classify Models & Update self.models if new ones found ---
-            models_were_updated = self._classify_and_process_models(extracted_data, benchmark_id)
+            # --- Step 2: Classify Models & Update self.models if new ones found ---
+            # This now returns the mapping needed to update the benchmark data
+            models_were_updated, id_mapping = self._classify_and_process_models(
+                extracted_data, benchmark_id
+            )
             # Error handling for classification failure is inside _classify_and_process_models
             # It might raise an exception, which will be caught by the outer try-except block.
 
-            # --- Step 4: Save Updated Models (only if changed) ---
+            # --- Step 3: Update Benchmark Data with Canonical IDs ---
+            logging.info(f"Updating benchmark scores with canonical model IDs for '{benchmark_id}'...")
+            updated_scores_count = 0
+            original_ids_kept_count = 0
+            if extracted_data and extracted_data.scores: # Check if scores exist
+                for score in extracted_data.scores:
+                    original_id = score.model_id
+                    canonical_id = id_mapping.get(original_id)
+                    if canonical_id and canonical_id != original_id:
+                        logging.debug(f"Mapping '{original_id}' -> '{canonical_id}' for benchmark '{benchmark_id}'")
+                        score.model_id = canonical_id
+                        updated_scores_count += 1
+                    else:
+                        # Keep original ID if no mapping found or mapping is the same
+                        original_ids_kept_count += 1
+                        if not canonical_id:
+                           logging.debug(f"No canonical ID found for '{original_id}', keeping original.")
+                logging.info(f"Applied canonical IDs: {updated_scores_count} updated, {original_ids_kept_count} kept original for '{benchmark_id}'.")
+            else:
+                logging.warning(f"No scores found in extracted data for '{benchmark_id}' to update IDs.")
+
+
+            # --- Step 4: Save *Updated* Extracted Data ---
+            output_file = benchmark_dir / f"{today}.json"
+            if extracted_data: # Ensure data exists before trying to save
+                try:
+                    with open(output_file, "w", encoding='utf-8') as f:
+                        f.write(extracted_data.model_dump_json(indent=2))
+                    logging.info(f"Successfully saved updated benchmark data to {output_file}")
+                except Exception as e:
+                     logging.error(f"Error saving updated benchmark data to {output_file}: {e}")
+                     # Consider this critical? If saving fails, the update isn't really complete.
+                     return False
+            else:
+                # This case should ideally be caught earlier, but double-check
+                logging.error(f"Extracted data object is missing before saving for '{benchmark_id}'.")
+                return False # This indicates a problem upstream
+
+            # --- Step 5: Save Updated Models (only if changed) ---
             if models_were_updated:
                 if not self._save_models():
                     # Log error, but maybe continue? Depends on requirements.
@@ -328,7 +359,7 @@ class BenchmarkUpdateAgent:
                     logging.error(f"Failed to save updated models file for benchmark '{benchmark_id}'.")
                     # return False # Uncomment if this should be a critical failure
 
-            # --- Step 5: Update Benchmark Metadata (last_updated) ---
+            # --- Step 6: Update Benchmark Metadata (last_updated) ---
             success_meta_update = False
             for i, b in enumerate(self.benchmarks):
                 if b["id"] == benchmark_id:
@@ -347,13 +378,15 @@ class BenchmarkUpdateAgent:
                  logging.warning(f"Benchmark ID '{benchmark_id}' not found in self.benchmarks list during metadata update.")
 
 
-            logging.info(f"Benchmark update process for '{benchmark_id}' completed.")
+            logging.info(f"Benchmark update process for '{benchmark_id}' completed successfully.")
             return True # Indicate overall success for this benchmark
 
         except Exception as e:
             # Catch errors from extraction, classification (if re-raised), saving, etc.
             # Log concisely as requested, don't include traceback by default here.
             logging.error(f"Benchmark update failed for '{benchmark_id}': {type(e).__name__} - {e}")
+            # Optionally log traceback for easier debugging during development
+            # logging.exception(f"Full traceback for failure in benchmark '{benchmark_id}':")
             return False # Indicate failure for this specific benchmark
 
 
@@ -413,6 +446,7 @@ class BenchmarkUpdateAgent:
              return None
 
         # 2. Prepare prompt for raw JSON extraction
+        # (Keep the prompt focused on getting the data out, including the original ID)
         system_prompt = f"""
         You are an expert data extraction bot. Extract benchmark data from the provided text into a VALID JSON object.
         Output ONLY the JSON object, nothing else.
@@ -422,7 +456,7 @@ class BenchmarkUpdateAgent:
           "source_url": "{source_url}",
           "scores": [
             {{
-              "model_id": "model-id-extracted-from-text", // Lowercase, hyphen-separated, no trailing dates/versions (e.g., gpt-4o, claude-3-5-sonnet)
+              "model_id": "model-id-extracted-from-text", // Extract the ID as faithfully as possible from the text, using the rules below.
               "dimensions": {{
                 "{primary_dimension}": {{
                   "{primary_metric}": numerical_score // Use null if score not found/numeric
@@ -443,10 +477,11 @@ class BenchmarkUpdateAgent:
         - Examples: "GPT-4.5 Preview 2025" -> "gpt-4-5", "Claude 3 Opus" -> "claude-3-opus", "o4-mini (high)" -> "o4-mini-high", "DeepSeek Chat V3 (prev)" -> "deepseek-v3".
         - The ID should be derived from the text, NOT from a predefined list.
         - SKIP entries combining multiple models (e.g., "Model A + Model B").
+        - Be precise. If the text says "Claude 3.5 Sonnet", the ID should be "claude-3-5-sonnet". If it says "GPT-4o", it should be "gpt-4o".
 
         Focus on the benchmark '{benchmark_id}'. Extract the primary metric '{primary_metric}' within the '{primary_dimension}' dimension.
         """
-        max_content_length = 100000
+        max_content_length = 100000 # Truncate long content to avoid excessive token usage
         user_prompt = f"Extract benchmark data from the following text, adhering STRICTLY to the JSON structure and rules provided in the system prompt:\n\n{content[:min(len(content), max_content_length)]}"
         if len(content) > max_content_length: user_prompt += "\n...[content truncated]"
 
@@ -459,20 +494,21 @@ class BenchmarkUpdateAgent:
         except Exception as save_err: logging.warning(f"Failed to save extraction prompts: {save_err}")
 
         # 3. Call LLM for RAW JSON string
-        model_to_use = "gpt-4o-mini" # Or "google/gemini-flash-1.5" etc.
+        model_to_use = "gpt-4o-mini" # Or "google/gemini-flash-1.5" etc. Adjust as needed
         logging.info(f"Calling LLM ({model_to_use}) for raw JSON extraction...")
         self._log_extraction_debug(extraction_debug_filepath, f"Calling LLM ({model_to_use}) for raw JSON extraction.")
 
         raw_json_string = None
         try:
+            # Using the base client for raw JSON output
             raw_response = openai_client.chat.completions.create(
                 model=model_to_use,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                response_format={"type": "json_object"},
-                temperature=0.1,
+                response_format={"type": "json_object"}, # Request JSON output mode
+                temperature=0.1, # Low temperature for factual extraction
             )
             raw_json_string = raw_response.choices[0].message.content if raw_response.choices and raw_response.choices[0].message else None
 
@@ -584,24 +620,34 @@ class BenchmarkUpdateAgent:
             logging.error(f"Failed to write to debug log {filepath}: {e}")
 
 
-    def _classify_and_process_models(self, benchmark_data: BenchmarkData, benchmark_id: str) -> bool:
+    def _classify_and_process_models(
+        self,
+        benchmark_data: BenchmarkData,
+        benchmark_id: str
+    ) -> Tuple[bool, Dict[str, str]]: # Return (models_updated, id_mapping)
         """
-        Classifies extracted model IDs, logs results, and updates self.models
-        if new models are identified.
+        Classifies extracted model IDs, logs results, updates self.models
+        if new models are identified, and returns the mapping of
+        original_id -> canonical_id.
 
         Args:
             benchmark_data: The extracted benchmark data.
             benchmark_id: The ID of the benchmark being processed.
 
         Returns:
-            bool: True if self.models was updated, False otherwise.
+            Tuple[bool, Dict[str, str]]:
+                - bool: True if self.models was updated, False otherwise.
+                - Dict[str, str]: Mapping of original_id -> canonical_id for matched models.
         """
+        id_mapping: Dict[str, str] = {} # Stores original_id -> canonical_id
+        models_updated = False # Track if we add any new models
+
         if not self.model_classifier:
             logging.error("Model Classifier not available. Skipping classification.")
-            return False
+            return models_updated, id_mapping
         if not benchmark_data or not benchmark_data.scores:
              logging.info(f"No scores in extracted data for '{benchmark_id}'. Skipping classification.")
-             return False
+             return models_updated, id_mapping
 
         # Filter out potential null/empty IDs before sending to classifier
         extracted_ids_list = list(set(
@@ -611,11 +657,9 @@ class BenchmarkUpdateAgent:
 
         if not extracted_ids_list:
              logging.info(f"No valid model IDs found in scores for '{benchmark_id}'. Skipping classification.")
-             return False
+             return models_updated, id_mapping
 
         logging.info(f"Classifying {len(extracted_ids_list)} unique model IDs for '{benchmark_id}'...")
-
-        models_updated = False # Track if we add any new models
 
         try:
             classification_results: List[ModelClassificationResult] = self.model_classifier.classify_batch(
@@ -649,24 +693,36 @@ class BenchmarkUpdateAgent:
                     else:
                         log_entry += f"  Classification: {classification.status.value}\n"
                         if classification.status == ClassificationStatus.EXISTING:
-                            log_entry += f"    Matched Canonical ID: '{classification.matched_id}'\n"
+                            if classification.matched_id:
+                                log_entry += f"    Matched Canonical ID: '{classification.matched_id}'\n"
+                                # --- Store the mapping ---
+                                id_mapping[classification.original_id] = classification.matched_id
+                            else:
+                                log_entry += f"    Matched Canonical ID: NOT FOUND (Status was EXISTING, but no ID provided!)\n"
+                                logging.warning(f"Model '{original_id}' classified as EXISTING but no matched_id provided.")
+
                         elif classification.status == ClassificationStatus.NEW:
                             # --- Add New Model Logic ---
                             if self.models is not None and original_id not in self.models:
                                 logging.info(f"Identified NEW model: '{original_id}'. Adding to models list.")
                                 self.models[original_id] = ModelInfo(
                                     name=original_id, # Use ID as name initially
-                                    organization="", # Placeholder
-                                    release_date="",  # Placeholder
-                                    license=""       # Placeholder
+                                    organization="Unknown", # Placeholder
+                                    release_date="Unknown",  # Placeholder
+                                    license="Unknown"       # Placeholder
                                 ).model_dump() # Store as dict
                                 models_updated = True # Signal that models file needs saving
                                 log_entry += f"    Action: Added as new model to internal list.\n"
+                                # We don't add NEW models to the id_mapping; their original ID is now the canonical one.
                             elif self.models is None:
                                  logging.error("Cannot add new model '{original_id}', self.models is None.")
                             else: # Already exists (maybe added in a previous step or manually)
                                  logging.info(f"Model '{original_id}' classified as NEW, but already exists in models.json. No action taken.")
                                  log_entry += f"    Action: Already exists in models.json.\n"
+
+                        elif classification.status == ClassificationStatus.UNCLASSIFIED:
+                             log_entry += f"    Action: Kept original ID '{original_id}'.\n"
+                             # No mapping needed, we keep the original ID
 
 
                         if classification.explanation:
@@ -682,7 +738,7 @@ class BenchmarkUpdateAgent:
             if models_updated:
                  logging.info(f"Found new models for benchmark '{benchmark_id}'. Models list updated in memory.")
 
-            return models_updated # Return whether models were updated
+            return models_updated, id_mapping # Return whether models were updated AND the mapping
 
         except Exception as e:
             # Catch exceptions raised by classify_batch (e.g., InstructorRetryException)
@@ -752,17 +808,21 @@ def main():
         if agent.models is None:
              logging.critical("BenchmarkUpdateAgent failed to load models data. Exiting.")
              sys.exit(1)
+        # Allow continuing if benchmarks list is empty initially, but log warning
         if not agent.benchmarks:
-             logging.warning("No benchmarks loaded. Exiting.")
-             sys.exit(0) # Not critical error, just nothing to do
+             logging.warning("No benchmarks loaded from benchmarks.json. Update process may not find benchmarks to run.")
+             # Do not exit here, allow specific benchmark update if ID is provided
 
 
         if args.benchmark.lower() == "all":
+            if not agent.benchmarks:
+                 logging.warning("No benchmarks loaded. Nothing to update in 'all' mode. Exiting.")
+                 sys.exit(0)
             results = agent.update_all_benchmarks()
             successful_count = sum(1 for status in results.values() if status)
             total_count = len(results)
             logging.info(f"Finished updating all benchmarks. Succeeded: {successful_count}/{total_count}")
-            # Exit code 0 if *any* succeeded, 1 if *all* failed
+            # Exit code 0 if *any* succeeded, 1 if *all* failed or none were run
             sys.exit(0 if successful_count > 0 else 1)
         else:
             success = agent.update_benchmark(args.benchmark, args.url)
@@ -776,24 +836,26 @@ def main():
 
 
 if __name__ == "__main__":
-    # Ensure the script can find the model_classify module if run directly
-    # This assumes benchmark_update_agent.py is in src/llmbench/
+    # This block for making imports work when run as script is often problematic.
+    # Running as a module `python -m llmbench.benchmark_update_agent` is preferred.
+    # However, keeping it for potential direct script execution.
     script_dir = Path(__file__).parent.resolve()
-    project_root = script_dir.parent.parent.resolve() # Go up two levels from src/llmbench
+    project_root = script_dir.parent.parent.resolve() # Assumes src/llmbench/benchmark_update_agent.py
+
+    # Add project root and src to sys.path if not already present
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
-        logging.info(f"Added {project_root} to sys.path")
-    if str(project_root / "src") not in sys.path: # Add src directory too
-         sys.path.insert(0, str(project_root / "src"))
-         logging.info(f"Added {project_root / 'src'} to sys.path")
+        # logging.info(f"Added {project_root} to sys.path") # Keep logging minimal before config
+    if str(project_root / "src") not in sys.path:
+        sys.path.insert(0, str(project_root / "src"))
+        # logging.info(f"Added {project_root / 'src'} to sys.path")
 
-    # Need to re-import after modifying sys.path if running as script
-    # This can be tricky; often better to run as a module: python -m llmbench.benchmark_update_agent
+    # Re-check imports after path modification, though module execution is better.
     try:
-        from llmbench.model_classify import ModelClassifier, ModelClassificationResult, ClassificationStatus, CanonicalModel
-    except ModuleNotFoundError:
-         logging.error("Could not import model_classify. Ensure script is run correctly (e.g., python -m llmbench.benchmark_update_agent) or PYTHONPATH is set.")
-         # Re-importing might not work reliably depending on structure.
-         # Let's assume the module structure is correct for module execution.
+        from llmbench.model_classify import ModelClassifier, ModelClassificationResult, ClassificationStatus, CanonicalModel # Adjust based on actual location
+    except ModuleNotFoundError as e:
+        print(f"ERROR: Could not import classification module: {e}", file=sys.stderr)
+        print("Ensure the script is run as a module (python -m llmbench.benchmark_update_agent) or PYTHONPATH is set correctly.", file=sys.stderr)
+        sys.exit(1)
 
     main()

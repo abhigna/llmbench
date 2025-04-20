@@ -139,14 +139,20 @@ class ModelClassifier:
 
         Classification Rules:
         1. For each 'original_id' from the user prompt, carefully consider its text.
-        2. **Normalization for Matching:** Apply these normalization steps to the 'original_id':
+        2. **Normalization for Matching:** Apply these normalization steps to the 'original_id' before comparing to the KNOWN list:
            - Convert to lowercase.
-           - Replace separators (spaces, '.', '_', '()') with hyphens (-).
-           - Ignore common suffixes ('-preview', '-latest', '-beta', '-v1', '-v2', date suffixes) *at the end*. Keep core identifiers ('-mini', '-high', '-instruct', '-chat', '-sonnet', '-haiku', '-opus').
-           Example: 'gpt-4.5-preview-2025-01-15' suggests 'gpt-4-5' if known. 'Claude 3 Opus' suggests 'claude-3-opus'.
+           - Replace common separators (spaces, '.', '_', '()') with hyphens (-).
+           - Remove common suffixes like '-preview', '-latest', '-beta', '-v1', '-v2', and date suffixes (e.g., '-YYYYMMDD') *only if they appear at the very end*.
+           - Specifically remove '-exp' or '-experimental' if they appear at the very end.
+           - Keep core identifiers intact (e.g., '-mini', '-high', '-instruct', '-chat', '-sonnet', '-haiku', '-opus').
+           - Examples:
+             - 'gpt-4.5-preview-2025-01-15' suggests 'gpt-4-5' if known.
+             - 'Claude 3 Opus' suggests 'claude-3-opus'.
+             - 'gemini-2-5-pro-exp' suggests 'gemini-2-5-pro'.
+             - 'gemini-2-0-pro-experimental' suggests 'gemini-2-0-pro'.
         3. **Matching Decision:**
-           - If matched to a KNOWN model: 'status' = '{ClassificationStatus.EXISTING.value}', 'matched_id' = the EXACT canonical ID from the KNOWN list. Provide brief 'explanation'.
-           - If no clear match: 'status' = '{ClassificationStatus.NEW.value}', 'matched_id' = null. Provide brief 'explanation'.
+           - If the normalized ID matches a KNOWN model: 'status' = '{ClassificationStatus.EXISTING.value}', 'matched_id' = the EXACT canonical ID from the KNOWN list. Provide brief 'explanation'.
+           - If no clear match after normalization: 'status' = '{ClassificationStatus.NEW.value}', 'matched_id' = null. Provide brief 'explanation'.
         4. **Accuracy:** Only classify as 'existing' if confident.
         5. **Strict Output:** Ensure the output is *only* the JSON object conforming to the `ClassificationResponse` schema, containing the `results` list. Do NOT include entries for IDs not in the user prompt.
         """

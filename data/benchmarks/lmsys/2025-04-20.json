@@ -3,7 +3,7 @@
   "source_url": "https://beta.lmarena.ai/leaderboard/text",
   "scores": [
     {
-      "model_id": "gemini-2-5-pro-exp",
+      "model_id": "gemini-2-5-pro",
       "dimensions": {
         "overall": {
           "arena_score": 1439
@@ -43,15 +43,7 @@
       }
     },
     {
-      "model_id": "gemini-2-0-pro-exp",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1380
-        }
-      }
-    },
-    {
-      "model_id": "gemini-2-0-flash-thinking-exp",
+      "model_id": "gemini-2-0-pro",
       "dimensions": {
         "overall": {
           "arena_score": 1380
@@ -107,7 +99,7 @@
       }
     },
     {
-      "model_id": "o1",
+      "model_id": "o1-preview",
       "dimensions": {
         "overall": {
           "arena_score": 1335
@@ -219,7 +211,7 @@
       }
     },
     {
-      "model_id": "gemini-1-5-pro",
+      "model_id": "gemini-1-5-pro-002",
       "dimensions": {
         "overall": {
           "arena_score": 1302
@@ -227,7 +219,7 @@
       }
     },
     {
-      "model_id": "hunyuan-turbo",
+      "model_id": "hunyuan-turbo-0110",
       "dimensions": {
         "overall": {
           "arena_score": 1296
@@ -291,7 +283,7 @@
       }
     },
     {
-      "model_id": "qwen2-5-72b-instruct",
+      "model_id": "qwen2.5-72b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1257
@@ -435,7 +427,7 @@
       }
     },
     {
-      "model_id": "mistral-small-24b-instruct-2501",
+      "model_id": "mistral-small-24b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1217
@@ -459,7 +451,7 @@
       }
     },
     {
-      "model_id": "command-r-plus-08-2024",
+      "model_id": "command-r-plus",
       "dimensions": {
         "overall": {
           "arena_score": 1215
@@ -499,7 +491,7 @@
       }
     },
     {
-      "model_id": "glm-4",
+      "model_id": "glm-4-0520",
       "dimensions": {
         "overall": {
           "arena_score": 1207
@@ -531,7 +523,7 @@
       }
     },
     {
-      "model_id": "claude-3-sonnet",
+      "model_id": "claude-3-5-sonnet",
       "dimensions": {
         "overall": {
           "arena_score": 1201
@@ -539,7 +531,7 @@
       }
     },
     {
-      "model_id": "nova-micro",
+      "model_id": "amazon-nova-micro",
       "dimensions": {
         "overall": {
           "arena_score": 1198
@@ -659,7 +651,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-110b-chat",
+      "model_id": "qwen1.5-110b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1161
@@ -755,7 +747,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-72b-chat",
+      "model_id": "qwen1.5-72b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1147
@@ -787,7 +779,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-32b-chat",
+      "model_id": "qwen1.5-32b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1125
@@ -843,7 +835,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-14b-chat",
+      "model_id": "qwen1.5-14b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1109
@@ -1003,7 +995,7 @@
       }
     },
     {
-      "model_id": "mistral-7b-instruct-v0-2",
+      "model_id": "mistral-7b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1072
@@ -1011,7 +1003,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-7b-chat",
+      "model_id": "qwen1.5-7b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1070
@@ -1019,7 +1011,7 @@
       }
     },
     {
-      "model_id": "phi-3-mini-4k-instruct-june-2024",
+      "model_id": "phi-3-mini-4k-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1070
@@ -1103,30 +1095,6 @@
       "dimensions": {
         "overall": {
           "arena_score": 1042
-        }
-      }
-    },
-    {
-      "model_id": "mpt-30b-chat",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1045
-        }
-      }
-    },
-    {
-      "model_id": "zephyr-7b-alpha",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1040
-        }
-      }
-    },
-    {
-      "model_id": "codellama-34b-instruct",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1043
         }
       }
     },
@@ -1243,7 +1211,7 @@
       }
     },
     {
-      "model_id": "qwen1-5-4b-chat",
+      "model_id": "qwen1.5-4b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 988
@@ -1291,7 +1259,7 @@
       }
     },
     {
-      "model_id": "rwkv-4-raven",
+      "model_id": "rwkv-4-raven-14b",
       "dimensions": {
         "overall": {
           "arena_score": 922
@@ -1355,10 +1323,10 @@
       }
     },
     {
-      "model_id": "mistral-7b-instruct",
+      "model_id": "gpt-4-5",
       "dimensions": {
         "overall": {
-          "arena_score": 1008
+          "arena_score": null
         }
       }
     }

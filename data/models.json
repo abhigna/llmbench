@@ -263,6 +263,12 @@
     "organization": "",
     "release_date": ""
   },
+  "gemini-1-5-flash": {
+    "license": "Unknown",
+    "name": "gemini-1-5-flash",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "gemini-1-5-flash-8b": {
     "license": "",
     "name": "gemini-1-5-flash-8b",
@@ -275,11 +281,17 @@
     "organization": "",
     "release_date": ""
   },
-  "gemini-2-0-flash-exp": {
-    "license": "",
-    "name": "gemini-2-0-flash-exp",
-    "organization": "",
-    "release_date": ""
+  "gemini-1-5-pro-002": {
+    "license": "Unknown",
+    "name": "gemini-1-5-pro-002",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gemini-2-0-flash": {
+    "license": "Unknown",
+    "name": "gemini-2-0-flash",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "gemini-2-0-flash-lite": {
     "license": "",
@@ -293,27 +305,9 @@
     "organization": "",
     "release_date": ""
   },
-  "gemini-2-0-flash-thinking-exp": {
+  "gemini-2-0-pro": {
     "license": "",
-    "name": "gemini-2-0-flash-thinking-exp",
-    "organization": "",
-    "release_date": ""
-  },
-  "gemini-2-0-flash-thinking-experimental": {
-    "license": "",
-    "name": "gemini-2-0-flash-thinking-experimental",
-    "organization": "",
-    "release_date": ""
-  },
-  "gemini-2-0-pro-exp": {
-    "license": "",
-    "name": "gemini-2-0-pro-exp",
-    "organization": "",
-    "release_date": ""
-  },
-  "gemini-2-0-pro-experimental": {
-    "license": "",
-    "name": "gemini-2-0-pro-experimental",
+    "name": "gemini-2-0-pro",
     "organization": "",
     "release_date": ""
   },
@@ -425,11 +419,47 @@
     "organization": "",
     "release_date": ""
   },
+  "glm-4-0520": {
+    "license": "Unknown",
+    "name": "glm-4-0520",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "glm-4-plus": {
     "license": "",
     "name": "glm-4-plus",
     "organization": "",
     "release_date": ""
+  },
+  "gpt-3-5-turbo": {
+    "license": "Unknown",
+    "name": "gpt-3-5-turbo",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gpt-3-5-turbo-1106": {
+    "license": "Unknown",
+    "name": "gpt-3-5-turbo-1106",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gpt-4-0125": {
+    "license": "Unknown",
+    "name": "gpt-4-0125",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gpt-4-0314": {
+    "license": "Unknown",
+    "name": "gpt-4-0314",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gpt-4-0613": {
+    "license": "Unknown",
+    "name": "gpt-4-0613",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "gpt-4-1": {
     "license": "",
@@ -449,11 +479,23 @@
     "organization": "",
     "release_date": ""
   },
+  "gpt-4-1106": {
+    "license": "Unknown",
+    "name": "gpt-4-1106",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "gpt-4-5": {
     "license": "",
     "name": "gpt-4-5",
     "organization": "",
     "release_date": ""
+  },
+  "gpt-4-turbo": {
+    "license": "Unknown",
+    "name": "gpt-4-turbo",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "gpt-4o": {
     "license": "",
@@ -551,11 +593,23 @@
     "organization": "",
     "release_date": ""
   },
+  "hunyuan-turbo-0110": {
+    "license": "Unknown",
+    "name": "hunyuan-turbo-0110",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "hunyuan-turbos": {
     "license": "",
     "name": "hunyuan-turbos",
     "organization": "",
     "release_date": ""
+  },
+  "internlm2-5-20b-chat": {
+    "license": "Unknown",
+    "name": "internlm2-5-20b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "internlm2_5-20b-chat": {
     "license": "",
@@ -581,9 +635,9 @@
     "organization": "",
     "release_date": ""
   },
-  "learnlm-1-5-pro-experimental": {
+  "learnlm-1-5-pro": {
     "license": "",
-    "name": "learnlm-1-5-pro-experimental",
+    "name": "learnlm-1-5-pro",
     "organization": "",
     "release_date": ""
   },
@@ -1079,6 +1133,42 @@
     "organization": "",
     "release_date": ""
   },
+  "qwen1.5-110b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-110b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen1.5-14b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-14b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen1.5-32b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-32b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen1.5-4b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-4b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen1.5-72b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-72b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen1.5-7b-chat": {
+    "license": "Unknown",
+    "name": "qwen1.5-7b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "qwen2-5-72b-instruct": {
     "license": "",
     "name": "qwen2-5-72b-instruct",
@@ -1121,11 +1211,23 @@
     "organization": "",
     "release_date": ""
   },
+  "qwen2.5-72b-instruct": {
+    "license": "Unknown",
+    "name": "qwen2.5-72b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "qwq-32b": {
     "license": "",
     "name": "qwq-32b",
     "organization": "",
     "release_date": ""
+  },
+  "qwq-32b-preview": {
+    "license": "Unknown",
+    "name": "qwq-32b-preview",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "qwq-32b-qwen-2-5-coder-instruct": {
     "license": "",
@@ -1162,6 +1264,12 @@
     "name": "rwkv-4-raven",
     "organization": "",
     "release_date": ""
+  },
+  "rwkv-4-raven-14b": {
+    "license": "Unknown",
+    "name": "rwkv-4-raven-14b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "smollm2-1-7b-instruct": {
     "license": "",
