@@ -1,6 +1,6 @@
 {
   "date": "2025-04-20",
-  "source_url": "https://livebench.ai/#/leaderboard",
+  "source_url": "https://livebench.ai/#/",
   "scores": [
     {
       "model_id": "o3-high",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "model_id": "gemini-2-5-pro-preview",
+      "model_id": "gemini-2-5-pro",
       "dimensions": {
         "overall": {
           "global_average": 77.43
@@ -59,7 +59,7 @@
       }
     },
     {
-      "model_id": "gemini-2-5-flash-preview",
+      "model_id": "gemini-2-5-flash",
       "dimensions": {
         "overall": {
           "global_average": 71.21
@@ -75,7 +75,7 @@
       }
     },
     {
-      "model_id": "grok-3-mini-beta",
+      "model_id": "grok-3-mini-high",
       "dimensions": {
         "overall": {
           "global_average": 68.33
@@ -107,7 +107,7 @@
       }
     },
     {
-      "model_id": "gpt-4-5-preview",
+      "model_id": "gpt-4-5",
       "dimensions": {
         "overall": {
           "global_average": 62.13
@@ -251,7 +251,7 @@
       }
     },
     {
-      "model_id": "gpt-4o-2024-08-06",
+      "model_id": "gpt-4o",
       "dimensions": {
         "overall": {
           "global_average": 49.21
@@ -299,7 +299,7 @@
       }
     },
     {
-      "model_id": "gpt-4o-2024-11-20",
+      "model_id": "gpt-4o",
       "dimensions": {
         "overall": {
           "global_average": 47.03
@@ -451,7 +451,7 @@
       }
     },
     {
-      "model_id": "azerogpt",
+      "model_id": "azero-gpt",
       "dimensions": {
         "overall": {
           "global_average": 32.7

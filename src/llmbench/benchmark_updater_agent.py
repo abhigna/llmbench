@@ -446,7 +446,7 @@ class BenchmarkUpdateAgent:
 
         Focus on the benchmark '{benchmark_id}'. Extract the primary metric '{primary_metric}' within the '{primary_dimension}' dimension.
         """
-        max_content_length = 25000
+        max_content_length = 100000
         user_prompt = f"Extract benchmark data from the following text, adhering STRICTLY to the JSON structure and rules provided in the system prompt:\n\n{content[:min(len(content), max_content_length)]}"
         if len(content) > max_content_length: user_prompt += "\n...[content truncated]"
 

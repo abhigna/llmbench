@@ -1,34 +1,34 @@
 [
   {
-    "id": "lmsys",
-    "name": "lmsys Chatbot Arena",
     "description": "Community-driven evaluation based on human preference",
-    "source_url": "https://beta.lmarena.ai/leaderboard/text",
+    "id": "lmsys",
     "last_updated": "2025-04-20",
+    "name": "lmsys Chatbot Arena",
+    "source_url": "https://beta.lmarena.ai/leaderboard/text",
     "type": "human_pref"
   },
   {
-    "id": "aider_llm_bench",
-    "name": "Aider LLM Benchmark",
     "description": "Polyglot benchmark testing LLMs on 225 Exercism coding exercises across C++, Go, Java, JavaScript, Python, and Rust",
-    "source_url": "https://aider.chat/docs/leaderboards/",
+    "id": "aider_llm_bench",
     "last_updated": "2025-04-20",
+    "name": "Aider LLM Benchmark",
+    "source_url": "https://aider.chat/docs/leaderboards/",
     "type": "code_edit"
   },
   {
-    "id": "simple_bench",
-    "name": "SimpleBench",
     "description": "Multiple-choice benchmark where individuals with high school knowledge outperform SOTA models",
-    "source_url": "https://simple-bench.com/",
+    "id": "simple_bench",
     "last_updated": "2025-04-20",
+    "name": "SimpleBench",
+    "source_url": "https://simple-bench.com/",
     "type": "reasoning"
   },
   {
-    "id": "livebench",
-    "name": "LiveBench",
     "description": "A benchmark for LLMs designed with test set contamination and objective evaluation in mind",
-    "source_url": "https://livebench.ai/#/",
+    "id": "livebench",
     "last_updated": "2025-04-20",
+    "name": "LiveBench",
+    "source_url": "https://livebench.ai/#/",
     "type": "reasoning"
   }
 ]

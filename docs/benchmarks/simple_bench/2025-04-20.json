@@ -1,6 +1,6 @@
 {
   "date": "2025-04-20",
-  "source_url": "https://simple-bench.com/leaderboard",
+  "source_url": "https://simple-bench.com/",
   "scores": [
     {
       "model_id": "o3-high",
@@ -35,7 +35,7 @@
       }
     },
     {
-      "model_id": "o1-preview",
+      "model_id": "o1",
       "dimensions": {
         "overall": {
           "score_avg5": 41.7
@@ -43,7 +43,7 @@
       }
     },
     {
-      "model_id": "claude-3-5-sonnet-10-22",
+      "model_id": "claude-3-5-sonnet",
       "dimensions": {
         "overall": {
           "score_avg5": 41.4
@@ -51,7 +51,7 @@
       }
     },
     {
-      "model_id": "o1-2024-12-17-high",
+      "model_id": "o1-high",
       "dimensions": {
         "overall": {
           "score_avg5": 40.1
@@ -67,7 +67,7 @@
       }
     },
     {
-      "model_id": "o1-2024-12-17-med",
+      "model_id": "o1-med",
       "dimensions": {
         "overall": {
           "score_avg5": 36.7
@@ -123,7 +123,7 @@
       }
     },
     {
-      "model_id": "claude-3-5-sonnet-06-20",
+      "model_id": "claude-3-5-sonnet",
       "dimensions": {
         "overall": {
           "score_avg5": 27.5
@@ -131,7 +131,7 @@
       }
     },
     {
-      "model_id": "deepseek-v3-03-24",
+      "model_id": "deepseek-v3",
       "dimensions": {
         "overall": {
           "score_avg5": 27.2
@@ -139,7 +139,7 @@
       }
     },
     {
-      "model_id": "gemini-1-5-pro-002",
+      "model_id": "gemini-1-5-pro",
       "dimensions": {
         "overall": {
           "score_avg5": 27.1
@@ -235,7 +235,7 @@
       }
     },
     {
-      "model_id": "gpt-4o-08-06",
+      "model_id": "gpt-4o",
       "dimensions": {
         "overall": {
           "score_avg5": 17.8

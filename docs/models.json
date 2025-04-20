@@ -1,31 +1,19 @@
 {
-  "RWKV-4-Raven-14B": {
-    "license": "",
-    "name": "RWKV-4-Raven-14B",
-    "organization": "",
-    "release_date": ""
-  },
   "alpaca-13b": {
     "license": "",
     "name": "alpaca-13b",
     "organization": "",
     "release_date": ""
   },
-  "amazon-nova-lite-v1.0": {
+  "amazon-nova-lite": {
     "license": "",
-    "name": "amazon-nova-lite-v1.0",
+    "name": "amazon-nova-lite",
     "organization": "",
     "release_date": ""
   },
-  "amazon-nova-micro-v1.0": {
+  "amazon-nova-pro": {
     "license": "",
-    "name": "amazon-nova-micro-v1.0",
-    "organization": "",
-    "release_date": ""
-  },
-  "amazon-nova-pro-v1.0": {
-    "license": "",
-    "name": "amazon-nova-pro-v1.0",
+    "name": "amazon-nova-pro",
     "organization": "",
     "release_date": ""
   },
@@ -35,9 +23,9 @@
     "organization": "",
     "release_date": ""
   },
-  "athene-v2-chat": {
+  "azero-gpt": {
     "license": "",
-    "name": "athene-v2-chat",
+    "name": "azero-gpt",
     "organization": "",
     "release_date": ""
   },
@@ -71,57 +59,45 @@
     "organization": "",
     "release_date": ""
   },
-  "chatgpt-4o-latest-20250326": {
+  "chatgpt-4o": {
     "license": "",
-    "name": "chatgpt-4o-latest-20250326",
+    "name": "chatgpt-4o",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-5-haiku-20241022": {
+  "claude-3-5-haiku": {
     "license": "",
-    "name": "claude-3-5-haiku-20241022",
+    "name": "claude-3-5-haiku",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-5-sonnet-20240620": {
+  "claude-3-5-sonnet": {
     "license": "",
-    "name": "claude-3-5-sonnet-20240620",
+    "name": "claude-3-5-sonnet",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-5-sonnet-20241022": {
+  "claude-3-7-sonnet": {
     "license": "",
-    "name": "claude-3-5-sonnet-20241022",
+    "name": "claude-3-7-sonnet",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-7-sonnet-20250219": {
+  "claude-3-7-sonnet-no-thinking": {
     "license": "",
-    "name": "claude-3-7-sonnet-20250219",
+    "name": "claude-3-7-sonnet-no-thinking",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-7-sonnet-20250219-thinking-32k": {
+  "claude-3-7-sonnet-thinking": {
     "license": "",
-    "name": "claude-3-7-sonnet-20250219-thinking-32k",
+    "name": "claude-3-7-sonnet-thinking",
     "organization": "",
     "release_date": ""
   },
-  "claude-3-haiku-20240307": {
+  "claude-3-opus": {
     "license": "",
-    "name": "claude-3-haiku-20240307",
-    "organization": "",
-    "release_date": ""
-  },
-  "claude-3-opus-20240229": {
-    "license": "",
-    "name": "claude-3-opus-20240229",
-    "organization": "",
-    "release_date": ""
-  },
-  "claude-3-sonnet-20240229": {
-    "license": "",
-    "name": "claude-3-sonnet-20240229",
+    "name": "claude-3-opus",
     "organization": "",
     "release_date": ""
   },
@@ -137,9 +113,21 @@
     "organization": "",
     "release_date": ""
   },
-  "command-a-03-2025": {
+  "codestral-25-01": {
     "license": "",
-    "name": "command-a-03-2025",
+    "name": "codestral-25-01",
+    "organization": "",
+    "release_date": ""
+  },
+  "command-a": {
+    "license": "",
+    "name": "command-a",
+    "organization": "",
+    "release_date": ""
+  },
+  "command-a-03-2025-quality": {
+    "license": "",
+    "name": "command-a-03-2025-quality",
     "organization": "",
     "release_date": ""
   },
@@ -173,6 +161,18 @@
     "organization": "",
     "release_date": ""
   },
+  "deepseek-chat-v2-5": {
+    "license": "",
+    "name": "deepseek-chat-v2-5",
+    "organization": "",
+    "release_date": ""
+  },
+  "deepseek-chat-v3-prev": {
+    "license": "",
+    "name": "deepseek-chat-v3-prev",
+    "organization": "",
+    "release_date": ""
+  },
   "deepseek-coder-v2": {
     "license": "",
     "name": "deepseek-coder-v2",
@@ -191,15 +191,27 @@
     "organization": "",
     "release_date": ""
   },
-  "deepseek-v2.5": {
+  "deepseek-r1-claude-3-5-sonnet": {
     "license": "",
-    "name": "deepseek-v2.5",
+    "name": "deepseek-r1-claude-3-5-sonnet",
     "organization": "",
     "release_date": ""
   },
-  "deepseek-v2.5-1210": {
+  "deepseek-r1-distill-llama-70b": {
     "license": "",
-    "name": "deepseek-v2.5-1210",
+    "name": "deepseek-r1-distill-llama-70b",
+    "organization": "",
+    "release_date": ""
+  },
+  "deepseek-r1-distill-qwen-32b": {
+    "license": "",
+    "name": "deepseek-r1-distill-qwen-32b",
+    "organization": "",
+    "release_date": ""
+  },
+  "deepseek-v2-5": {
+    "license": "",
+    "name": "deepseek-v2-5",
     "organization": "",
     "release_date": ""
   },
@@ -209,9 +221,9 @@
     "organization": "",
     "release_date": ""
   },
-  "deepseek-v3-0324": {
+  "deepseek-v3-1": {
     "license": "",
-    "name": "deepseek-v3-0324",
+    "name": "deepseek-v3-1",
     "organization": "",
     "release_date": ""
   },
@@ -221,9 +233,21 @@
     "organization": "",
     "release_date": ""
   },
-  "dolphin-2.2.1-mistral-7b": {
+  "dolphin-2-2-1-mistral-7b": {
     "license": "",
-    "name": "dolphin-2.2.1-mistral-7b",
+    "name": "dolphin-2-2-1-mistral-7b",
+    "organization": "",
+    "release_date": ""
+  },
+  "dracarys2-72b-instruct": {
+    "license": "",
+    "name": "dracarys2-72b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "dracarys2-llama-3-1-70b-instruct": {
+    "license": "",
+    "name": "dracarys2-llama-3-1-70b-instruct",
     "organization": "",
     "release_date": ""
   },
@@ -239,75 +263,75 @@
     "organization": "",
     "release_date": ""
   },
-  "gemini-1.5-flash-001": {
+  "gemini-1-5-flash-8b": {
     "license": "",
-    "name": "gemini-1.5-flash-001",
+    "name": "gemini-1-5-flash-8b",
     "organization": "",
     "release_date": ""
   },
-  "gemini-1.5-flash-002": {
+  "gemini-1-5-pro": {
     "license": "",
-    "name": "gemini-1.5-flash-002",
+    "name": "gemini-1-5-pro",
     "organization": "",
     "release_date": ""
   },
-  "gemini-1.5-flash-8b-001": {
+  "gemini-2-0-flash-exp": {
     "license": "",
-    "name": "gemini-1.5-flash-8b-001",
+    "name": "gemini-2-0-flash-exp",
     "organization": "",
     "release_date": ""
   },
-  "gemini-1.5-pro-001": {
+  "gemini-2-0-flash-lite": {
     "license": "",
-    "name": "gemini-1.5-pro-001",
+    "name": "gemini-2-0-flash-lite",
     "organization": "",
     "release_date": ""
   },
-  "gemini-1.5-pro-002": {
+  "gemini-2-0-flash-thinking": {
     "license": "",
-    "name": "gemini-1.5-pro-002",
+    "name": "gemini-2-0-flash-thinking",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.0-flash-001": {
+  "gemini-2-0-flash-thinking-exp": {
     "license": "",
-    "name": "gemini-2.0-flash-001",
+    "name": "gemini-2-0-flash-thinking-exp",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.0-flash-lite-preview-02-05": {
+  "gemini-2-0-flash-thinking-experimental": {
     "license": "",
-    "name": "gemini-2.0-flash-lite-preview-02-05",
+    "name": "gemini-2-0-flash-thinking-experimental",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.0-flash-thinking-exp-01-21": {
+  "gemini-2-0-pro-exp": {
     "license": "",
-    "name": "gemini-2.0-flash-thinking-exp-01-21",
+    "name": "gemini-2-0-pro-exp",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.0-pro-exp-02-05": {
+  "gemini-2-0-pro-experimental": {
     "license": "",
-    "name": "gemini-2.0-pro-exp-02-05",
+    "name": "gemini-2-0-pro-experimental",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.5-flash-preview-04-17": {
+  "gemini-2-5-flash": {
     "license": "",
-    "name": "gemini-2.5-flash-preview-04-17",
+    "name": "gemini-2-5-flash",
     "organization": "",
     "release_date": ""
   },
-  "gemini-2.5-pro-exp-03-25": {
+  "gemini-2-5-pro": {
     "license": "",
-    "name": "gemini-2.5-pro-exp-03-25",
+    "name": "gemini-2-5-pro",
     "organization": "",
     "release_date": ""
   },
-  "gemini-advanced-0514": {
+  "gemini-exp-1206": {
     "license": "",
-    "name": "gemini-advanced-0514",
+    "name": "gemini-exp-1206",
     "organization": "",
     "release_date": ""
   },
@@ -323,15 +347,15 @@
     "organization": "",
     "release_date": ""
   },
-  "gemma-1.1-2b-it": {
+  "gemma-1-1-2b-it": {
     "license": "",
-    "name": "gemma-1.1-2b-it",
+    "name": "gemma-1-1-2b-it",
     "organization": "",
     "release_date": ""
   },
-  "gemma-1.1-7b-it": {
+  "gemma-1-1-7b-it": {
     "license": "",
-    "name": "gemma-1.1-7b-it",
+    "name": "gemma-1-1-7b-it",
     "organization": "",
     "release_date": ""
   },
@@ -365,9 +389,27 @@
     "organization": "",
     "release_date": ""
   },
+  "gemma-3-12b": {
+    "license": "",
+    "name": "gemma-3-12b",
+    "organization": "",
+    "release_date": ""
+  },
+  "gemma-3-27b": {
+    "license": "",
+    "name": "gemma-3-27b",
+    "organization": "",
+    "release_date": ""
+  },
   "gemma-3-27b-it": {
     "license": "",
     "name": "gemma-3-27b-it",
+    "organization": "",
+    "release_date": ""
+  },
+  "gemma-3-4b": {
+    "license": "",
+    "name": "gemma-3-4b",
     "organization": "",
     "release_date": ""
   },
@@ -377,9 +419,9 @@
     "organization": "",
     "release_date": ""
   },
-  "glm-4-0520": {
+  "glm-4": {
     "license": "",
-    "name": "glm-4-0520",
+    "name": "glm-4",
     "organization": "",
     "release_date": ""
   },
@@ -389,75 +431,39 @@
     "organization": "",
     "release_date": ""
   },
-  "glm-4-plus-0111": {
+  "gpt-4-1": {
     "license": "",
-    "name": "glm-4-plus-0111",
+    "name": "gpt-4-1",
     "organization": "",
     "release_date": ""
   },
-  "gpt-3.5-turbo-0125": {
+  "gpt-4-1-mini": {
     "license": "",
-    "name": "gpt-3.5-turbo-0125",
+    "name": "gpt-4-1-mini",
     "organization": "",
     "release_date": ""
   },
-  "gpt-3.5-turbo-1106": {
+  "gpt-4-1-nano": {
     "license": "",
-    "name": "gpt-3.5-turbo-1106",
+    "name": "gpt-4-1-nano",
     "organization": "",
     "release_date": ""
   },
-  "gpt-4-0125-preview": {
+  "gpt-4-5": {
     "license": "",
-    "name": "gpt-4-0125-preview",
+    "name": "gpt-4-5",
     "organization": "",
     "release_date": ""
   },
-  "gpt-4-0314": {
+  "gpt-4o": {
     "license": "",
-    "name": "gpt-4-0314",
+    "name": "gpt-4o",
     "organization": "",
     "release_date": ""
   },
-  "gpt-4-0613": {
+  "gpt-4o-mini": {
     "license": "",
-    "name": "gpt-4-0613",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4-1106-preview": {
-    "license": "",
-    "name": "gpt-4-1106-preview",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4-turbo-2024-04-09": {
-    "license": "",
-    "name": "gpt-4-turbo-2024-04-09",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4.5-preview-2025-02-27": {
-    "license": "",
-    "name": "gpt-4.5-preview-2025-02-27",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4o-2024-05-13": {
-    "license": "",
-    "name": "gpt-4o-2024-05-13",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4o-2024-08-06": {
-    "license": "",
-    "name": "gpt-4o-2024-08-06",
-    "organization": "",
-    "release_date": ""
-  },
-  "gpt-4o-mini-2024-07-18": {
-    "license": "",
-    "name": "gpt-4o-mini-2024-07-18",
+    "name": "gpt-4o-mini",
     "organization": "",
     "release_date": ""
   },
@@ -467,45 +473,63 @@
     "organization": "",
     "release_date": ""
   },
-  "granite-3.0-2b-instruct": {
+  "granite-3-0-2b-instruct": {
     "license": "",
-    "name": "granite-3.0-2b-instruct",
+    "name": "granite-3-0-2b-instruct",
     "organization": "",
     "release_date": ""
   },
-  "granite-3.0-8b-instruct": {
+  "granite-3-0-8b-instruct": {
     "license": "",
-    "name": "granite-3.0-8b-instruct",
+    "name": "granite-3-0-8b-instruct",
     "organization": "",
     "release_date": ""
   },
-  "granite-3.1-2b-instruct": {
+  "granite-3-1-2b-instruct": {
     "license": "",
-    "name": "granite-3.1-2b-instruct",
+    "name": "granite-3-1-2b-instruct",
     "organization": "",
     "release_date": ""
   },
-  "granite-3.1-8b-instruct": {
+  "granite-3-1-8b-instruct": {
     "license": "",
-    "name": "granite-3.1-8b-instruct",
+    "name": "granite-3-1-8b-instruct",
     "organization": "",
     "release_date": ""
   },
-  "grok-2-2024-08-13": {
+  "grok-2": {
     "license": "",
-    "name": "grok-2-2024-08-13",
+    "name": "grok-2",
     "organization": "",
     "release_date": ""
   },
-  "grok-2-mini-2024-08-13": {
+  "grok-3": {
     "license": "",
-    "name": "grok-2-mini-2024-08-13",
+    "name": "grok-3",
     "organization": "",
     "release_date": ""
   },
-  "grok-3-preview-02-24": {
+  "grok-3-beta": {
     "license": "",
-    "name": "grok-3-preview-02-24",
+    "name": "grok-3-beta",
+    "organization": "",
+    "release_date": ""
+  },
+  "grok-3-mini-beta-high": {
+    "license": "",
+    "name": "grok-3-mini-beta-high",
+    "organization": "",
+    "release_date": ""
+  },
+  "grok-3-mini-beta-low": {
+    "license": "",
+    "name": "grok-3-mini-beta-low",
+    "organization": "",
+    "release_date": ""
+  },
+  "grok-3-mini-high": {
+    "license": "",
+    "name": "grok-3-mini-high",
     "organization": "",
     "release_date": ""
   },
@@ -515,33 +539,21 @@
     "organization": "",
     "release_date": ""
   },
-  "hunyuan-large-2025-02-10": {
-    "license": "",
-    "name": "hunyuan-large-2025-02-10",
-    "organization": "",
-    "release_date": ""
-  },
-  "hunyuan-standard-2025-02-10": {
-    "license": "",
-    "name": "hunyuan-standard-2025-02-10",
-    "organization": "",
-    "release_date": ""
-  },
   "hunyuan-standard-256k": {
     "license": "",
     "name": "hunyuan-standard-256k",
     "organization": "",
     "release_date": ""
   },
-  "hunyuan-turbo-0110": {
+  "hunyuan-turbo": {
     "license": "",
-    "name": "hunyuan-turbo-0110",
+    "name": "hunyuan-turbo",
     "organization": "",
     "release_date": ""
   },
-  "hunyuan-turbos-20250226": {
+  "hunyuan-turbos": {
     "license": "",
-    "name": "hunyuan-turbos-20250226",
+    "name": "hunyuan-turbos",
     "organization": "",
     "release_date": ""
   },
@@ -551,21 +563,27 @@
     "organization": "",
     "release_date": ""
   },
-  "jamba-1.5-large": {
+  "jamba-1-5-large": {
     "license": "",
-    "name": "jamba-1.5-large",
+    "name": "jamba-1-5-large",
     "organization": "",
     "release_date": ""
   },
-  "jamba-1.5-mini": {
+  "jamba-1-5-mini": {
     "license": "",
-    "name": "jamba-1.5-mini",
+    "name": "jamba-1-5-mini",
     "organization": "",
     "release_date": ""
   },
   "koala-13b": {
     "license": "",
     "name": "koala-13b",
+    "organization": "",
+    "release_date": ""
+  },
+  "learnlm-1-5-pro-experimental": {
+    "license": "",
+    "name": "learnlm-1-5-pro-experimental",
     "organization": "",
     "release_date": ""
   },
@@ -593,6 +611,90 @@
     "organization": "",
     "release_date": ""
   },
+  "llama-3-1-405b-instruct": {
+    "license": "",
+    "name": "llama-3-1-405b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-405b-instruct-turbo": {
+    "license": "",
+    "name": "llama-3-1-405b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-70b-instruct": {
+    "license": "",
+    "name": "llama-3-1-70b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-70b-instruct-turbo": {
+    "license": "",
+    "name": "llama-3-1-70b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-8b-instruct": {
+    "license": "",
+    "name": "llama-3-1-8b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-8b-instruct-turbo": {
+    "license": "",
+    "name": "llama-3-1-8b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-nemotron-51b-instruct": {
+    "license": "",
+    "name": "llama-3-1-nemotron-51b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-tulu-3-70b": {
+    "license": "",
+    "name": "llama-3-1-tulu-3-70b",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-1-tulu-3-8b": {
+    "license": "",
+    "name": "llama-3-1-tulu-3-8b",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-2-1b-instruct": {
+    "license": "",
+    "name": "llama-3-2-1b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-2-3b-instruct": {
+    "license": "",
+    "name": "llama-3-2-3b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-3-70b-instruct": {
+    "license": "",
+    "name": "llama-3-3-70b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-3-70b-instruct-turbo": {
+    "license": "",
+    "name": "llama-3-3-70b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "llama-3-3-nemotron-49b-super": {
+    "license": "",
+    "name": "llama-3-3-nemotron-49b-super",
+    "organization": "",
+    "release_date": ""
+  },
   "llama-3-70b-instruct": {
     "license": "",
     "name": "llama-3-70b-instruct",
@@ -605,75 +707,9 @@
     "organization": "",
     "release_date": ""
   },
-  "llama-3.1-405b-instruct-bf16": {
+  "llama-4-maverick": {
     "license": "",
-    "name": "llama-3.1-405b-instruct-bf16",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-405b-instruct-fp8": {
-    "license": "",
-    "name": "llama-3.1-405b-instruct-fp8",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-70b-instruct": {
-    "license": "",
-    "name": "llama-3.1-70b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-8b-instruct": {
-    "license": "",
-    "name": "llama-3.1-8b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-nemotron-51b-instruct": {
-    "license": "",
-    "name": "llama-3.1-nemotron-51b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-nemotron-70b-instruct": {
-    "license": "",
-    "name": "llama-3.1-nemotron-70b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-tulu-3-70b": {
-    "license": "",
-    "name": "llama-3.1-tulu-3-70b",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.1-tulu-3-8b": {
-    "license": "",
-    "name": "llama-3.1-tulu-3-8b",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.2-1b-instruct": {
-    "license": "",
-    "name": "llama-3.2-1b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.2-3b-instruct": {
-    "license": "",
-    "name": "llama-3.2-3b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.3-70b-instruct": {
-    "license": "",
-    "name": "llama-3.3-70b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "llama-3.3-nemotron-49b-super-v1": {
-    "license": "",
-    "name": "llama-3.3-nemotron-49b-super-v1",
+    "name": "llama-4-maverick",
     "organization": "",
     "release_date": ""
   },
@@ -701,9 +737,15 @@
     "organization": "",
     "release_date": ""
   },
-  "mistral-7b-instruct-v0.2": {
+  "mistral-7b-instruct-v0-2": {
     "license": "",
-    "name": "mistral-7b-instruct-v0.2",
+    "name": "mistral-7b-instruct-v0-2",
+    "organization": "",
+    "release_date": ""
+  },
+  "mistral-large": {
+    "license": "",
+    "name": "mistral-large",
     "organization": "",
     "release_date": ""
   },
@@ -725,9 +767,21 @@
     "organization": "",
     "release_date": ""
   },
+  "mistral-large-v2": {
+    "license": "",
+    "name": "mistral-large-v2",
+    "organization": "",
+    "release_date": ""
+  },
   "mistral-medium": {
     "license": "",
     "name": "mistral-medium",
+    "organization": "",
+    "release_date": ""
+  },
+  "mistral-small": {
+    "license": "",
+    "name": "mistral-small",
     "organization": "",
     "release_date": ""
   },
@@ -737,15 +791,15 @@
     "organization": "",
     "release_date": ""
   },
-  "mixtral-8x22b-instruct-v0.1": {
+  "mixtral-8x22b-instruct-v0-1": {
     "license": "",
-    "name": "mixtral-8x22b-instruct-v0.1",
+    "name": "mixtral-8x22b-instruct-v0-1",
     "organization": "",
     "release_date": ""
   },
-  "mixtral-8x7b-instruct-v0.1": {
+  "mixtral-8x7b-instruct-v0-1": {
     "license": "",
-    "name": "mixtral-8x7b-instruct-v0.1",
+    "name": "mixtral-8x7b-instruct-v0-1",
     "organization": "",
     "release_date": ""
   },
@@ -773,9 +827,45 @@
     "organization": "",
     "release_date": ""
   },
-  "o1-2024-12-17": {
+  "nova-lite": {
     "license": "",
-    "name": "o1-2024-12-17",
+    "name": "nova-lite",
+    "organization": "",
+    "release_date": ""
+  },
+  "nova-micro": {
+    "license": "",
+    "name": "nova-micro",
+    "organization": "",
+    "release_date": ""
+  },
+  "nova-pro": {
+    "license": "",
+    "name": "nova-pro",
+    "organization": "",
+    "release_date": ""
+  },
+  "o1": {
+    "license": "",
+    "name": "o1",
+    "organization": "",
+    "release_date": ""
+  },
+  "o1-2024-12-17-high": {
+    "license": "",
+    "name": "o1-2024-12-17-high",
+    "organization": "",
+    "release_date": ""
+  },
+  "o1-high": {
+    "license": "",
+    "name": "o1-high",
+    "organization": "",
+    "release_date": ""
+  },
+  "o1-med": {
+    "license": "",
+    "name": "o1-med",
     "organization": "",
     "release_date": ""
   },
@@ -785,9 +875,27 @@
     "organization": "",
     "release_date": ""
   },
-  "o1-preview": {
+  "o1-mini-2024-09-12": {
     "license": "",
-    "name": "o1-preview",
+    "name": "o1-mini-2024-09-12",
+    "organization": "",
+    "release_date": ""
+  },
+  "o3-high": {
+    "license": "",
+    "name": "o3-high",
+    "organization": "",
+    "release_date": ""
+  },
+  "o3-high-gpt-4-1": {
+    "license": "",
+    "name": "o3-high-gpt-4-1",
+    "organization": "",
+    "release_date": ""
+  },
+  "o3-medium": {
+    "license": "",
+    "name": "o3-medium",
     "organization": "",
     "release_date": ""
   },
@@ -803,6 +911,30 @@
     "organization": "",
     "release_date": ""
   },
+  "o3-mini-low": {
+    "license": "",
+    "name": "o3-mini-low",
+    "organization": "",
+    "release_date": ""
+  },
+  "o3-mini-medium": {
+    "license": "",
+    "name": "o3-mini-medium",
+    "organization": "",
+    "release_date": ""
+  },
+  "o4-mini-high": {
+    "license": "",
+    "name": "o4-mini-high",
+    "organization": "",
+    "release_date": ""
+  },
+  "o4-mini-medium": {
+    "license": "",
+    "name": "o4-mini-medium",
+    "organization": "",
+    "release_date": ""
+  },
   "oasst-pythia-12b": {
     "license": "",
     "name": "oasst-pythia-12b",
@@ -815,21 +947,33 @@
     "organization": "",
     "release_date": ""
   },
-  "openchat-3.5": {
+  "openchat-3-5": {
     "license": "",
-    "name": "openchat-3.5",
+    "name": "openchat-3-5",
     "organization": "",
     "release_date": ""
   },
-  "openchat-3.5-0106": {
+  "openchat-3-5-0106": {
     "license": "",
-    "name": "openchat-3.5-0106",
+    "name": "openchat-3-5-0106",
     "organization": "",
     "release_date": ""
   },
-  "openhermes-2.5-mistral-7b": {
+  "openhands-lm-32b-v0-1": {
     "license": "",
-    "name": "openhermes-2.5-mistral-7b",
+    "name": "openhands-lm-32b-v0-1",
+    "organization": "",
+    "release_date": ""
+  },
+  "openhermes-2-5-mistral-7b": {
+    "license": "",
+    "name": "openhermes-2-5-mistral-7b",
+    "organization": "",
+    "release_date": ""
+  },
+  "optimus-alpha": {
+    "license": "",
+    "name": "optimus-alpha",
     "organization": "",
     "release_date": ""
   },
@@ -875,15 +1019,21 @@
     "organization": "",
     "release_date": ""
   },
+  "quasar-alpha": {
+    "license": "",
+    "name": "quasar-alpha",
+    "organization": "",
+    "release_date": ""
+  },
   "qwen-14b-chat": {
     "license": "",
     "name": "qwen-14b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen-max-0919": {
+  "qwen-max-2025-01-25": {
     "license": "",
-    "name": "qwen-max-0919",
+    "name": "qwen-max-2025-01-25",
     "organization": "",
     "release_date": ""
   },
@@ -893,39 +1043,75 @@
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-110b-chat": {
+  "qwen1-5-110b-chat": {
     "license": "",
-    "name": "qwen1.5-110b-chat",
+    "name": "qwen1-5-110b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-14b-chat": {
+  "qwen1-5-14b-chat": {
     "license": "",
-    "name": "qwen1.5-14b-chat",
+    "name": "qwen1-5-14b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-32b-chat": {
+  "qwen1-5-32b-chat": {
     "license": "",
-    "name": "qwen1.5-32b-chat",
+    "name": "qwen1-5-32b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-4b-chat": {
+  "qwen1-5-4b-chat": {
     "license": "",
-    "name": "qwen1.5-4b-chat",
+    "name": "qwen1-5-4b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-72b-chat": {
+  "qwen1-5-72b-chat": {
     "license": "",
-    "name": "qwen1.5-72b-chat",
+    "name": "qwen1-5-72b-chat",
     "organization": "",
     "release_date": ""
   },
-  "qwen1.5-7b-chat": {
+  "qwen1-5-7b-chat": {
     "license": "",
-    "name": "qwen1.5-7b-chat",
+    "name": "qwen1-5-7b-chat",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-72b-instruct": {
+    "license": "",
+    "name": "qwen2-5-72b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-72b-instruct-turbo": {
+    "license": "",
+    "name": "qwen2-5-72b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-7b-instruct-turbo": {
+    "license": "",
+    "name": "qwen2-5-7b-instruct-turbo",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-coder-32b-instruct": {
+    "license": "",
+    "name": "qwen2-5-coder-32b-instruct",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-max": {
+    "license": "",
+    "name": "qwen2-5-max",
+    "organization": "",
+    "release_date": ""
+  },
+  "qwen2-5-plus": {
+    "license": "",
+    "name": "qwen2-5-plus",
     "organization": "",
     "release_date": ""
   },
@@ -935,51 +1121,27 @@
     "organization": "",
     "release_date": ""
   },
-  "qwen2.5-72b-instruct": {
-    "license": "",
-    "name": "qwen2.5-72b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "qwen2.5-coder-32b-instruct": {
-    "license": "",
-    "name": "qwen2.5-coder-32b-instruct",
-    "organization": "",
-    "release_date": ""
-  },
-  "qwen2.5-max": {
-    "license": "",
-    "name": "qwen2.5-max",
-    "organization": "",
-    "release_date": ""
-  },
-  "qwen2.5-plus-1127": {
-    "license": "",
-    "name": "qwen2.5-plus-1127",
-    "organization": "",
-    "release_date": ""
-  },
   "qwq-32b": {
     "license": "",
     "name": "qwq-32b",
     "organization": "",
     "release_date": ""
   },
-  "qwq-32b-preview": {
+  "qwq-32b-qwen-2-5-coder-instruct": {
     "license": "",
-    "name": "qwq-32b-preview",
+    "name": "qwq-32b-qwen-2-5-coder-instruct",
     "organization": "",
     "release_date": ""
   },
-  "reka-core-20240904": {
+  "reka-core": {
     "license": "",
-    "name": "reka-core-20240904",
+    "name": "reka-core",
     "organization": "",
     "release_date": ""
   },
-  "reka-flash-20240904": {
+  "reka-flash": {
     "license": "",
-    "name": "reka-flash-20240904",
+    "name": "reka-flash",
     "organization": "",
     "release_date": ""
   },
@@ -995,9 +1157,15 @@
     "organization": "",
     "release_date": ""
   },
-  "smollm2-1.7b-instruct": {
+  "rwkv-4-raven": {
     "license": "",
-    "name": "smollm2-1.7b-instruct",
+    "name": "rwkv-4-raven",
+    "organization": "",
+    "release_date": ""
+  },
+  "smollm2-1-7b-instruct": {
+    "license": "",
+    "name": "smollm2-1-7b-instruct",
     "organization": "",
     "release_date": ""
   },
@@ -1007,9 +1175,9 @@
     "organization": "",
     "release_date": ""
   },
-  "solar-10.7b-instruct-v1.0": {
+  "solar-10-7b-instruct-v1-0": {
     "license": "",
-    "name": "solar-10.7b-instruct-v1.0",
+    "name": "solar-10-7b-instruct-v1-0",
     "organization": "",
     "release_date": ""
   },
@@ -1031,9 +1199,15 @@
     "organization": "",
     "release_date": ""
   },
-  "step-2-16k-exp-202412": {
+  "step-2-16k": {
     "license": "",
-    "name": "step-2-16k-exp-202412",
+    "name": "step-2-16k",
+    "organization": "",
+    "release_date": ""
+  },
+  "step-2-16k-exp": {
+    "license": "",
+    "name": "step-2-16k-exp",
     "organization": "",
     "release_date": ""
   },
@@ -1079,9 +1253,9 @@
     "organization": "",
     "release_date": ""
   },
-  "yi-1.5-34b-chat": {
+  "yi-1-5-34b-chat": {
     "license": "",
-    "name": "yi-1.5-34b-chat",
+    "name": "yi-1-5-34b-chat",
     "organization": "",
     "release_date": ""
   },
@@ -1109,9 +1283,9 @@
     "organization": "",
     "release_date": ""
   },
-  "zephyr-orpo-141b-A35b-v0.1": {
+  "zephyr-orpo-141b-a35b-v0-1": {
     "license": "",
-    "name": "zephyr-orpo-141b-A35b-v0.1",
+    "name": "zephyr-orpo-141b-a35b-v0-1",
     "organization": "",
     "release_date": ""
   }
