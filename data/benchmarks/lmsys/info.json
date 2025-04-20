@@ -37,6 +37,5 @@
     "display": {
       "primary_metric": "arena_score",
       "primary_dimension": "overall",
-      "chart_type": "bar"
     }
   }

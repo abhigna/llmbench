@@ -58,6 +58,14 @@ def main():
         choices=["human_pref", "task_based", "knowledge", "reasoning", "other"],
         help="Type of the benchmark"
     )
+    add_parser.add_argument(
+        "--config", "-c",
+        help="Path to JSON file containing metrics, dimensions, and display configuration"
+    )
+    add_parser.add_argument(
+        "--config-json",
+        help="JSON string containing metrics, dimensions, and display configuration"
+    )
     
     # List benchmarks command
     subparsers.add_parser("list-benchmarks", help="List available benchmarks")
@@ -136,13 +144,8 @@ def main():
         benchmark_dir = data_path / "benchmarks" / args.id
         os.makedirs(benchmark_dir, exist_ok=True)
         
-        # Create benchmark info.json template
-        info = {
-            "name": args.name,
-            "description": args.description,
-            "methodology": "",
-            "source_url": args.source_url,
-            "type": args.type,
+        # Default configuration
+        default_config = {
             "metrics": [
                 {
                     "id": "score",
@@ -165,6 +168,42 @@ def main():
                 "primary_dimension": "overall",
                 "chart_type": "bar"
             }
+        }
+        
+        # Get configuration from file or JSON string if provided
+        config = default_config
+        if args.config:
+            try:
+                with open(args.config, "r") as f:
+                    user_config = json.load(f)
+                    # Update configuration with user-provided values
+                    for key in ["metrics", "dimensions", "display"]:
+                        if key in user_config:
+                            config[key] = user_config[key]
+            except (FileNotFoundError, json.JSONDecodeError) as e:
+                print(f"Error loading config file: {e}")
+                sys.exit(1)
+        elif args.config_json:
+            try:
+                user_config = json.loads(args.config_json)
+                # Update configuration with user-provided values
+                for key in ["metrics", "dimensions", "display"]:
+                    if key in user_config:
+                        config[key] = user_config[key]
+            except json.JSONDecodeError as e:
+                print(f"Error parsing JSON config: {e}")
+                sys.exit(1)
+        
+        # Create benchmark info.json template
+        info = {
+            "name": args.name,
+            "description": args.description,
+            "methodology": "",
+            "source_url": args.source_url,
+            "type": args.type,
+            "metrics": config["metrics"],
+            "dimensions": config["dimensions"],
+            "display": config["display"]
         }
         
         with open(benchmark_dir / "info.json", "w") as f:
