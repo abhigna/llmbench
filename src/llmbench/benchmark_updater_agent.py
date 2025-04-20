@@ -1,4 +1,3 @@
-# benchmark_update_agent.py
 import os
 import json
 import argparse
@@ -6,12 +5,26 @@ import logging
 import sys
 from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Any, Optional
-import requests
+from typing import List, Dict, Any, Optional, Tuple
+import asyncio
+import requests # Added for fallback HTTP request
+
+from openai import OpenAI
 import instructor
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError, TypeAdapter
 import dotenv
-import re
+# Removed re as it wasn't actively used after prompt refinement
+
+# Import crawl4ai safely
+try:
+    from crawl4ai import AsyncWebCrawler
+except ImportError:
+    AsyncWebCrawler = None
+    logging.warning("crawl4ai not installed. Web fetching will rely on basic requests.")
+
+
+# Import the classification module and its models
+from .model_classify import ModelClassifier, ModelClassificationResult, ClassificationStatus, CanonicalModel
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -22,126 +35,209 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # API Endpoints and Configuration
 OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY')
 
-# Define structured data models using Pydantic
+# --- Define Structured Data Models using Pydantic ---
+
+# Model for Model Info
 class ModelInfo(BaseModel):
     name: str = Field(..., description="The display name of the model")
     organization: str = Field(..., description="The organization that created the model")
     release_date: str = Field(..., description="The release date of the model in YYYY-MM-DD format")
     license: str = Field(..., description="The license of the model (e.g., 'Proprietary', 'Apache 2.0', etc.)")
 
-
+# Model for a single Benchmark Score
 class BenchmarkScore(BaseModel):
     model_id: str = Field(..., description="The ID of the model (e.g., 'claude-3-7-sonnet')")
     dimensions: Dict[str, Dict[str, Any]] = Field(
-        ..., 
+        ...,
         description="Scores for different dimensions, with metrics inside each dimension"
     )
 
+# Model for the full Benchmark Data structure
 class BenchmarkData(BaseModel):
     date: str = Field(..., description="The date of the benchmark data in YYYY-MM-DD format")
     source_url: str = Field(..., description="The source URL of the benchmark data")
     scores: List[BenchmarkScore] = Field(..., description="The scores for different models")
 
+
 class ProjectPaths:
     def __init__(self, root_dir: str = None):
         if root_dir:
-            self.root = Path(root_dir)
+            self.root = Path(root_dir).resolve() # Use resolve for absolute path
         else:
-            # Assume this script is in the project root
-            self.root = Path(__file__).parent
-        
+            # Assume this script is in src/llmbench, go up two levels
+            self.root = Path(__file__).parent.parent.parent.resolve()
+
         self.data = self.root / "data"
         self.models_json = self.data / "models.json"
         self.benchmarks_json = self.data / "benchmarks.json"
         self.benchmarks_dir = self.data / "benchmarks"
         self.output_dir = self.root / "output"
         self.output_dir.mkdir(exist_ok=True)
-        
-        # File to log unknown models
-        self.unknown_models_log = self.output_dir / "benchmark_models.log"
+        (self.output_dir / "debug").mkdir(exist_ok=True) # Ensure debug subdir exists
 
+        # File to log classification reports
+        self.model_classification_log = self.output_dir / "benchmark_model_classification.log"
+        # File to save raw LLM responses that cause validation errors (overwrite per attempt)
+        self.raw_llm_response_debug = self.output_dir / "debug" / "raw_llm_response_debug.json" # Place in debug
 
-import asyncio
-from crawl4ai import AsyncWebCrawler
+        # Ensure base data directory exists
+        self.data.mkdir(exist_ok=True)
+        self.benchmarks_dir.mkdir(exist_ok=True)
+
+        # Touch log file
+        try:
+            if not self.model_classification_log.exists(): self.model_classification_log.touch()
+        except OSError as e:
+             logging.error(f"Failed to touch log file {self.model_classification_log}: {e}")
+
 
 async def crawl4ai_fetch(url: str) -> str | None:
     """
     Fetches content from a URL using crawl4ai library
-    
+
     Args:
         url: The URL to fetch content from
-        
+
     Returns:
         str: The markdown content, or None if fetching failed
     """
+    if AsyncWebCrawler is None:
+        logging.warning("Attempted to use crawl4ai_fetch, but crawl4ai is not installed.")
+        return None
     try:
-        async with AsyncWebCrawler() as crawler:
+        # Use a longer timeout if needed, default is 30s
+        async with AsyncWebCrawler(parser_config={'parsing_method':'beautifulsoup'}) as crawler: # Explicitly using BS4 might be more robust sometimes
             result = await crawler.arun(url=url)
             if result and hasattr(result, 'markdown'):
                 return result.markdown
+            logging.warning(f"crawl4ai completed for {url} but returned no markdown content.")
             return None
     except Exception as e:
-        logging.error(f"Error fetching content with crawl4ai: {e}")
+        # Don't log full traceback here unless debugging, keep it concise
+        logging.error(f"Error fetching content with crawl4ai from {url}: {e}")
         return None
 
 def call_crawl4ai(url: str) -> str | None:
     """
     Synchronous wrapper for the async crawl4ai fetcher
-    
+
     Args:
         url: The URL to fetch content from
-        
+
     Returns:
         str: The markdown content, or None if fetching failed
     """
+    if AsyncWebCrawler is None: return None # Early exit if not installed
     try:
-        return asyncio.run(crawl4ai_fetch(url))
+        # Check if an event loop is already running (e.g., in Jupyter)
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            loop = None
+
+        if loop and loop.is_running():
+            # If in an async context already, schedule it properly
+            # This might require more complex handling depending on the outer context
+            # For a simple script, running directly might be okay, but let's log a warning
+            logging.warning("call_crawl4ai invoked within an existing event loop. Attempting direct await.")
+            # This might fail if called from a sync function within an async context
+            # A more robust solution would involve asyncio.run_coroutine_threadsafe if needed
+            # For now, we proceed with asyncio.run which might raise errors in some environments
+            return asyncio.run(crawl4ai_fetch(url))
+        else:
+            # If no loop running, use asyncio.run
+            return asyncio.run(crawl4ai_fetch(url))
     except Exception as e:
-        logging.error(f"Error running crawl4ai: {e}")
+        logging.error(f"Error running crawl4ai fetch task for {url}: {e}")
         return None
-    
+
+
 class BenchmarkUpdateAgent:
     def __init__(self, root_dir: str = None):
         self.paths = ProjectPaths(root_dir)
+        logging.info(f"Project root resolved to: {self.paths.root}")
+        logging.info(f"Data directory: {self.paths.data}")
+
         self.models = self._load_models()
         self.benchmarks = self._load_benchmarks()
-        
+
+        self.client = None # Instructor-patched client
+        self.model_classifier = None
+        self.base_openai_client = None # Base client for raw calls
 
         if not OPENROUTER_API_KEY:
-            logging.warning("OPENROUTER_API_KEY is not set. LLM extraction will not work.")
-        
-        # Set up OpenRouter client with instructor
+            logging.error("OPENROUTER_API_KEY is not set. LLM functionality disabled.")
+            return
+
         try:
-            from openai import OpenAI
-            
-            client = OpenAI(
+            self.base_openai_client = OpenAI(
                 base_url="https://openrouter.ai/api/v1",
                 api_key=OPENROUTER_API_KEY,
+                timeout=60.0, # Increase timeout
             )
-            
-            # Enable instructor patches for OpenAI client with OpenRouter mode
             self.client = instructor.from_openai(
-                client, mode=instructor.Mode.OPENROUTER_STRUCTURED_OUTPUTS
+                self.base_openai_client, mode=instructor.Mode.TOOLS # Use TOOLS mode for broader compatibility including Azure
             )
-            logging.info("OpenRouter client initialized successfully")
+            logging.info("OpenRouter client initialized successfully with Instructor (Mode: TOOLS)")
+
+            if self.models is not None: # Only initialize classifier if models loaded ok
+                self.model_classifier = ModelClassifier(client=self.client, known_models=self.models)
+            else:
+                logging.error("Models data failed to load. ModelClassifier cannot be initialized.")
+                self.model_classifier = None # Ensure it's None
+
         except Exception as e:
-            logging.error(f"Failed to initialize OpenRouter client: {e}")
+            logging.error(f"Failed to initialize OpenRouter client or ModelClassifier: {e}")
             self.client = None
-    
-    def _load_models(self) -> Dict[str, Any]:
+            self.model_classifier = None
+            self.base_openai_client = None
+
+
+    def _load_models(self) -> Optional[Dict[str, Any]]:
         """Load existing models from models.json"""
-        if self.paths.models_json.exists():
-            with open(self.paths.models_json, "r") as f:
+        if not self.paths.models_json.exists():
+             logging.warning(f"'{self.paths.models_json}' not found. Starting with empty model list.")
+             return {} # Return empty dict if file not found
+        try:
+            with open(self.paths.models_json, "r", encoding='utf-8') as f:
                 return json.load(f)
-        return {}
-    
+        except json.JSONDecodeError as e:
+            logging.error(f"Error decoding JSON from {self.paths.models_json}: {e}. Cannot load models.")
+            return None # Signal failure
+        except Exception as e:
+            logging.error(f"Unexpected error loading {self.paths.models_json}: {e}. Cannot load models.")
+            return None # Signal failure
+
+
     def _load_benchmarks(self) -> List[Dict[str, Any]]:
         """Load benchmark metadata from benchmarks.json"""
-        if self.paths.benchmarks_json.exists():
-            with open(self.paths.benchmarks_json, "r") as f:
+        if not self.paths.benchmarks_json.exists():
+             logging.error(f"'{self.paths.benchmarks_json}' not found. Cannot update any benchmarks.")
+             return []
+        try:
+            with open(self.paths.benchmarks_json, "r", encoding='utf-8') as f:
                 return json.load(f)
-        return []
-    
+        except json.JSONDecodeError as e:
+            logging.error(f"Error decoding JSON from {self.paths.benchmarks_json}: {e}")
+            return []
+        except Exception as e:
+            logging.error(f"Unexpected error loading {self.paths.benchmarks_json}: {e}")
+            return []
+
+    def _save_models(self) -> bool:
+        """Saves the current self.models dictionary to models.json"""
+        if self.models is None:
+             logging.error("Cannot save models, self.models is None (likely due to loading error).")
+             return False
+        try:
+            with open(self.paths.models_json, "w", encoding='utf-8') as f:
+                json.dump(self.models, f, indent=2, sort_keys=True) # Sort keys for consistency
+            logging.info(f"Successfully saved updated models to {self.paths.models_json}")
+            return True
+        except Exception as e:
+            logging.error(f"Error saving models to {self.paths.models_json}: {e}")
+            return False
+
     def _get_benchmark_by_id(self, benchmark_id: str) -> Optional[Dict[str, Any]]:
         """Find benchmark metadata by ID"""
         for benchmark in self.benchmarks:
@@ -149,382 +245,482 @@ class BenchmarkUpdateAgent:
                 return benchmark
         return None
 
-    
-    def validate_date(self, date_str):
-        """Validates if date string is YYYY-MM-DD format."""
-        if not date_str:
-            return False
-        try:
-            datetime.strptime(date_str, '%Y-%m-%d')
-            return True
-        except ValueError:
-            return False
-    
+
     def update_benchmark(self, benchmark_id: str, url: Optional[str] = None) -> bool:
         """
         Update benchmark data for the specified benchmark ID.
-        
-        Args:
-            benchmark_id: ID of the benchmark to update
-            url: Optional URL to fetch data from (otherwise uses the one in benchmarks.json)
-            
-        Returns:
-            bool: True if update was successful, False otherwise
+        Returns True on success, False on failure of a critical step.
         """
+        # --- Pre-checks ---
+        if not self.base_openai_client or not self.client or not self.model_classifier:
+             logging.error(f"LLM client or Model Classifier not initialized. Cannot update benchmark '{benchmark_id}'.")
+             return False
+        if self.models is None:
+             logging.error(f"Models data not loaded. Cannot update benchmark '{benchmark_id}'.")
+             return False
+
         benchmark = self._get_benchmark_by_id(benchmark_id)
         if not benchmark:
-            logging.error(f"Benchmark with ID '{benchmark_id}' not found")
+            logging.error(f"Benchmark with ID '{benchmark_id}' not found.")
             return False
-        
-        source_url = url or benchmark["source_url"]
-        logging.info(f"Updating benchmark '{benchmark_id}' from {source_url}")
-        
-        # Create benchmark directory if it doesn't exist
+
+        source_url = url or benchmark.get("source_url") # Use .get for safety
+        if not source_url:
+             logging.error(f"No source_url for benchmark '{benchmark_id}'.")
+             return False
+
+        logging.info(f"Starting update process for benchmark '{benchmark_id}' from {source_url}")
+
         benchmark_dir = self.paths.benchmarks_dir / benchmark_id
         benchmark_dir.mkdir(exist_ok=True, parents=True)
-        
-        # Get today's date for the new data file
         today = datetime.now().strftime("%Y-%m-%d")
-        
-        try:
-            benchmark_data = self._extract_benchmark_data(benchmark_id, source_url)
-            
-            # Save the new benchmark data
-            output_file = benchmark_dir / f"{today}.json"
-            with open(output_file, "w") as f:
-                json.dump(benchmark_data.model_dump(), f, indent=2)
-            
-            # Update the last_updated field in benchmarks.json
-            benchmark["last_updated"] = today
-            with open(self.paths.benchmarks_json, "w") as f:
-                json.dump(self.benchmarks, f, indent=2)
-            
-            # Check for unknown models and log them
-            self._check_for_unknown_models(benchmark_data)
-            
-            logging.info(f"Successfully updated benchmark '{benchmark_id}'. Data saved to {output_file}")
-            return True
-            
-        except Exception as e:
-            logging.error(f"Error updating benchmark '{benchmark_id}': {e}")
-            import IPython; IPython.embed()
-            return False
 
-    def _extract_benchmark_data(self, benchmark_id: str, source_url: str) -> BenchmarkData:
-        """
-        Extract benchmark data from the source URL using crawl4ai and instructor.
-        
-        This method:
-        1. Uses crawl4ai to extract content from the benchmark website
-        2. Falls back to regular request if crawl4ai fails
-        3. Uses instructor with OpenRouter to parse the content into structured data
-        4. Returns a BenchmarkData object with the extracted information
-        """
-        # Ensure output directory exists for debugging
-        debug_dir = self.paths.output_dir / "debug"
-        debug_dir.mkdir(exist_ok=True, parents=True)
-        
-        debug_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Load the benchmark info.json to get metrics, dimensions, and primary settings
-        benchmark_info_path = self.paths.benchmarks_dir / benchmark_id / "info.json"
+        # Load benchmark info for primary metric/dimension
+        benchmark_info_path = benchmark_dir / "info.json"
         if not benchmark_info_path.exists():
-            raise Exception(f"Benchmark info file not found for {benchmark_id}")
-        
-        with open(benchmark_info_path, "r") as f:
-            benchmark_info = json.load(f)
-        
-        # Extract key information from benchmark_info
-        metrics = benchmark_info.get("metrics", [])
-        dimensions = benchmark_info.get("dimensions", [])
-        primary_metric = benchmark_info.get("display", {}).get("primary_metric")
-        primary_dimension = benchmark_info.get("display", {}).get("primary_dimension", "overall")
-        
-        if not primary_metric:
-            raise Exception(f"Primary metric not defined for benchmark {benchmark_id}")
-        
-        # 1. Get content using crawl4ai
-        logging.info(f"Fetching content from {source_url} using crawl4ai")
-        content = call_crawl4ai(source_url)
-        
-        # Save crawl4ai content for debugging
-        if content:
-            with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_crawl4ai_content.txt", "w") as f:
-                f.write(content)  # Save first 50k chars to avoid excessively large files
-            logging.info(f"Crawl4ai returned content (length: {len(content)})")
-        
-        # Fall back to regular request if crawl4ai fails
-        if not content:
-            logging.warning(f"Crawl4ai failed for {source_url}, falling back to regular request")
-            try:
-                response = requests.get(source_url)
-                if response.status_code != 200:
-                    raise Exception(f"Failed to fetch data from {source_url}. Status code: {response.status_code}")
-                content = response.text
-                
-                # Save HTTP content for debugging
-                with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_http_content.txt", "w") as f:
-                    f.write(content)  # Save first 50k chars
-                    
-            except Exception as e:
-                logging.error(f"HTTP request failed: {e}")
-                raise Exception(f"Failed to fetch data from {source_url} using all available methods")
-        
-        # 2. Prepare a much clearer prompt that emphasizes the exact structure required
-        # Provide known model IDs to the LLM so it can reuse exact formatting
-        known_model_ids = list(self.models.keys())
-        known_model_ids.sort()
-        known_model_ids_str = ", ".join(known_model_ids)
-        
-        system_prompt = f"""
-        Your primary task is to extract benchmark data from the {benchmark_id} leaderboard into a structured JSON format.
+            logging.error(f"Benchmark info file not found: {benchmark_info_path}. Cannot proceed.")
+            return False
+        try:
+             with open(benchmark_info_path, "r", encoding='utf-8') as f:
+                 benchmark_info = json.load(f)
+             primary_metric = benchmark_info.get("display", {}).get("primary_metric")
+             primary_dimension = benchmark_info.get("display", {}).get("primary_dimension", "overall")
+             if not primary_metric:
+                 logging.error(f"Primary metric not defined in {benchmark_info_path}.")
+                 return False
+        except Exception as e:
+             logging.error(f"Error loading benchmark info {benchmark_info_path}: {e}")
+             return False
 
-        THE RESPONSE FORMAT IS CRITICAL. Your output MUST follow this exact structure:
+        models_were_updated = False # Flag to track if self.models changed
+
+        try:
+            # --- Step 1: Extract Data (using base client, with validation/correction) ---
+            extracted_data = self._extract_benchmark_data(
+                benchmark_id, source_url, primary_dimension, primary_metric, self.base_openai_client
+            )
+            if not extracted_data:
+                # Error logged within _extract_benchmark_data
+                logging.error(f"Failed to extract benchmark data for '{benchmark_id}'. Aborting update.")
+                return False # Critical step failed
+
+            # --- Step 2: Save Extracted Data ---
+            output_file = benchmark_dir / f"{today}.json"
+            try:
+                with open(output_file, "w", encoding='utf-8') as f:
+                    f.write(extracted_data.model_dump_json(indent=2))
+                logging.info(f"Successfully saved extracted data to {output_file}")
+            except Exception as e:
+                 # Log error but don't necessarily fail the whole process yet
+                 logging.error(f"Error saving extracted benchmark data to {output_file}: {e}")
+                 # Decide if this is critical. Let's continue to classification for now.
+
+            # --- Step 3: Classify Models & Update self.models if new ones found ---
+            models_were_updated = self._classify_and_process_models(extracted_data, benchmark_id)
+            # Error handling for classification failure is inside _classify_and_process_models
+            # It might raise an exception, which will be caught by the outer try-except block.
+
+            # --- Step 4: Save Updated Models (only if changed) ---
+            if models_were_updated:
+                if not self._save_models():
+                    # Log error, but maybe continue? Depends on requirements.
+                    # Let's consider failing the update if saving models fails.
+                    logging.error(f"Failed to save updated models file for benchmark '{benchmark_id}'.")
+                    # return False # Uncomment if this should be a critical failure
+
+            # --- Step 5: Update Benchmark Metadata (last_updated) ---
+            success_meta_update = False
+            for i, b in enumerate(self.benchmarks):
+                if b["id"] == benchmark_id:
+                    self.benchmarks[i]["last_updated"] = today
+                    success_meta_update = True
+                    break
+            if success_meta_update:
+                try:
+                    with open(self.paths.benchmarks_json, "w", encoding='utf-8') as f:
+                        json.dump(self.benchmarks, f, indent=2, sort_keys=True)
+                    logging.info(f"Updated last_updated timestamp in {self.paths.benchmarks_json}")
+                except Exception as e:
+                     logging.error(f"Error saving updated {self.paths.benchmarks_json}: {e}")
+                     # Log error, but update is considered successful overall if we got here
+            else:
+                 logging.warning(f"Benchmark ID '{benchmark_id}' not found in self.benchmarks list during metadata update.")
+
+
+            logging.info(f"Benchmark update process for '{benchmark_id}' completed.")
+            return True # Indicate overall success for this benchmark
+
+        except Exception as e:
+            # Catch errors from extraction, classification (if re-raised), saving, etc.
+            # Log concisely as requested, don't include traceback by default here.
+            logging.error(f"Benchmark update failed for '{benchmark_id}': {type(e).__name__} - {e}")
+            return False # Indicate failure for this specific benchmark
+
+
+    def _extract_benchmark_data(
+        self,
+        benchmark_id: str,
+        source_url: str,
+        primary_dimension: str,
+        primary_metric: str,
+        openai_client: OpenAI # Expecting the base client
+    ) -> Optional[BenchmarkData]:
+        """
+        Extracts benchmark data using raw LLM call, validates, attempts correction.
+        Returns BenchmarkData object on success, None on failure.
+        """
+        if not openai_client:
+             logging.error("Base OpenAI client is required for extraction.")
+             return None
+
+        debug_dir = self.paths.output_dir / "debug"
+        debug_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        extraction_debug_filepath = debug_dir / f"{benchmark_id}_{debug_timestamp}_extraction_debug.log"
+
+        # 1. Get content
+        logging.info(f"Fetching content from {source_url}")
+        content = call_crawl4ai(source_url)
+
+        content_save_path_md = debug_dir / f"{benchmark_id}_{debug_timestamp}_crawl4ai_content.md"
+        content_save_path_html = debug_dir / f"{benchmark_id}_{debug_timestamp}_http_content.html"
+
+        if content:
+            logging.info(f"Crawl4ai returned content (length: {len(content)}).")
+            self._log_extraction_debug(extraction_debug_filepath, f"Crawl4ai returned content (length: {len(content)}).")
+            try:
+                 with open(content_save_path_md, "w", encoding='utf-8') as f: f.write(content)
+            except Exception as save_err: logging.warning(f"Failed to save crawl4ai content: {save_err}")
+        else:
+            logging.warning(f"Crawl4ai failed for {source_url}. Falling back to HTTP request.")
+            self._log_extraction_debug(extraction_debug_filepath, "Crawl4ai failed, falling back to HTTP request.")
+            try:
+                response = requests.get(source_url, timeout=60, headers={'User-Agent': 'Mozilla/5.0'}) # Add User-Agent
+                response.raise_for_status()
+                content = response.text
+                logging.info(f"HTTP request successful (length: {len(content)}).")
+                self._log_extraction_debug(extraction_debug_filepath, f"HTTP request successful (length: {len(content)}).")
+                try:
+                     with open(content_save_path_html, "w", encoding='utf-8') as f: f.write(content)
+                except Exception as save_err: logging.warning(f"Failed to save HTTP content: {save_err}")
+            except requests.exceptions.RequestException as e:
+                logging.error(f"HTTP request failed for {source_url}: {e}")
+                self._log_extraction_debug(extraction_debug_filepath, f"HTTP request failed: {e}")
+                return None
+
+        if not content:
+             logging.error(f"Could not retrieve content from {source_url}.")
+             self._log_extraction_debug(extraction_debug_filepath, "Failed to retrieve content.")
+             return None
+
+        # 2. Prepare prompt for raw JSON extraction
+        system_prompt = f"""
+        You are an expert data extraction bot. Extract benchmark data from the provided text into a VALID JSON object.
+        Output ONLY the JSON object, nothing else.
+        The JSON object MUST conform to this structure:
         {{
-        "date": "YYYY-MM-DD",
-        "source_url": "URL of the benchmark",
-        "scores": [
+          "date": "YYYY-MM-DD", // Date data was published, or today's date ({datetime.now().strftime('%Y-%m-%d')})
+          "source_url": "{source_url}",
+          "scores": [
             {{
-            "model_id": "normalized-model-identifier-1",
-            "dimensions": {{
+              "model_id": "model-id-extracted-from-text", // Lowercase, hyphen-separated, no trailing dates/versions (e.g., gpt-4o, claude-3-5-sonnet)
+              "dimensions": {{
                 "{primary_dimension}": {{
-                "{primary_metric}": numeric_score_value
+                  "{primary_metric}": numerical_score // Use null if score not found/numeric
+                  // Optionally include other dimensions/metrics if clearly available
                 }}
+              }}
             }}
-            }},
-            {{
-            "model_id": "normalized-model-identifier-2",
-            "dimensions": {{
-                "{primary_dimension}": {{
-                "{primary_metric}": numeric_score_value
-                }}
-            }}
-            }}
-            // ... more scores ...
-        ]
+            // ... include ALL models found ...
+          ]
         }}
 
-        IMPORTANT NOTES ON STRUCTURE:
-        1. Each item in "scores" MUST be a complete object with "model_id" and "dimensions" fields.
-        2. Inside dimensions, include the primary dimension "{primary_dimension}" with the primary metric "{primary_metric}".
-        3. Score values should be numeric (not strings).
-        4. The "model_id" field MUST contain the model identifier resulting from applying the normalization rules below.
+        EXTRACTION RULES for 'model_id':
+        - Derive from the name in the text.
+        - Convert to lowercase.
+        - Replace spaces, periods, underscores, parentheses with hyphens.
+        - REMOVE common trailing suffixes like -preview, -latest, -beta, -v1, -v2, and date suffixes (e.g., -2024-07-18).
+        - KEEP core identifiers like -mini, -high, -instruct, -chat, -sonnet, -haiku, -opus.
+        - Examples: "GPT-4.5 Preview 2025" -> "gpt-4-5", "Claude 3 Opus" -> "claude-3-opus", "o4-mini (high)" -> "o4-mini-high", "DeepSeek Chat V3 (prev)" -> "deepseek-v3".
+        - The ID should be derived from the text, NOT from a predefined list.
+        - SKIP entries combining multiple models (e.g., "Model A + Model B").
 
-        ---
-        MODEL ID NORMALIZATION:
-
-        The source benchmark might use different names for models than our standard identifiers. When extracting the data, you MUST normalize the model names you find in the text before including them in the 'model_id' field.
-
-        PREFERRED TARGETS (Use these *exact* IDs if a name maps directly or after normalization):
-        {known_model_ids_str}
-
-        NORMALIZATION RULES & EXAMPLES (Apply these first):
-        - If the text refers to 'o4-mini (high)', use the normalized ID 'o4-mini-high'.
-        - If the text refers to 'o3 (high)', use the normalized ID 'o3-high'.
-        - If the text refers to 'o3-mini (high)', use the normalized ID 'o3-mini-high'.
-        - If the text refers to 'Grok 3 Beta', use the normalized ID 'grok-3'.
-        - If the text refers to 'DeepSeek Chat V3 (prev)', use the normalized ID 'deepseek-v3'.
-
-        General Pattern Derivation (Apply if not covered by rules above and not a combination):
-        - If a model name found in the text is NOT covered by the specific rules above and is NOT a combination (does NOT contain '+', 'and', etc.), attempt to derive a normalized ID by applying these steps:
-            - Replace periods (.) with dashes (-). Example: 'gemini-2.5-pro' becomes 'gemini-2-5-pro'.
-            - Convert the name to lowercase.
-            - Remove specific descriptive suffixes like 'preview', 'latest', and *any date suffixes* (e.g., '2024-07-18', '20250326'). Example: 'gpt-4.5-preview-2025-02-27' becomes 'gpt-4-5'. Example: 'chatgpt-4o-latest-20250326' becomes 'chatgpt-4o'.
-            - However, *keep* important model type suffixes such as 'pro', 'flash', 'mini', 'high', 'instruct', 'chat', 'beta', 'sonnet', 'haiku', 'opus'.
-            - Replace spaces or other non-alphanumeric characters (except dashes) with hyphens.
-
-        Final Model ID Determination Logic:
-        For an extracted model name from the benchmark:
-        1. Check if it's a combination (contains '+', 'and', etc.). If yes, *skip this entry entirely*.
-        2. Apply the specific NORMALIZATION RULES & EXAMPLES. If a rule matches, use that as the normalized ID.
-        3. If no specific rule matched, apply the General Pattern Derivation steps. Use the result of this derivation as the normalized ID.
-        4. Use this final normalized ID in the 'model_id' field of the JSON output.
-        
-        The current date is {datetime.now().strftime('%Y-%m-%d')}.
+        Focus on the benchmark '{benchmark_id}'. Extract the primary metric '{primary_metric}' within the '{primary_dimension}' dimension.
         """
+        max_content_length = 25000
+        user_prompt = f"Extract benchmark data from the following text, adhering STRICTLY to the JSON structure and rules provided in the system prompt:\n\n{content[:min(len(content), max_content_length)]}"
+        if len(content) > max_content_length: user_prompt += "\n...[content truncated]"
 
-        user_prompt = f"Extract the benchmark data from this page, applying the normalization rules for model IDs and skipping combination entries. Pay special attention to model names and their scores for {primary_metric} in the {primary_dimension} dimension. Remember that each item in the scores array MUST be a complete object with model_id (normalized using the rules) and dimensions fields:\n\n{content}..."
-
-        # Save prompts for debugging
-        with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_system_prompt.txt", "w") as f:
-            f.write(system_prompt)
-            
-        with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_user_prompt.txt", "w") as f:
-            f.write(user_prompt)  # Save first 10k chars
-        
-        # 3. Call the LLM first to get the raw JSON response
-        model_to_use = "google/gemini-2.5-flash-preview"  # You can adjust the model as needed
-        
+        # Save prompts
+        prompt_save_path_sys = debug_dir / f"{benchmark_id}_{debug_timestamp}_extraction_system_prompt.txt"
+        prompt_save_path_user = debug_dir / f"{benchmark_id}_{debug_timestamp}_extraction_user_prompt.txt"
         try:
-            # Create a non-instructor client to get raw response
-            from openai import OpenAI
-            client = OpenAI(
-                base_url="https://openrouter.ai/api/v1",
-                api_key=os.getenv("OPENROUTER_API_KEY"),
-            )
-            
-            logging.info(f"Getting raw JSON response from {model_to_use}")
-            
-            raw_response = client.chat.completions.create(
+            with open(prompt_save_path_sys, "w", encoding='utf-8') as f: f.write(system_prompt)
+            with open(prompt_save_path_user, "w", encoding='utf-8') as f: f.write(user_prompt)
+        except Exception as save_err: logging.warning(f"Failed to save extraction prompts: {save_err}")
+
+        # 3. Call LLM for RAW JSON string
+        model_to_use = "gpt-4o-mini" # Or "google/gemini-flash-1.5" etc.
+        logging.info(f"Calling LLM ({model_to_use}) for raw JSON extraction...")
+        self._log_extraction_debug(extraction_debug_filepath, f"Calling LLM ({model_to_use}) for raw JSON extraction.")
+
+        raw_json_string = None
+        try:
+            raw_response = openai_client.chat.completions.create(
                 model=model_to_use,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                temperature=0.1,
             )
-            
-            raw_json = raw_response.choices[0].message.content if raw_response.choices else "{}"
-            
-            # Save the raw JSON response for debugging
-            with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_raw_response.json", "w") as f:
-                f.write(raw_json)
-                
-            logging.info(f"Saved raw response to {debug_dir / f'{benchmark_id}_{debug_timestamp}_raw_response.json'}")
-            
-            # Parse the raw JSON response manually instead of using instructor
-            try:
-                data = json.loads(raw_json)
-                
-                # Validate basic structure
-                if not isinstance(data, dict):
-                    raise ValueError("Raw JSON is not a dictionary")
-                    
-                if "scores" not in data:
-                    raise ValueError("Raw JSON has no 'scores' key")
-                
-                if not isinstance(data["scores"], list):
-                    raise ValueError("'scores' is not a list")
-                
-                # Fix the scores structure if needed
-                fixed_scores = []
-                for item in data["scores"]:
-                    if isinstance(item, str):
-                        # Convert string to proper structure
-                        fixed_scores.append({
-                            "model_id": item,
-                            "dimensions": {
-                                primary_dimension: {
-                                    primary_metric: None  # We don't know the score
-                                }
-                            }
-                        })
-                    elif isinstance(item, dict) and "model_id" in item and "dimensions" in item:
-                        # Already in correct format
-                        fixed_scores.append(item)
-                    elif isinstance(item, dict) and "model_id" in item:
-                        # Has model_id but missing dimensions
-                        fixed_scores.append({
-                            "model_id": item["model_id"],
-                            "dimensions": {
-                                primary_dimension: {
-                                    primary_metric: None
-                                }
-                            }
-                        })
-                
-                # Create BenchmarkData with fixed scores
-                return BenchmarkData(
-                    date=data.get("date", datetime.now().strftime("%Y-%m-%d")),
-                    source_url=data.get("source_url", source_url),
-                    scores=fixed_scores
-                )
-                
-            except json.JSONDecodeError as e:
-                logging.error(f"Failed to parse raw JSON response: {e}")
-                raise ValueError(f"Failed to parse LLM response as JSON: {e}")
-                
+            raw_json_string = raw_response.choices[0].message.content if raw_response.choices and raw_response.choices[0].message else None
+
+            if raw_json_string:
+                logging.info(f"LLM returned raw JSON string (length: {len(raw_json_string)}).")
+                self._log_extraction_debug(extraction_debug_filepath, f"LLM returned raw JSON string (length: {len(raw_json_string)}).")
+                try:
+                    # Save raw response for debugging validation issues
+                    with open(self.paths.raw_llm_response_debug, "w", encoding='utf-8') as f:
+                         f.write(raw_json_string)
+                    logging.info(f"Saved raw LLM response to {self.paths.raw_llm_response_debug}")
+                except Exception as save_err:
+                    logging.warning(f"Failed to save raw LLM response: {save_err}")
+            else:
+                logging.error("LLM response was empty.")
+                self._log_extraction_debug(extraction_debug_filepath, "LLM response was empty.")
+                return None
+
         except Exception as e:
-            error_message = str(e)
-            logging.error(f"Error extracting data with {model_to_use}: {error_message}")
-            
-            # Save the error message
-            with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_error.txt", "w") as f:
-                f.write(error_message)
-                
-            # Re-raise the exception
-            raise
-    
-    def _check_for_unknown_models(self, benchmark_data: BenchmarkData):
-        """Check for models in the benchmark data that aren't in models.json and log them"""
-        unknown_models = []
-        
-        for score in benchmark_data.scores:
-            model_id = score.model_id
-            if model_id not in self.models:
-                unknown_models.append(model_id)
-                
-                # Extract model info using instructor
-                model_info =  None # self._extract_model_info(model_id)
-                if model_info:
-                    # Log the unknown model
-                    with open(self.paths.unknown_models_log, "a") as f:
-                        f.write(f"Date: {datetime.now().isoformat()}\n")
-                        f.write(f"Unknown model: {model_id}\n")
-                        f.write(f"Extracted info: {json.dumps(model_info.model_dump(), indent=2)}\n")
-                        f.write("-" * 50 + "\n")
-        
-        if unknown_models:
-            logging.info(f"Found {len(unknown_models)} unknown models: {', '.join(unknown_models)}")
-            logging.info(f"Details have been logged to {self.paths.unknown_models_log}")
-    
-    def _extract_model_info(self, model_id: str) -> Optional[ModelInfo]:
-        """
-        Extract model information using instructor with OpenRouter.
-        
-        This method tries to find detailed information about an unknown model
-        using the model_id as a reference.
-        """
-        try:
-            # For demonstration purposes, we'll use a detailed prompt
-            # that guides the extraction process
-            system_prompt = """
-            Extract factual information about an AI language model.
-            
-            IMPORTANT GUIDELINES:
-            1. Only extract factual, verifiable information
-            2. If the exact information isn't known, indicate this with "Unknown" rather than guessing
-            3. For release dates, use YYYY-MM-DD format if full date is known, or YYYY-MM if only month is known, or YYYY if only year is known
-            4. For organization, provide the full company/lab name, not abbreviations
-            5. For license, specify the exact license type if known (e.g., "Apache 2.0", "Proprietary", "MIT", etc.)
-            
-            If you're unsure about any field, it's better to mark it as "Unknown" than to provide potentially incorrect information.
-            """
-            
-            user_prompt = f"""
-            Extract structured information about the AI model with ID '{model_id}'.
-            
-            Required fields:
-            - name: The display name of the model (if different from the ID)
-            - organization: The company, lab, or entity that created the model
-            - release_date: When the model was released (in YYYY-MM-DD format if possible)
-            - license: The license type of the model
-            
-            If you can't find specific information for any field, use "Unknown" as the value.
-            """
-            
-            model_to_use = "google/gemini-2.5-flash-preview"  # You can adjust the model as needed
-            
-            model_info = self.client.chat.completions.create(
-                model=model_to_use,
-                response_model=ModelInfo,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                extra_body={"provider": {"require_parameters": True}}
-            )
-            return model_info
-        except Exception as e:
-            logging.error(f"Error extracting info for model '{model_id}': {e}")
+            # Catch API errors etc.
+            logging.error(f"Error getting raw JSON response from LLM ({model_to_use}): {e}")
+            self._log_extraction_debug(extraction_debug_filepath, f"Error getting raw JSON response: {e}")
             return None
+
+        # 4. Validate and potentially correct the raw JSON string
+        benchmark_data: Optional[BenchmarkData] = None
+        try:
+            logging.info("Attempting Pydantic validation on raw JSON string...")
+            self._log_extraction_debug(extraction_debug_filepath, "Attempting Pydantic validation on raw JSON.")
+            benchmark_data = BenchmarkData.model_validate_json(raw_json_string)
+            logging.info("Raw JSON string passed initial Pydantic validation.")
+            self._log_extraction_debug(extraction_debug_filepath, "Raw JSON passed initial Pydantic validation.")
+
+        except ValidationError as e_initial:
+            logging.warning(f"Initial Pydantic validation failed. Attempting manual correction. Error: {e_initial.errors()}")
+            self._log_extraction_debug(extraction_debug_filepath, f"Initial Pydantic validation failed. Errors: {e_initial.errors()}. Attempting correction.")
+
+            try:
+                # Manually parse string -> dict
+                data_dict = json.loads(raw_json_string)
+
+                # Attempt correction: Check if 'scores' is a list of strings
+                if isinstance(data_dict, dict) and "scores" in data_dict and isinstance(data_dict["scores"], list):
+                    corrected_scores = []
+                    needs_correction = False
+                    for item in data_dict["scores"]:
+                        if isinstance(item, str):
+                            needs_correction = True
+                            try:
+                                # Try parsing the string item as JSON -> dict
+                                parsed_item = json.loads(item)
+                                corrected_scores.append(parsed_item)
+                            except json.JSONDecodeError:
+                                logging.warning(f"Score item was string but not valid JSON: {item[:100]}... Skipping.")
+                                self._log_extraction_debug(extraction_debug_filepath, f"Score item string not valid JSON: {item[:100]}...")
+                                # Skip this item or add as is? Skipping is safer for validation.
+                        else:
+                            # Assume it's already a dict (or will fail validation later)
+                            corrected_scores.append(item)
+
+                    if needs_correction:
+                        logging.info("Applied correction for string items in 'scores' list.")
+                        self._log_extraction_debug(extraction_debug_filepath,"Applied correction for string items in 'scores' list.")
+                        data_dict["scores"] = corrected_scores
+
+                # Retry validation with the potentially corrected dictionary
+                logging.info("Attempting Pydantic validation on potentially corrected dictionary...")
+                self._log_extraction_debug(extraction_debug_filepath, "Attempting Pydantic validation on corrected dict.")
+                # Use TypeAdapter for validating a Python object
+                benchmark_data = TypeAdapter(BenchmarkData).validate_python(data_dict)
+                logging.info("Corrected dictionary passed Pydantic validation.")
+                self._log_extraction_debug(extraction_debug_filepath,"Corrected dictionary passed Pydantic validation.")
+
+            except (json.JSONDecodeError, ValidationError, Exception) as e_correct:
+                # If manual parsing, correction, or re-validation fails
+                logging.error(f"Manual JSON correction or re-validation failed: {e_correct}")
+                self._log_extraction_debug(extraction_debug_filepath, f"Manual JSON correction or re-validation failed: {e_correct}")
+                benchmark_data = None # Ensure it's None
+
+        except Exception as e_other:
+            # Catch any other unexpected errors during validation phase
+            logging.error(f"Unexpected error during validation/correction: {e_other}")
+            self._log_extraction_debug(extraction_debug_filepath, f"Unexpected validation/correction error: {e_other}")
+            benchmark_data = None
+
+        # Final check and return
+        if benchmark_data and benchmark_data.scores:
+             logging.info(f"Extraction successful, found {len(benchmark_data.scores)} model scores.")
+             self._log_extraction_debug(extraction_debug_filepath, f"Extraction successful, found {len(benchmark_data.scores)} scores.")
+             return benchmark_data
+        elif benchmark_data:
+             logging.warning(f"Extraction successful but no scores found in the data for '{benchmark_id}'.")
+             self._log_extraction_debug(extraction_debug_filepath, "Extraction successful but no scores found.")
+             # Return the data structure even if scores are empty, maybe it's valid but empty
+             return benchmark_data
+        else:
+            logging.error(f"Final extraction attempt failed for benchmark '{benchmark_id}'. Check debug logs.")
+            self._log_extraction_debug(extraction_debug_filepath, "Extraction method finished with failure.")
+            return None
+
+
+    def _log_extraction_debug(self, filepath: Path, message: str):
+        """Appends a message to the benchmark-specific extraction debug log."""
+        try:
+            with open(filepath, "a", encoding='utf-8') as f:
+                f.write(f"[{datetime.now().isoformat()}] {message}\n")
+        except Exception as e:
+            # Log error about logging itself to the main log
+            logging.error(f"Failed to write to debug log {filepath}: {e}")
+
+
+    def _classify_and_process_models(self, benchmark_data: BenchmarkData, benchmark_id: str) -> bool:
+        """
+        Classifies extracted model IDs, logs results, and updates self.models
+        if new models are identified.
+
+        Args:
+            benchmark_data: The extracted benchmark data.
+            benchmark_id: The ID of the benchmark being processed.
+
+        Returns:
+            bool: True if self.models was updated, False otherwise.
+        """
+        if not self.model_classifier:
+            logging.error("Model Classifier not available. Skipping classification.")
+            return False
+        if not benchmark_data or not benchmark_data.scores:
+             logging.info(f"No scores in extracted data for '{benchmark_id}'. Skipping classification.")
+             return False
+
+        # Filter out potential null/empty IDs before sending to classifier
+        extracted_ids_list = list(set(
+            score.model_id.strip() for score in benchmark_data.scores
+            if score.model_id and score.model_id.strip()
+        ))
+
+        if not extracted_ids_list:
+             logging.info(f"No valid model IDs found in scores for '{benchmark_id}'. Skipping classification.")
+             return False
+
+        logging.info(f"Classifying {len(extracted_ids_list)} unique model IDs for '{benchmark_id}'...")
+
+        models_updated = False # Track if we add any new models
+
+        try:
+            classification_results: List[ModelClassificationResult] = self.model_classifier.classify_batch(
+                extracted_ids=extracted_ids_list,
+                benchmark_id=benchmark_id
+            )
+
+            # Process results and log
+            results_map = {res.original_id: res for res in classification_results}
+            with open(self.paths.model_classification_log, "a", encoding='utf-8') as f:
+                f.write(f"[{datetime.now().isoformat()}] Benchmark: {benchmark_id} - Model Classification Report\n")
+                f.write("-" * 60 + "\n")
+
+                if not classification_results:
+                    f.write("No classification results returned by the LLM.\n")
+                    logging.warning(f"LLM classifier returned no results for '{benchmark_id}'.")
+
+                processed_ids_for_log = set()
+                for original_id in extracted_ids_list: # Iterate through the IDs we sent
+                    if original_id in processed_ids_for_log: continue
+
+                    classification = results_map.get(original_id)
+                    log_entry = f"  Input ID: '{original_id}'\n"
+
+                    if not classification:
+                        log_entry += (
+                            f"  Classification: UNCLASSIFIED (LLM result missing)\n"
+                            f"  Explanation: LLM did not return a classification for this ID.\n"
+                        )
+                        logging.warning(f"Classifier did not return result for ID '{original_id}' in benchmark '{benchmark_id}'.")
+                    else:
+                        log_entry += f"  Classification: {classification.status.value}\n"
+                        if classification.status == ClassificationStatus.EXISTING:
+                            log_entry += f"    Matched Canonical ID: '{classification.matched_id}'\n"
+                        elif classification.status == ClassificationStatus.NEW:
+                            # --- Add New Model Logic ---
+                            if self.models is not None and original_id not in self.models:
+                                logging.info(f"Identified NEW model: '{original_id}'. Adding to models list.")
+                                self.models[original_id] = ModelInfo(
+                                    name=original_id, # Use ID as name initially
+                                    organization="", # Placeholder
+                                    release_date="",  # Placeholder
+                                    license=""       # Placeholder
+                                ).model_dump() # Store as dict
+                                models_updated = True # Signal that models file needs saving
+                                log_entry += f"    Action: Added as new model to internal list.\n"
+                            elif self.models is None:
+                                 logging.error("Cannot add new model '{original_id}', self.models is None.")
+                            else: # Already exists (maybe added in a previous step or manually)
+                                 logging.info(f"Model '{original_id}' classified as NEW, but already exists in models.json. No action taken.")
+                                 log_entry += f"    Action: Already exists in models.json.\n"
+
+
+                        if classification.explanation:
+                            log_entry += f"  Explanation: {classification.explanation}\n"
+
+                    f.write(log_entry)
+                    f.write("-" * 30 + "\n")
+                    processed_ids_for_log.add(original_id)
+
+                f.write("-" * 60 + "\n\n")
+
+            logging.info(f"Model classification results appended to {self.paths.model_classification_log}")
+            if models_updated:
+                 logging.info(f"Found new models for benchmark '{benchmark_id}'. Models list updated in memory.")
+
+            return models_updated # Return whether models were updated
+
+        except Exception as e:
+            # Catch exceptions raised by classify_batch (e.g., InstructorRetryException)
+            # Error is already logged in classify_batch
+            logging.error(f"Classification process failed for benchmark '{benchmark_id}'.")
+            # Re-raise the exception to be caught by update_benchmark's main try-except
+            raise e
+
 
     def update_all_benchmarks(self) -> Dict[str, bool]:
         """Update all benchmarks and return their status"""
+        if not self.benchmarks:
+             logging.warning("No benchmarks loaded to update.")
+             return {}
+        if not self.base_openai_client or not self.client or not self.model_classifier:
+             logging.error("LLM client or Model Classifier not initialized. Cannot update benchmarks.")
+             return {b.get("id", f"unknown_{i}"): False for i, b in enumerate(self.benchmarks)}
+        if self.models is None:
+             logging.error("Models data not loaded. Cannot update benchmarks.")
+             return {b.get("id", f"unknown_{i}"): False for i, b in enumerate(self.benchmarks)}
+
+
         results = {}
+        logging.info(f"Attempting to update {len(self.benchmarks)} benchmarks.")
         for benchmark in self.benchmarks:
-            benchmark_id = benchmark["id"]
+            benchmark_id = benchmark.get("id")
+            if not benchmark_id:
+                 logging.warning(f"Skipping benchmark with missing ID: {benchmark}")
+                 continue
+
+            # update_benchmark now handles its own critical errors and returns True/False
             results[benchmark_id] = self.update_benchmark(benchmark_id)
+            if results[benchmark_id]:
+                 logging.info(f"Successfully updated benchmark '{benchmark_id}'.")
+            else:
+                 logging.warning(f"Failed to update benchmark '{benchmark_id}'. Check logs for details.")
+                 # Continue to the next benchmark
+
         return results
 
 
@@ -532,37 +728,72 @@ def main():
     parser = argparse.ArgumentParser(description="Update LLM benchmark data")
     parser.add_argument("--benchmark", "-b", help="Benchmark ID to update (default: update all)", default="all")
     parser.add_argument("--url", help="Override the source URL for the benchmark")
-    parser.add_argument("--root-dir", help="Root directory of the project")
-    parser.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR"], default="INFO", 
+    parser.add_argument("--root-dir", help="Root directory of the project (containing data/, src/, etc.)")
+    parser.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], default="INFO",
                         help="Set logging level (default: INFO)")
-    
-    args = parser.parse_args()
-    
-    # Set logging level based on argument
-    logging.getLogger().setLevel(getattr(logging, args.log_level))
-    
-    # Check if required environment variables are set
 
+    args = parser.parse_args()
+
+    # Set logging level
+    logging.getLogger().setLevel(getattr(logging, args.log_level.upper()))
+
+    # Check environment variable
     if not OPENROUTER_API_KEY:
-        logging.error("OPENROUTER_API_KEY environment variable not set. Add it to your .env file.")
+        logging.critical("OPENROUTER_API_KEY environment variable not set. Exiting.")
         sys.exit(1)
-    
+
     try:
         agent = BenchmarkUpdateAgent(args.root_dir)
-        
+
+        # Perform checks after initialization attempt
+        if not agent.base_openai_client or not agent.client or not agent.model_classifier:
+             logging.critical("BenchmarkUpdateAgent failed to initialize LLM components. Exiting.")
+             sys.exit(1)
+        if agent.models is None:
+             logging.critical("BenchmarkUpdateAgent failed to load models data. Exiting.")
+             sys.exit(1)
+        if not agent.benchmarks:
+             logging.warning("No benchmarks loaded. Exiting.")
+             sys.exit(0) # Not critical error, just nothing to do
+
+
         if args.benchmark.lower() == "all":
             results = agent.update_all_benchmarks()
-            successful = sum(1 for status in results.values() if status)
-            logging.info(f"Updated {successful}/{len(results)} benchmarks successfully")
-            sys.exit(0 if successful > 0 else 1)
+            successful_count = sum(1 for status in results.values() if status)
+            total_count = len(results)
+            logging.info(f"Finished updating all benchmarks. Succeeded: {successful_count}/{total_count}")
+            # Exit code 0 if *any* succeeded, 1 if *all* failed
+            sys.exit(0 if successful_count > 0 else 1)
         else:
             success = agent.update_benchmark(args.benchmark, args.url)
-            logging.info(f"Benchmark update {'successful' if success else 'failed'}")
+            logging.info(f"Finished updating benchmark '{args.benchmark}'. Success: {success}")
             sys.exit(0 if success else 1)
+
     except Exception as e:
-        logging.error(f"Unhandled exception: {str(e)}")
+        # Catch any unexpected top-level errors
+        logging.critical(f"Unhandled exception in main execution: {e}", exc_info=True) # Log traceback for critical failures
         sys.exit(1)
 
 
 if __name__ == "__main__":
+    # Ensure the script can find the model_classify module if run directly
+    # This assumes benchmark_update_agent.py is in src/llmbench/
+    script_dir = Path(__file__).parent.resolve()
+    project_root = script_dir.parent.parent.resolve() # Go up two levels from src/llmbench
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+        logging.info(f"Added {project_root} to sys.path")
+    if str(project_root / "src") not in sys.path: # Add src directory too
+         sys.path.insert(0, str(project_root / "src"))
+         logging.info(f"Added {project_root / 'src'} to sys.path")
+
+    # Need to re-import after modifying sys.path if running as script
+    # This can be tricky; often better to run as a module: python -m llmbench.benchmark_update_agent
+    try:
+        from llmbench.model_classify import ModelClassifier, ModelClassificationResult, ClassificationStatus, CanonicalModel
+    except ModuleNotFoundError:
+         logging.error("Could not import model_classify. Ensure script is run correctly (e.g., python -m llmbench.benchmark_update_agent) or PYTHONPATH is set.")
+         # Re-importing might not work reliably depending on structure.
+         # Let's assume the module structure is correct for module execution.
+
     main()
