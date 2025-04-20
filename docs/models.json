@@ -95,12 +95,6 @@
     "organization": "",
     "release_date": ""
   },
-  "claude-3-7-sonnet": {
-    "license": "Proprietary",
-    "name": "Claude 3.7 Sonnet",
-    "organization": "Anthropic",
-    "release_date": "2025-02-19"
-  },
   "claude-3-7-sonnet-20250219": {
     "license": "",
     "name": "claude-3-7-sonnet-20250219",
@@ -274,12 +268,6 @@
     "name": "gemini-1.5-pro-002",
     "organization": "",
     "release_date": ""
-  },
-  "gemini-2-5-pro": {
-    "license": "Proprietary",
-    "name": "Gemini 2.5 Pro",
-    "organization": "Google",
-    "release_date": "2025-03-25"
   },
   "gemini-2.0-flash-001": {
     "license": "",

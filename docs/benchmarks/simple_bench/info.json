@@ -1,0 +1,43 @@
+{
+    "name": "SimpleBench",
+    "description": "A multiple-choice text benchmark where individuals with unspecialized (high school) knowledge outperform SOTA models",
+    "methodology": "Multiple-choice questions across spatio-temporal reasoning, social intelligence, and linguistic adversarial robustness",
+    "source_url": "https://simple-bench.com/",
+    "type": "multiple_choice",
+    "metrics": [
+      {
+        "id": "score_avg5",
+        "name": "Score (AVG@5)",
+        "description": "Average accuracy across benchmark questions",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Performance across all question types"
+      },
+      {
+        "id": "spatio_temporal",
+        "name": "Spatio-Temporal Reasoning",
+        "description": "Questions testing spatial and temporal reasoning abilities"
+      },
+      {
+        "id": "social_intelligence",
+        "name": "Social Intelligence",
+        "description": "Questions testing understanding of social dynamics and human behavior"
+      },
+      {
+        "id": "linguistic_adversarial",
+        "name": "Linguistic Adversarial Robustness",
+        "description": "Trick questions testing linguistic understanding and robustness"
+      }
+    ],
+    "display": {
+      "primary_metric": "score_avg5",
+      "primary_dimension": "overall"
+    }
+  }

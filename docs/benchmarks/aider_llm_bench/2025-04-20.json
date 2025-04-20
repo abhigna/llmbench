@@ -1,0 +1,350 @@
+{
+  "date": "2025-04-16",
+  "source_url": "https://aider.chat/docs/leaderboards/",
+  "scores": [
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 79.6
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro-preview-03-25",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 72.9
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 72.0
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-20250219-thinking-32k",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 64.9
+        }
+      }
+    },
+    {
+      "model_id": "o1-2024-12-17-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 61.7
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-20250219",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 60.4
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 60.4
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 56.9
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 55.1
+        }
+      }
+    },
+    {
+      "model_id": "quasar-alpha",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 54.7
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 53.8
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-beta",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 53.3
+        }
+      }
+    },
+    {
+      "model_id": "optimus-alpha",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 52.9
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 52.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet-20241022",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 51.6
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-mini-beta-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 49.3
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 48.4
+        }
+      }
+    },
+    {
+      "model_id": "chatgpt-4o-latest",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 45.3
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5-preview",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 44.9
+        }
+      }
+    },
+    {
+      "model_id": "gemini-exp-1206",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 38.2
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-pro-exp-02-05",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 35.6
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-mini-beta",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 34.7
+        }
+      }
+    },
+    {
+      "model_id": "o1-mini-2024-09-12",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 32.9
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-mini",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 32.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-haiku-20241022",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 28.0
+        }
+      }
+    },
+    {
+      "model_id": "chatgpt-4o-latest",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 27.1
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-2024-08-06",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 23.1
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-exp",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 22.2
+        }
+      }
+    },
+    {
+      "model_id": "qwen-max-2025-01-25",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 21.8
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 20.9
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking-exp-01-21",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 18.2
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-2024-11-20",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 18.2
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-chat-v2-5",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 17.8
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-coder-32b-instruct",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 16.4
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 15.6
+        }
+      }
+    },
+    {
+      "model_id": "yi-lightning",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 12.9
+        }
+      }
+    },
+    {
+      "model_id": "command-a-03-2025-quality",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 12.0
+        }
+      }
+    },
+    {
+      "model_id": "codestral-25-01",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 11.1
+        }
+      }
+    },
+    {
+      "model_id": "openhands-lm-32b-v0-1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 10.2
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-nano",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 8.9
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-coder-32b-instruct",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 8.0
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-27b-it",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 4.9
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini-2024-07-18",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 3.6
+        }
+      }
+    }
+  ]
+}

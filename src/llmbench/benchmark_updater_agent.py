@@ -274,8 +274,13 @@ class BenchmarkUpdateAgent:
                 raise Exception(f"Failed to fetch data from {source_url} using all available methods")
         
         # 2. Prepare a much clearer prompt that emphasizes the exact structure required
+        # Provide known model IDs to the LLM so it can reuse exact formatting
+        known_model_ids = list(self.models.keys())
+        known_model_ids.sort()
+        known_model_ids_str = ", ".join(known_model_ids)
+        
         system_prompt = f"""
-        Your task is to extract benchmark data from the {benchmark_id} leaderboard into a structured JSON format.
+        Your primary task is to extract benchmark data from the {benchmark_id} leaderboard into a structured JSON format.
 
         THE RESPONSE FORMAT IS CRITICAL. Your output MUST follow this exact structure:
         {{
@@ -283,7 +288,7 @@ class BenchmarkUpdateAgent:
         "source_url": "URL of the benchmark",
         "scores": [
             {{
-            "model_id": "model-identifier-1",
+            "model_id": "normalized-model-identifier-1",
             "dimensions": {{
                 "{primary_dimension}": {{
                 "{primary_metric}": numeric_score_value
@@ -291,44 +296,55 @@ class BenchmarkUpdateAgent:
             }}
             }},
             {{
-            "model_id": "model-identifier-2",
+            "model_id": "normalized-model-identifier-2",
             "dimensions": {{
                 "{primary_dimension}": {{
                 "{primary_metric}": numeric_score_value
                 }}
             }}
             }}
+            // ... more scores ...
         ]
         }}
 
         IMPORTANT NOTES ON STRUCTURE:
-        1. Each item in "scores" MUST be a complete object with "model_id" and "dimensions" fields
-        2. Inside dimensions, include the primary dimension "{primary_dimension}" with the primary metric "{primary_metric}"
-        3. Score values should be numeric (not strings)
-        4. DO NOT return just a list of model names - each entry in the scores array must be a fully structured object
+        1. Each item in "scores" MUST be a complete object with "model_id" and "dimensions" fields.
+        2. Inside dimensions, include the primary dimension "{primary_dimension}" with the primary metric "{primary_metric}".
+        3. Score values should be numeric (not strings).
+        4. The "model_id" field MUST contain the model identifier resulting from applying the normalization rules below.
 
-        BENCHMARK INFORMATION:
-        - Name: {benchmark_info.get('name')}
-        - Description: {benchmark_info.get('description')}
-        - Primary Dimension: "{primary_dimension}"
-        - Primary Metric: "{primary_metric}"
+        ---
+        MODEL ID NORMALIZATION:
 
-        For each model you find in the leaderboard:
-        1. Extract the model ID (like "claude-3-7-sonnet", "gemini-2.5-pro", etc.)
-        2. Extract its score for the primary metric in the primary dimension
-        3. Format it exactly as shown in the example above
-        
+        The source benchmark might use different names for models. When extracting, normalize the model names you find in the text to create a standardized 'model_id' for the output JSON.
+
+        Consider the following list as examples of typical canonical IDs, but your output 'model_id' should be derived from the benchmark name using the rules below, even if it's not on this list initially:
+        {known_model_ids_str}
+
+        NORMALIZATION RULES:
+        1.  **Specific Mappings (Apply First):** If a model name exactly matches or is a known alias for one of these specific cases, use the provided canonical ID:
+            *   If the text is 'o4-mini (high)', use 'o4-mini-high'.
+            *   If the text is 'o3 (high)', use 'o3-high'.
+            *   If the text is 'o3-mini (high)', use 'o3-mini-high'.
+            *   If the text is 'DeepSeek Chat V3 (prev)', use 'deepseek-v3'.
+
+        2.  **General Cleaning (Apply if no specific mapping):** If the name doesn't match any specific mapping above, apply these general cleaning steps to derive the 'model_id':
+            *   Convert the name to lowercase.
+            *   Replace spaces, periods (`.`), and underscores (`_`) with hyphens (`-`).
+            *   Remove content within parentheses (e.g., '(high)', '(low)', '(prev)', '(date)').
+            *   Remove leading/trailing hyphens.
+
         The current date is {datetime.now().strftime('%Y-%m-%d')}.
         """
-        
-        user_prompt = f"Extract the benchmark data from this page, paying special attention to the model names and their scores for {primary_metric} in the {primary_dimension} dimension. Remember that each item in the scores array MUST be a complete object with model_id and dimensions fields:\n\n{content}..."
-        
+
+        user_prompt = f"Extract the benchmark data from this page, applying the normalization rules for model IDs and skipping combination entries. Pay special attention to model names and their scores for {primary_metric} in the {primary_dimension} dimension. Remember that each item in the scores array MUST be a complete object with model_id (normalized using the rules) and dimensions fields:\n\n{content}..."
+
         # Save prompts for debugging
         with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_system_prompt.txt", "w") as f:
             f.write(system_prompt)
             
         with open(debug_dir / f"{benchmark_id}_{debug_timestamp}_user_prompt.txt", "w") as f:
-            f.write(user_prompt[:10000])  # Save first 10k chars
+            f.write(user_prompt)  # Save first 10k chars
         
         # 3. Call the LLM first to get the raw JSON response
         model_to_use = "google/gemini-2.5-flash-preview"  # You can adjust the model as needed

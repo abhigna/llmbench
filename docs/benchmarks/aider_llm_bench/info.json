@@ -1,0 +1,53 @@
+{
+    "name": "Aider LLM Benchmark",
+    "description": "Polyglot benchmark testing LLMs on 225 challenging Exercism coding exercises across C++, Go, Java, JavaScript, Python, and Rust",
+    "methodology": "Automated evaluation of LLMs' ability to follow instructions and edit code successfully without human intervention",
+    "source_url": "https://aider.chat/docs/leaderboards/",
+    "type": "code_edit",
+    "metrics": [
+      {
+        "id": "percent_correct",
+        "name": "Percent Correct",
+        "description": "Percentage of exercises successfully solved",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "cost",
+        "name": "Cost",
+        "description": "Total cost for running the benchmark",
+        "min": 0,
+        "better": "lower"
+      },
+      {
+        "id": "correct_edit_format",
+        "name": "Correct Edit Format",
+        "description": "Percentage of solutions with the correct code edit format",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Performance across all programming languages"
+      },
+      {
+        "id": "by_language",
+        "name": "Language-Specific",
+        "description": "Performance broken down by programming language (C++, Go, Java, JavaScript, Python, Rust)"
+      },
+      {
+        "id": "by_edit_format",
+        "name": "Edit Format",
+        "description": "Performance broken down by edit format (diff, whole, architect, diff-fenced)"
+      }
+    ],
+    "display": {
+      "primary_metric": "percent_correct",
+      "primary_dimension": "overall"
+    }
+}

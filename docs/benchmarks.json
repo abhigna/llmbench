@@ -6,5 +6,21 @@
     "source_url": "https://beta.lmarena.ai/leaderboard/text",
     "last_updated": "2025-04-20",
     "type": "human_pref"
+  },
+  {
+    "id": "aider_llm_bench",
+    "name": "Aider LLM Benchmark",
+    "description": "Polyglot benchmark testing LLMs on 225 Exercism coding exercises across C++, Go, Java, JavaScript, Python, and Rust",
+    "source_url": "https://aider.chat/docs/leaderboards/",
+    "last_updated": "2025-04-20",
+    "type": "code_edit"
+  },
+  {
+    "id": "simple_bench",
+    "name": "SimpleBench",
+    "description": "Multiple-choice benchmark where individuals with high school knowledge outperform SOTA models",
+    "source_url": "https://simple-bench.com/",
+    "last_updated": "2025-04-20",
+    "type": "reasoning"
   }
 ]
