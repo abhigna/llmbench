@@ -37,13 +37,10 @@ class BenchmarkScore(BaseModel):
         description="Scores for different dimensions, with metrics inside each dimension"
     )
 
-
 class BenchmarkData(BaseModel):
     date: str = Field(..., description="The date of the benchmark data in YYYY-MM-DD format")
     source_url: str = Field(..., description="The source URL of the benchmark data")
     scores: List[BenchmarkScore] = Field(..., description="The scores for different models")
-
-
 
 class ProjectPaths:
     def __init__(self, root_dir: str = None):
@@ -316,24 +313,33 @@ class BenchmarkUpdateAgent:
         ---
         MODEL ID NORMALIZATION:
 
-        The source benchmark might use different names for models. When extracting, normalize the model names you find in the text to create a standardized 'model_id' for the output JSON.
+        The source benchmark might use different names for models than our standard identifiers. When extracting the data, you MUST normalize the model names you find in the text before including them in the 'model_id' field.
 
-        Consider the following list as examples of typical canonical IDs, but your output 'model_id' should be derived from the benchmark name using the rules below, even if it's not on this list initially:
+        PREFERRED TARGETS (Use these *exact* IDs if a name maps directly or after normalization):
         {known_model_ids_str}
 
-        NORMALIZATION RULES:
-        1.  **Specific Mappings (Apply First):** If a model name exactly matches or is a known alias for one of these specific cases, use the provided canonical ID:
-            *   If the text is 'o4-mini (high)', use 'o4-mini-high'.
-            *   If the text is 'o3 (high)', use 'o3-high'.
-            *   If the text is 'o3-mini (high)', use 'o3-mini-high'.
-            *   If the text is 'DeepSeek Chat V3 (prev)', use 'deepseek-v3'.
+        NORMALIZATION RULES & EXAMPLES (Apply these first):
+        - If the text refers to 'o4-mini (high)', use the normalized ID 'o4-mini-high'.
+        - If the text refers to 'o3 (high)', use the normalized ID 'o3-high'.
+        - If the text refers to 'o3-mini (high)', use the normalized ID 'o3-mini-high'.
+        - If the text refers to 'Grok 3 Beta', use the normalized ID 'grok-3'.
+        - If the text refers to 'DeepSeek Chat V3 (prev)', use the normalized ID 'deepseek-v3'.
 
-        2.  **General Cleaning (Apply if no specific mapping):** If the name doesn't match any specific mapping above, apply these general cleaning steps to derive the 'model_id':
-            *   Convert the name to lowercase.
-            *   Replace spaces, periods (`.`), and underscores (`_`) with hyphens (`-`).
-            *   Remove content within parentheses (e.g., '(high)', '(low)', '(prev)', '(date)').
-            *   Remove leading/trailing hyphens.
+        General Pattern Derivation (Apply if not covered by rules above and not a combination):
+        - If a model name found in the text is NOT covered by the specific rules above and is NOT a combination (does NOT contain '+', 'and', etc.), attempt to derive a normalized ID by applying these steps:
+            - Replace periods (.) with dashes (-). Example: 'gemini-2.5-pro' becomes 'gemini-2-5-pro'.
+            - Convert the name to lowercase.
+            - Remove specific descriptive suffixes like 'preview', 'latest', and *any date suffixes* (e.g., '2024-07-18', '20250326'). Example: 'gpt-4.5-preview-2025-02-27' becomes 'gpt-4-5'. Example: 'chatgpt-4o-latest-20250326' becomes 'chatgpt-4o'.
+            - However, *keep* important model type suffixes such as 'pro', 'flash', 'mini', 'high', 'instruct', 'chat', 'beta', 'sonnet', 'haiku', 'opus'.
+            - Replace spaces or other non-alphanumeric characters (except dashes) with hyphens.
 
+        Final Model ID Determination Logic:
+        For an extracted model name from the benchmark:
+        1. Check if it's a combination (contains '+', 'and', etc.). If yes, *skip this entry entirely*.
+        2. Apply the specific NORMALIZATION RULES & EXAMPLES. If a rule matches, use that as the normalized ID.
+        3. If no specific rule matched, apply the General Pattern Derivation steps. Use the result of this derivation as the normalized ID.
+        4. Use this final normalized ID in the 'model_id' field of the JSON output.
+        
         The current date is {datetime.now().strftime('%Y-%m-%d')}.
         """
 

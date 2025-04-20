@@ -5,6 +5,12 @@ let allModelsData = {};
 let allBenchmarksInfo = {};
 let availableBenchmarks = [];
 
+// Global variable to track current sorting state
+let currentSort = {
+    column: 'weightedScore', // Default sort column
+    direction: 'desc'        // Default sort direction
+};
+
 // --- Data Loading ---
 
 async function fetchJson(url) {
@@ -112,10 +118,10 @@ function updateTableHeader(visibleBenchmarks) {
     const headerRow = document.querySelector('#llm-table thead tr');
     if (!headerRow) return;
 
-    // Static columns
+    // Static columns with sort indicators
     headerRow.innerHTML = `
-      <th>Model</th>
-      <th>Weighted Score</th>
+      <th data-sort="name" class="sortable">Model <span class="sort-indicator"></span></th>
+      <th data-sort="weightedScore" class="sortable">Weighted Score <span class="sort-indicator"></span></th>
     `;
 
     // Dynamic benchmark columns
@@ -124,9 +130,121 @@ function updateTableHeader(visibleBenchmarks) {
         const th = document.createElement('th');
         th.textContent = benchInfo?.name || benchId; // Use name, fallback to ID
         th.title = benchInfo?.description || '';     // Add description as tooltip
+        th.className = 'sortable';
+        th.dataset.sort = `benchmark-${benchId}`;
+        th.innerHTML = `${benchInfo?.name || benchId} <span class="sort-indicator"></span>`;
         headerRow.appendChild(th);
     });
+
+    // Add sort event listeners to all sortable headers
+    document.querySelectorAll('th.sortable').forEach(th => {
+        th.addEventListener('click', () => {
+            const column = th.dataset.sort;
+            // If clicking the same column, toggle direction, otherwise set to desc
+            const direction = (column === currentSort.column) 
+                ? (currentSort.direction === 'asc' ? 'desc' : 'asc') 
+                : 'desc';
+            
+            sortTable(column, direction);
+        });
+    });
+
+    // Update sort indicators based on current sort
+    updateSortIndicators();
 }
+
+// Update the sort indicators in the table header
+function updateSortIndicators() {
+    // Clear all indicators first
+    document.querySelectorAll('.sort-indicator').forEach(indicator => {
+        indicator.textContent = '';
+    });
+    
+    // Set the indicator for the current sort column
+    const currentHeader = document.querySelector(`th[data-sort="${currentSort.column}"]`);
+    if (currentHeader) {
+        const indicator = currentHeader.querySelector('.sort-indicator');
+        indicator.textContent = currentSort.direction === 'asc' ? '▲' : '▼';
+    }
+}
+
+// Sort the table based on column and direction
+function sortTable(column, direction) {
+    console.log(`Sorting by ${column} in ${direction} order`);
+    
+    // Update current sort state
+    currentSort.column = column;
+    currentSort.direction = direction;
+    
+    // Get all model data as an array
+    const modelsArray = Object.values(allModelsData);
+    
+    // Filter models based on current visible benchmarks
+    const visibleBenchmarks = getVisibleBenchmarks();
+    const modelsToDisplay = modelsArray.filter(modelData => {
+        return visibleBenchmarks.some(benchId => modelData.scores.hasOwnProperty(benchId));
+    });
+    
+    // Sort the filtered models
+    modelsToDisplay.sort((a, b) => {
+        let valueA, valueB;
+        
+        if (column === 'name') {
+            // Sort by model name
+            valueA = a.name?.toLowerCase() || '';
+            valueB = b.name?.toLowerCase() || '';
+        } 
+        else if (column === 'weightedScore') {
+            // Sort by weighted score
+            valueA = calculateWeightedScore(a, visibleBenchmarks);
+            valueB = calculateWeightedScore(b, visibleBenchmarks);
+            
+            // Handle 'N/A' values
+            if (valueA === 'N/A') valueA = -Infinity;
+            if (valueB === 'N/A') valueB = -Infinity;
+        }
+        else if (column.startsWith('benchmark-')) {
+            // Sort by specific benchmark score
+            const benchId = column.replace('benchmark-', '');
+            valueA = a.scores[benchId]?.score;
+            valueB = b.scores[benchId]?.score;
+            
+            // Handle 'N/A' or undefined values
+            if (valueA === 'N/A' || valueA === undefined) valueA = -Infinity;
+            if (valueB === 'N/A' || valueB === undefined) valueB = -Infinity;
+        }
+        
+        // Apply sort direction
+        const modifier = direction === 'asc' ? 1 : -1;
+        
+        // Handle string comparison
+        if (typeof valueA === 'string' && typeof valueB === 'string') {
+            return modifier * valueA.localeCompare(valueB);
+        }
+        
+        // Handle numeric comparison
+        return modifier * (valueA - valueB);
+    });
+    
+    // Update the table with sorted data
+    renderTableRows(modelsToDisplay, visibleBenchmarks);
+    
+    // Update the sort indicators
+    updateSortIndicators();
+}
+
+// Helper function to get currently visible benchmarks based on filters
+function getVisibleBenchmarks() {
+    const selectedTypes = Array.from(document.querySelectorAll('.type-filter:checked'))
+        .map(checkbox => checkbox.value);
+    const selectAllTypes = selectedTypes.includes('all');
+
+    return Object.keys(allBenchmarksInfo).filter(benchId => {
+        const benchInfo = allBenchmarksInfo[benchId];
+        return !benchInfo.error && (selectAllTypes || selectedTypes.includes(benchInfo.type));
+    });
+}
+
 
 function renderTableRows(modelsToDisplay, visibleBenchmarks) {
     const tableBody = document.getElementById('llm-table-body');
@@ -283,36 +401,48 @@ function formatDate(dateString) {
 
 // --- Filtering ---
 
+// Update the applyFilters function to use sorting
 function applyFilters() {
-    // 1. Get selected benchmark types
-    const selectedTypes = Array.from(document.querySelectorAll('.type-filter:checked'))
-        .map(checkbox => checkbox.value);
-    const selectAllTypes = selectedTypes.includes('all');
+    // 1. Get visible benchmarks based on type filters
+    const visibleBenchmarks = getVisibleBenchmarks();
 
-    // 2. Determine which benchmarks are visible based on type
-    const visibleBenchmarks = Object.keys(allBenchmarksInfo).filter(benchId => {
-        const benchInfo = allBenchmarksInfo[benchId];
-        // Include if 'all' is checked OR if the benchmark's type is in the selected types
-        // Also skip benchmarks that had loading errors
-        return !benchInfo.error && (selectAllTypes || selectedTypes.includes(benchInfo.type));
-    });
-
-    // 3. Filter models: Show a model if it has a score in *at least one* of the visible benchmarks
+    // 2. Filter models: Show a model if it has a score in *at least one* of the visible benchmarks
     const modelsToDisplay = Object.values(allModelsData).filter(modelData => {
         return visibleBenchmarks.some(benchId => modelData.scores.hasOwnProperty(benchId));
     });
 
-    console.log("Applying filters. Selected types:", selectedTypes, "Visible benchmarks:", visibleBenchmarks.length, "Models to display:", modelsToDisplay.length);
+    console.log("Applying filters. Visible benchmarks:", visibleBenchmarks.length, "Models to display:", modelsToDisplay.length);
 
-    // 4. Update the table header based on visible benchmarks
+    // 3. Update the table header based on visible benchmarks
     updateTableHeader(visibleBenchmarks);
 
-    // 5. Render the filtered and structured rows
-    renderTableRows(modelsToDisplay, visibleBenchmarks);
+    // 4. Sort and render the table rows
+    sortTable(currentSort.column, currentSort.direction);
 
-    // 6. Update model counter
+    // 5. Update model counter
     updateModelCounter(modelsToDisplay.length, Object.keys(allModelsData).length);
 }
+
+// Add CSS for sortable columns to your page
+function addSortingStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+        .sortable:hover {
+            background-color: #f0f0f0;
+        }
+        .sort-indicator {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 0.8em;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 
 function updateTable() {
     applyFilters();
@@ -392,6 +522,7 @@ function setupEventListeners() {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded. Initializing...");
+    addSortingStyles();      // Add sorting styles
     loadAllData();       // Load data first
     setupEventListeners(); // Then setup listeners
 });
