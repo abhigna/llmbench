@@ -1,0 +1,78 @@
+{
+    "id": "livebench",
+    "name": "LiveBench",
+    "description": "A benchmark for LLMs designed with test set contamination and objective evaluation in mind",
+    "source_url": "https://livebench.ai/#/",
+    "last_updated": "2025-04-02",
+    "type": "reasoning",
+    "methodology": "Verifiable, objective ground-truth answers across diverse tasks",
+    "metrics": [
+      {
+        "id": "global_average",
+        "name": "Global Average",
+        "description": "Overall performance across all categories",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "reasoning_average",
+        "name": "Reasoning Average",
+        "description": "Performance on reasoning tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "coding_average", 
+        "name": "Coding Average",
+        "description": "Performance on coding tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "mathematics_average",
+        "name": "Mathematics Average",
+        "description": "Performance on mathematics tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "data_analysis_average",
+        "name": "Data Analysis Average",
+        "description": "Performance on data analysis tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "language_average",
+        "name": "Language Average",
+        "description": "Performance on language tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "if_average",
+        "name": "IF Average",
+        "description": "Performance on IF tasks",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Performance across all 18 diverse tasks in 6 categories"
+      }
+    ],
+    "display": {
+      "primary_metric": "global_average",
+      "primary_dimension": "overall"
+    }
+  }

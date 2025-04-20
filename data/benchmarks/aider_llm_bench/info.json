@@ -34,16 +34,6 @@
         "id": "overall",
         "name": "Overall Performance",
         "description": "Performance across all programming languages"
-      },
-      {
-        "id": "by_language",
-        "name": "Language-Specific",
-        "description": "Performance broken down by programming language (C++, Go, Java, JavaScript, Python, Rust)"
-      },
-      {
-        "id": "by_edit_format",
-        "name": "Edit Format",
-        "description": "Performance broken down by edit format (diff, whole, architect, diff-fenced)"
       }
     ],
     "display": {

@@ -180,43 +180,92 @@ function renderTableRows(modelsToDisplay, visibleBenchmarks) {
 
 // --- Calculations and Formatting ---
 
+
+// Calculates min and max scores for each benchmark across all models
+function calculateBenchmarkRanges() {
+    const ranges = {};
+    
+    // Initialize ranges for each benchmark
+    Object.keys(allBenchmarksInfo).forEach(benchId => {
+        ranges[benchId] = {
+            min: Infinity,
+            max: -Infinity
+        };
+    });
+    
+    // Find min and max for each benchmark
+    Object.values(allModelsData).forEach(modelData => {
+        Object.entries(modelData.scores).forEach(([benchId, scoreData]) => {
+            if (typeof scoreData.score === 'number') {
+                ranges[benchId].min = Math.min(ranges[benchId].min, scoreData.score);
+                ranges[benchId].max = Math.max(ranges[benchId].max, scoreData.score);
+            }
+        });
+    });
+    
+    // Handle case where no scores were found (min still Infinity)
+    Object.keys(ranges).forEach(benchId => {
+        if (ranges[benchId].min === Infinity) {
+            ranges[benchId].min = 0;
+            ranges[benchId].max = 1; // Avoid division by zero
+        }
+        // Handle case where min equals max (would cause division by zero)
+        if (ranges[benchId].min === ranges[benchId].max) {
+            // If there's only one value, slightly adjust max to avoid division by zero
+            ranges[benchId].max += 0.00001;
+        }
+    });
+    
+    return ranges;
+}
+
 function calculateWeightedScore(modelData, visibleBenchmarks) {
-    let totalScore = 0;
+    // Calculate benchmark ranges once
+    const benchmarkRanges = calculateBenchmarkRanges();
+    
+    let totalNormalizedScore = 0;
     let count = 0;
 
     visibleBenchmarks.forEach(benchId => {
         const scoreData = modelData.scores[benchId];
         // Ensure score exists and is a number for averaging
         if (scoreData && typeof scoreData.score === 'number') {
-            // **Normalization Placeholder:** If normalization were applied, it would happen here.
-            // E.g., const normalizedScore = normalize(scoreData.score, allBenchmarksInfo[benchId]);
-            // totalScore += normalizedScore;
-            totalScore += scoreData.score; // Using raw score for now
+            const range = benchmarkRanges[benchId];
+            
+            // Normalize score: (score - min) / (max - min)
+            // This scales all scores to range [0, 1]
+            const normalizedScore = (scoreData.score - range.min) / (range.max - range.min);
+            
+            totalNormalizedScore += normalizedScore;
             count++;
         }
     });
 
-    return count > 0 ? totalScore / count : 'N/A';
+    return count > 0 ? totalNormalizedScore / count : 'N/A';
 }
 
 // Format score (simple number formatting for now)
 function formatScore(score) {
     if (typeof score === 'number') {
-        // Basic check: if it looks like a percentage or small decimal, use 2 decimal places. Otherwise, maybe integer?
-        // This is a heuristic and might need adjustment based on actual benchmark score ranges.
-        if (Math.abs(score) <= 1.0 && !Number.isInteger(score) || (Math.abs(score) > 1 && Math.abs(score) <= 100)) {
-             return score.toFixed(2);
+        // For normalized weighted scores (always between 0 and 1)
+        if (score >= 0 && score <= 1 && !Number.isInteger(score)) {
+            return score.toFixed(2);
         }
-        if (Math.abs(score) > 1 && Math.abs(score) < 10) {
-             return score.toFixed(2);
+        // Basic check: if it looks like a percentage or small decimal, use 2 decimal places
+        else if (Math.abs(score) <= 1.0 && !Number.isInteger(score) || (Math.abs(score) > 1 && Math.abs(score) <= 100)) {
+            return score.toFixed(2);
         }
-         if (Math.abs(score) > 1000) {
-             return score.toLocaleString(undefined, { maximumFractionDigits: 0}); // Large numbers like ELO
-         }
+        else if (Math.abs(score) > 1 && Math.abs(score) < 10) {
+            return score.toFixed(2);
+        }
+        else if (Math.abs(score) > 1000) {
+            return score.toLocaleString(undefined, { maximumFractionDigits: 0}); // Large numbers like ELO
+        }
         return score.toFixed(1); // Default to 1 decimal place for other numbers
     }
     return score; // Return as is if not a number (e.g., 'N/A')
 }
+
 
 // Format date for superscript display (e.g., 'MM/DD')
 function formatDate(dateString) {

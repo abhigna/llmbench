@@ -19,21 +19,6 @@
         "id": "overall",
         "name": "Overall Performance",
         "description": "Performance across all question types"
-      },
-      {
-        "id": "spatio_temporal",
-        "name": "Spatio-Temporal Reasoning",
-        "description": "Questions testing spatial and temporal reasoning abilities"
-      },
-      {
-        "id": "social_intelligence",
-        "name": "Social Intelligence",
-        "description": "Questions testing understanding of social dynamics and human behavior"
-      },
-      {
-        "id": "linguistic_adversarial",
-        "name": "Linguistic Adversarial Robustness",
-        "description": "Trick questions testing linguistic understanding and robustness"
       }
     ],
     "display": {

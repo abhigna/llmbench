@@ -27,11 +27,6 @@
         "id": "overall",
         "name": "Overall Performance",
         "description": "Performance across all question types"
-      },
-      {
-        "id": "style_adjusted",
-        "name": "Style-Adjusted",
-        "description": "Performance adjusted for style factors (length, formatting)"
       }
     ],
     "display": {

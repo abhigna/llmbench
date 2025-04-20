@@ -22,5 +22,13 @@
     "source_url": "https://simple-bench.com/",
     "last_updated": "2025-04-20",
     "type": "reasoning"
+  },
+  {
+    "id": "livebench",
+    "name": "LiveBench",
+    "description": "A benchmark for LLMs designed with test set contamination and objective evaluation in mind",
+    "source_url": "https://livebench.ai/#/",
+    "last_updated": "2025-04-20",
+    "type": "reasoning"
   }
 ]
