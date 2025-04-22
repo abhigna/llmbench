@@ -1,0 +1,150 @@
+{
+  "date": "2025-04-22",
+  "source_url": "https://scale.com/leaderboard/humanitys_last_exam",
+  "scores": [
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "accuracy": 20.32
+        }
+      }
+    },
+    {
+      "model_id": "o3-medium",
+      "dimensions": {
+        "overall": {
+          "accuracy": 19.2
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "accuracy": 18.16
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "accuracy": 18.08
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-medium",
+      "dimensions": {
+        "overall": {
+          "accuracy": 14.28
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-flash",
+      "dimensions": {
+        "overall": {
+          "accuracy": 12.08
+        }
+      }
+    },
+    {
+      "model_id": "o1-pro",
+      "dimensions": {
+        "overall": {
+          "accuracy": 8.12
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "accuracy": 8.04
+        }
+      }
+    },
+    {
+      "model_id": "o1",
+      "dimensions": {
+        "overall": {
+          "accuracy": 7.96
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking",
+      "dimensions": {
+        "overall": {
+          "accuracy": 6.56
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick",
+      "dimensions": {
+        "overall": {
+          "accuracy": 5.68
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "overall": {
+          "accuracy": 5.44
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "accuracy": 5.4
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro-002",
+      "dimensions": {
+        "overall": {
+          "accuracy": 4.6
+        }
+      }
+    },
+    {
+      "model_id": "nova-pro",
+      "dimensions": {
+        "overall": {
+          "accuracy": 4.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "accuracy": 4.08
+        }
+      }
+    },
+    {
+      "model_id": "nova-lite",
+      "dimensions": {
+        "overall": {
+          "accuracy": 3.64
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "accuracy": 2.72
+        }
+      }
+    }
+  ]
+}

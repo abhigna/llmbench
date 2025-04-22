@@ -1,0 +1,36 @@
+{
+    "name": "Humanity's Last Exam",
+    "description": "A comprehensive benchmark assessing large language models on 3,000 expert-crafted questions spanning mathematics, sciences, humanities, and more, designed to challenge models at the frontier of human knowledge.",
+    "methodology": "Developed collaboratively by Scale AI and the Center for AI Safety, this benchmark comprises questions sourced from subject-matter experts worldwide. Each model is evaluated automatically on all public questions with temperature 0.0, measuring both accuracy and calibration error.",
+    "source_url": "https://scale.com/leaderboard/humanitys_last_exam",
+    "type": "reasoning",
+    "metrics": [
+      {
+        "id": "accuracy",
+        "name": "Accuracy (%)",
+        "description": "Percentage of correctly answered questions.",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      },
+      {
+        "id": "calibration_error",
+        "name": "Calibration Error (%)",
+        "description": "Difference between model's confidence and actual accuracy; lower values indicate better calibration.",
+        "min": 0,
+        "max": 100,
+        "better": "lower"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Aggregate performance across all question types and subjects."
+      }
+    ],
+    "display": {
+      "primary_metric": "accuracy",
+      "primary_dimension": "overall"
+    }
+  }

@@ -1,0 +1,28 @@
+{
+    "name": "Artificial Analysis",
+    "description": "Comprehensive evaluation of large language models across key metrics including intelligence, price, speed, and context window",
+    "methodology": "Mixed quantitative benchmarking across standardized prompts and performance metrics",
+    "source_url": "https://artificialanalysis.ai/leaderboards/models",
+    "type": "reasoning",
+    "metrics": [
+      {
+        "id": "intelligence_index",
+        "name": "Intelligence Index",
+        "description": "Artificial Analysis Intelligence Index measuring model quality",
+        "min": 0,
+        "max": 100,
+        "better": "higher"
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "overall",
+        "name": "Overall Performance",
+        "description": "Performance across all metrics"
+      }
+    ],
+    "display": {
+      "primary_metric": "intelligence_index",
+      "primary_dimension": "overall"
+    }
+  }

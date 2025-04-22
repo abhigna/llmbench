@@ -3,14 +3,6 @@
   "source_url": "https://aider.chat/docs/leaderboards/",
   "scores": [
     {
-      "model_id": "o3-high-gpt-4-1",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 82.7
-        }
-      }
-    },
-    {
       "model_id": "o3-high",
       "dimensions": {
         "overall": {

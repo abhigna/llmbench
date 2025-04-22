@@ -1,0 +1,28 @@
+{
+  "name": "ARC‑AGI 2 Leaderboard",
+  "description": "Measures high adaptability and efficiency of AI systems on ARC‑AGI‑2 tasks, plotting performance score versus compute cost per task.",
+  "methodology": "Evaluates systems under a $10k compute budget across 120 tasks, combining task accuracy with compute‑efficiency analysis; includes human baselines and reasoning‑time trend lines.",
+  "source_url": "https://arcprize.org/leaderboard",
+  "type": "reasoning",
+  "metrics": [
+    {
+      "id": "performance_score",
+      "name": "ARC‑AGI 2 Score",
+      "description": "Relative performance on ARC‑AGI 2 tasks",
+      "min": 0,
+      "max": 100,
+      "better": "higher"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Accuracy on ARC‑AGI 2 tasks"
+    }
+  ],
+  "display": {
+    "primary_metric": "performance_score",
+    "primary_dimension": "performance"
+  }
+}

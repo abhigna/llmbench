@@ -2,8 +2,22 @@
 [ ] Update models_classify.py logic from providing a gigantic list of known model_ids and dumping the second unknown list to classifiy to something a bit bitter.
     What we can do instead is give each model id to be classified (unknown id) a list of most likley matches (just use some prefix match to get 10 most similar) and 
     then ask to classify. To verify, just run cmd `python -m llmbench.benchmark_updater_agent --root-dir `pwd` -b lmsys` and if it fails without error then its fine.
+[ ] How do you do eval? I'm not sure about the value of 1 without eval
+[ ] Store any learnings from model classification - like mismatches etc.. and use a more powerful model at end of week to tune those rules/prompts
+[ ] Exclude combo models 
+{
+    "model_id": "o3-high-gpt-4-1",
+    "dimensions": {
+      "overall": {
+        "percent_correct": 82.7
+      }
+    }
+  },
 
 # Benchmarks
+[x] https://arcprize.org/leaderboard
+[x] https://scale.com/leaderboard#frontier
+[x] https://artificialanalysis.ai/leaderboards/models
 [x] https://livebench.ai/#/
 [x] https://simple-bench.com/
 [x] https://aider.chat/docs/leaderboards

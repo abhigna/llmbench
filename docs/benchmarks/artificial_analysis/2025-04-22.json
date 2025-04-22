@@ -1,0 +1,966 @@
+{
+  "date": "2025-04-22",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "scores": [
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 70
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro-preview",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 68
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-mini-reasoning-high",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 67
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 66
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 63
+        }
+      }
+    },
+    {
+      "model_id": "o1",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 62
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 60
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 58
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-thinking",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 57
+        }
+      }
+    },
+    {
+      "model_id": "o1-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 54
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 53
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 53
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 53
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking-exp",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 52
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-qwen-32b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 52
+        }
+      }
+    },
+    {
+      "model_id": "grok-3",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 51
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 51
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 50
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-pro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 49
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-qwen-14b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 49
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-llama-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 48
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 48
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 48
+        }
+      }
+    },
+    {
+      "model_id": "reka-flash-3",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 47
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-exp",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 46
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 46
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-max",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 45
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 45
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 44
+        }
+      }
+    },
+    {
+      "model_id": "sonar",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 43
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-scout",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 43
+        }
+      }
+    },
+    {
+      "model_id": "sonar-pro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 43
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b-preview",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 43
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 41
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-lite",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 41
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 41
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-nano",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 41
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 41
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-72b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "minimax-text-01",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "phi-4",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "command-a",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "tulu3-405b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 40
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-nemotron-super-49b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 39
+        }
+      }
+    },
+    {
+      "model_id": "grok-2",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 39
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-flash",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 39
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-2",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 38
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-27b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 38
+        }
+      }
+    },
+    {
+      "model_id": "grok-beta",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 38
+        }
+      }
+    },
+    {
+      "model_id": "pixtral-large",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 37
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-instruct-32b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 37
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-nemotron-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 37
+        }
+      }
+    },
+    {
+      "model_id": "nova-pro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 37
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-2",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 37
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-coder-32b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 36
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 36
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 35
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small-3-1",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 35
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small-3",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 35
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-opus",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 35
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-haiku",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 35
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-llama-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 34
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-12b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 34
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro-may",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 34
+        }
+      }
+    },
+    {
+      "model_id": "qwen-turbo",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 34
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-2-90b-vision",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 33
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-72b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 33
+        }
+      }
+    },
+    {
+      "model_id": "nova-lite",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 33
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-flash-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 31
+        }
+      }
+    },
+    {
+      "model_id": "deephermes-3-mistral-24b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 30
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1-5-large",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 29
+        }
+      }
+    },
+    {
+      "model_id": "hermes-3-llama-3-1-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 29
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1-6-large",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 29
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-flash-may",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 28
+        }
+      }
+    },
+    {
+      "model_id": "nova-micro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 28
+        }
+      }
+    },
+    {
+      "model_id": "yi-large",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 28
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-sonnet",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 28
+        }
+      }
+    },
+    {
+      "model_id": "codestral",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 28
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-70b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 27
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 27
+        }
+      }
+    },
+    {
+      "model_id": "phi-4-multimodal",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 27
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-coder-7b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 27
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 26
+        }
+      }
+    },
+    {
+      "model_id": "mixtral-8x22b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 26
+        }
+      }
+    },
+    {
+      "model_id": "phi-4-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 26
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-medium-14b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 25
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-4b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 24
+        }
+      }
+    },
+    {
+      "model_id": "claude-2-1",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 24
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 24
+        }
+      }
+    },
+    {
+      "model_id": "pixtral",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 23
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small-2402",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 23
+        }
+      }
+    },
+    {
+      "model_id": "mistral-medium",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 23
+        }
+      }
+    },
+    {
+      "model_id": "ministral-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 22
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2-9b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 22
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 22
+        }
+      }
+    },
+    {
+      "model_id": "lfm-40b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 22
+        }
+      }
+    },
+    {
+      "model_id": "command-r-plus",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 21
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 21
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-0-pro",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 21
+        }
+      }
+    },
+    {
+      "model_id": "codestral-2405",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "aya-expanse-32b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-chat-13b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "command-r-plus",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "dbrx",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "ministral-3b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "mistral-nemo",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-2-3b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 20
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-qwen-1-5b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 19
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1-5-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 18
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1-6-mini",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 18
+        }
+      }
+    },
+    {
+      "model_id": "mixtral-8x7b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 17
+        }
+      }
+    },
+    {
+      "model_id": "deephermes-3-llama-3-1-8b-preview",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 16
+        }
+      }
+    },
+    {
+      "model_id": "aya-expanse-8b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 16
+        }
+      }
+    },
+    {
+      "model_id": "command-r",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 15
+        }
+      }
+    },
+    {
+      "model_id": "command-r-03-2024",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 15
+        }
+      }
+    },
+    {
+      "model_id": "codestral-mamba",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 14
+        }
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 10
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-2-1b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 10
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-chat-7b",
+      "dimensions": {
+        "overall": {
+          "intelligence_index": 8
+        }
+      }
+    }
+  ]
+}

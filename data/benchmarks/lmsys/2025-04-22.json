@@ -1,9 +1,9 @@
 {
-  "date": "2025-04-20",
+  "date": "2025-04-22",
   "source_url": "https://beta.lmarena.ai/leaderboard/text",
   "scores": [
     {
-      "model_id": "gemini-2-5-pro",
+      "model_id": "gemini-2-5-pro-exp",
       "dimensions": {
         "overall": {
           "arena_score": 1439
@@ -44,6 +44,14 @@
     },
     {
       "model_id": "gemini-2-0-pro",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1380
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking",
       "dimensions": {
         "overall": {
           "arena_score": 1380
@@ -99,7 +107,7 @@
       }
     },
     {
-      "model_id": "o1-preview",
+      "model_id": "o1",
       "dimensions": {
         "overall": {
           "arena_score": 1335
@@ -139,7 +147,7 @@
       }
     },
     {
-      "model_id": "glm-4-plus",
+      "model_id": "qwen-plus-0125",
       "dimensions": {
         "overall": {
           "arena_score": 1310
@@ -147,7 +155,7 @@
       }
     },
     {
-      "model_id": "qwen-plus-0125",
+      "model_id": "glm-4-plus",
       "dimensions": {
         "overall": {
           "arena_score": 1310
@@ -283,7 +291,7 @@
       }
     },
     {
-      "model_id": "qwen2.5-72b-instruct",
+      "model_id": "llama-3-3-70b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1257
@@ -291,7 +299,7 @@
       }
     },
     {
-      "model_id": "llama-3-3-70b-instruct",
+      "model_id": "qwen2-5-72b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1257
@@ -315,7 +323,7 @@
       }
     },
     {
-      "model_id": "athene-70b-0725",
+      "model_id": "athene-large-0725",
       "dimensions": {
         "overall": {
           "arena_score": 1250
@@ -427,7 +435,7 @@
       }
     },
     {
-      "model_id": "mistral-small-24b-instruct",
+      "model_id": "amazon-nova-lite",
       "dimensions": {
         "overall": {
           "arena_score": 1217
@@ -435,7 +443,7 @@
       }
     },
     {
-      "model_id": "amazon-nova-lite",
+      "model_id": "mistral-small-24b-instruct",
       "dimensions": {
         "overall": {
           "arena_score": 1217
@@ -451,7 +459,7 @@
       }
     },
     {
-      "model_id": "command-r-plus",
+      "model_id": "command-r-plus-08-2024",
       "dimensions": {
         "overall": {
           "arena_score": 1215
@@ -475,7 +483,7 @@
       }
     },
     {
-      "model_id": "c4ai-aya-expanse-32b",
+      "model_id": "aya-expanse-32b",
       "dimensions": {
         "overall": {
           "arena_score": 1209
@@ -491,7 +499,7 @@
       }
     },
     {
-      "model_id": "glm-4-0520",
+      "model_id": "glm-4",
       "dimensions": {
         "overall": {
           "arena_score": 1207
@@ -507,14 +515,6 @@
       }
     },
     {
-      "model_id": "phi-4",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1205
-        }
-      }
-    },
-    {
       "model_id": "llama-3-70b-instruct",
       "dimensions": {
         "overall": {
@@ -523,7 +523,7 @@
       }
     },
     {
-      "model_id": "claude-3-5-sonnet",
+      "model_id": "claude-3-7-sonnet",
       "dimensions": {
         "overall": {
           "arena_score": 1201
@@ -555,42 +555,10 @@
       }
     },
     {
-      "model_id": "llama-3-1-tulu-3-8b",
+      "model_id": "c4ai-aya-expanse-8b",
       "dimensions": {
         "overall": {
-          "arena_score": 1185
-        }
-      }
-    },
-    {
-      "model_id": "command-r-plus",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1190
-        }
-      }
-    },
-    {
-      "model_id": "qwen2-72b-instruct",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1187
-        }
-      }
-    },
-    {
-      "model_id": "gpt-4-0314",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1186
-        }
-      }
-    },
-    {
-      "model_id": "ministral-8b-2410",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1182
+          "arena_score": 1180
         }
       }
     },
@@ -603,15 +571,7 @@
       }
     },
     {
-      "model_id": "c4ai-aya-expanse-8b",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1180
-        }
-      }
-    },
-    {
-      "model_id": "claude-3-haiku",
+      "model_id": "claude-3-5-haiku",
       "dimensions": {
         "overall": {
           "arena_score": 1179
@@ -651,7 +611,7 @@
       }
     },
     {
-      "model_id": "qwen1.5-110b-chat",
+      "model_id": "qwen1-5-110b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1161
@@ -659,7 +619,7 @@
       }
     },
     {
-      "model_id": "qwq-32b-preview",
+      "model_id": "qwq-32b",
       "dimensions": {
         "overall": {
           "arena_score": 1153
@@ -667,7 +627,7 @@
       }
     },
     {
-      "model_id": "yi-1-5-34b-chat",
+      "model_id": "mistral-large-2402",
       "dimensions": {
         "overall": {
           "arena_score": 1157
@@ -675,7 +635,7 @@
       }
     },
     {
-      "model_id": "mistral-large-2402",
+      "model_id": "yi-1-5-34b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1157
@@ -699,7 +659,7 @@
       }
     },
     {
-      "model_id": "internlm2_5-20b-chat",
+      "model_id": "internlm2-5-20b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1149
@@ -747,7 +707,7 @@
       }
     },
     {
-      "model_id": "qwen1.5-72b-chat",
+      "model_id": "qwen1-5-72b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1147
@@ -779,7 +739,7 @@
       }
     },
     {
-      "model_id": "qwen1.5-32b-chat",
+      "model_id": "qwen1-5-32b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1125
@@ -819,14 +779,6 @@
       }
     },
     {
-      "model_id": "yi-34b-chat",
-      "dimensions": {
-        "overall": {
-          "arena_score": 1111
-        }
-      }
-    },
-    {
       "model_id": "gemini-pro",
       "dimensions": {
         "overall": {
@@ -835,7 +787,15 @@
       }
     },
     {
-      "model_id": "qwen1.5-14b-chat",
+      "model_id": "yi-34b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1111
+        }
+      }
+    },
+    {
+      "model_id": "qwen1-5-14b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1109
@@ -859,7 +819,7 @@
       }
     },
     {
-      "model_id": "gpt-3-5-turbo-0125",
+      "model_id": "gpt-3-5-turbo-1106",
       "dimensions": {
         "overall": {
           "arena_score": 1106
@@ -995,7 +955,7 @@
       }
     },
     {
-      "model_id": "mistral-7b-instruct",
+      "model_id": "mistral-7b-instruct-v0-2",
       "dimensions": {
         "overall": {
           "arena_score": 1072
@@ -1003,7 +963,7 @@
       }
     },
     {
-      "model_id": "qwen1.5-7b-chat",
+      "model_id": "qwen1-5-7b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 1070
@@ -1011,7 +971,7 @@
       }
     },
     {
-      "model_id": "phi-3-mini-4k-instruct",
+      "model_id": "phi-3-mini-4k-instruct-june-2024",
       "dimensions": {
         "overall": {
           "arena_score": 1070
@@ -1211,7 +1171,7 @@
       }
     },
     {
-      "model_id": "qwen1.5-4b-chat",
+      "model_id": "qwen1-5-4b-chat",
       "dimensions": {
         "overall": {
           "arena_score": 988

@@ -1,7 +1,15 @@
 {
-  "date": "2025-04-20",
+  "date": "2025-04-22",
   "source_url": "https://aider.chat/docs/leaderboards/",
   "scores": [
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 82.7
+        }
+      }
+    },
     {
       "model_id": "o3-high",
       "dimensions": {
@@ -43,7 +51,7 @@
       }
     },
     {
-      "model_id": "o1-2024-12-17-high",
+      "model_id": "o1-high",
       "dimensions": {
         "overall": {
           "percent_correct": 61.7
@@ -75,7 +83,7 @@
       }
     },
     {
-      "model_id": "deepseek-v3",
+      "model_id": "deepseek-v3-0324",
       "dimensions": {
         "overall": {
           "percent_correct": 55.1
@@ -131,30 +139,6 @@
       }
     },
     {
-      "model_id": "grok-3-mini-beta-high",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 49.3
-        }
-      }
-    },
-    {
-      "model_id": "deepseek-chat-v3-prev",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 48.4
-        }
-      }
-    },
-    {
-      "model_id": "chatgpt-4o",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 45.3
-        }
-      }
-    },
-    {
       "model_id": "gpt-4-5",
       "dimensions": {
         "overall": {
@@ -163,15 +147,7 @@
       }
     },
     {
-      "model_id": "gemini-exp-1206",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 38.2
-        }
-      }
-    },
-    {
-      "model_id": "gemini-2-0-pro-exp",
+      "model_id": "gemini-2-0-pro",
       "dimensions": {
         "overall": {
           "percent_correct": 35.6
@@ -187,47 +163,7 @@
       }
     },
     {
-      "model_id": "o1-mini-2024-09-12",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 32.9
-        }
-      }
-    },
-    {
-      "model_id": "gpt-4-1-mini",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 32.4
-        }
-      }
-    },
-    {
-      "model_id": "claude-3-5-haiku",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 28.0
-        }
-      }
-    },
-    {
-      "model_id": "chatgpt-4o-latest",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 27.1
-        }
-      }
-    },
-    {
-      "model_id": "qwq-32b-qwen-2-5-coder-instruct",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 26.2
-        }
-      }
-    },
-    {
-      "model_id": "gpt-4o-2024-08-06",
+      "model_id": "gpt-4o",
       "dimensions": {
         "overall": {
           "percent_correct": 23.1
@@ -235,7 +171,7 @@
       }
     },
     {
-      "model_id": "gemini-2-0-flash-exp",
+      "model_id": "gemini-2-0-flash",
       "dimensions": {
         "overall": {
           "percent_correct": 22.2
@@ -251,50 +187,10 @@
       }
     },
     {
-      "model_id": "qwq-32b",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 20.9
-        }
-      }
-    },
-    {
-      "model_id": "gemini-2-0-flash-thinking-exp",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 18.2
-        }
-      }
-    },
-    {
-      "model_id": "gpt-4o-2024-11-20",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 18.2
-        }
-      }
-    },
-    {
-      "model_id": "deepseek-chat-v2-5",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 17.8
-        }
-      }
-    },
-    {
       "model_id": "qwen2-5-coder-32b-instruct",
       "dimensions": {
         "overall": {
           "percent_correct": 16.4
-        }
-      }
-    },
-    {
-      "model_id": "llama-4-maverick",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 15.6
         }
       }
     },
@@ -339,14 +235,6 @@
       }
     },
     {
-      "model_id": "qwen2-5-coder-32b-instruct",
-      "dimensions": {
-        "overall": {
-          "percent_correct": 8.0
-        }
-      }
-    },
-    {
       "model_id": "gemma-3-27b-it",
       "dimensions": {
         "overall": {
@@ -355,7 +243,7 @@
       }
     },
     {
-      "model_id": "gpt-4o-mini-2024-07-18",
+      "model_id": "gpt-4o-mini",
       "dimensions": {
         "overall": {
           "percent_correct": 3.6
