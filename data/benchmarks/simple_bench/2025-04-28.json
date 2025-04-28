@@ -1,0 +1,262 @@
+{
+  "date": "2025-04-28",
+  "source_url": "https://simple-bench.com/",
+  "scores": [
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 53.1
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 51.6
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-thinking",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 46.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 44.9
+        }
+      }
+    },
+    {
+      "model_id": "o1-preview",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 41.7
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 41.4
+        }
+      }
+    },
+    {
+      "model_id": "o1-high",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 40.1
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 38.7
+        }
+      }
+    },
+    {
+      "model_id": "o1-med",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 36.7
+        }
+      }
+    },
+    {
+      "model_id": "grok-3",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 36.1
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 34.5
+        }
+      }
+    },
+    {
+      "model_id": "gemini-exp-1206",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 31.1
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 30.9
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 30.7
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 27.7
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 27.5
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 27.2
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 27.1
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 27.0
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-turbo",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 25.1
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-opus",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 23.5
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-405b-instruct",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 23.0
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 22.8
+        }
+      }
+    },
+    {
+      "model_id": "grok-2",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 22.7
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-v2",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 22.5
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 19.9
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 18.9
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 18.9
+        }
+      }
+    },
+    {
+      "model_id": "o1-mini",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 18.1
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 17.8
+        }
+      }
+    },
+    {
+      "model_id": "command-r+",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 17.4
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "overall": {
+          "score_avg5": 10.7
+        }
+      }
+    }
+  ]
+}

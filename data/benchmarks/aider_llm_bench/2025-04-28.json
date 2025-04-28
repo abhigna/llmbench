@@ -1,0 +1,174 @@
+{
+  "date": "2025-04-28",
+  "source_url": "https://aider.chat/docs/leaderboards/",
+  "scores": [
+    {
+      "model_id": "o3-high-gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 82.7
+        }
+      }
+    },
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 79.6
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 72.9
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 72.0
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 64.9
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 64.0
+        }
+      }
+    },
+    {
+      "model_id": "o1-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 61.7
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-no-thinking",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 60.4
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 60.4
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 56.9
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 55.1
+        }
+      }
+    },
+    {
+      "model_id": "quasar-alpha",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 54.7
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-medium",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 53.8
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-beta",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 53.3
+        }
+      }
+    },
+    {
+      "model_id": "optimus-alpha",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 52.9
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 52.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 51.6
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 44.9
+        }
+      }
+    },
+    {
+      "model_id": "chatgpt-4o",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 45.3
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-flash",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 47.1
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "overall": {
+          "percent_correct": 3.6
+        }
+      }
+    }
+  ]
+}
