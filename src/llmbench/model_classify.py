@@ -149,6 +149,7 @@ class ModelClassifier:
              - 'gpt-4.5-preview-2025-01-15' suggests 'gpt-4-5' if known.
              - 'Claude 3 Opus' suggests 'claude-3-opus'.
              - 'gemini-2-5-pro-exp' suggests 'gemini-2-5-pro'.
+             - 'gemini-2-5-pro-preview' suggests 'gemini-2-5-pro'.
              - 'gemini-2-0-pro-experimental' suggests 'gemini-2-0-pro'.
         3. **Matching Decision:**
            - If the normalized ID matches a KNOWN model: 'status' = '{ClassificationStatus.EXISTING.value}', 'matched_id' = the EXACT canonical ID from the KNOWN list. Provide brief 'explanation'.
