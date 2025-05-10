@@ -1,0 +1,1422 @@
+{
+  "date": "2025-05-10",
+  "source_url": "https://beta.lmarena.ai/leaderboard/text",
+  "scores": [
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1448
+        }
+      }
+    },
+    {
+      "model_id": "o3",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1411
+        }
+      }
+    },
+    {
+      "model_id": "chatgpt-4o",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1408
+        }
+      }
+    },
+    {
+      "model_id": "grok-3",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1402
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-flash",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1394
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1398
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-thinking",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1380
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1372
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1367
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1359
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1351
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1355
+        }
+      }
+    },
+    {
+      "model_id": "o1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1350
+        }
+      }
+    },
+    {
+      "model_id": "qwen3-235b-a22b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1342
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-27b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1342
+        }
+      }
+    },
+    {
+      "model_id": "qwen3-235b-a22b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1342
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-max",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1341
+        }
+      }
+    },
+    {
+      "model_id": "o1-preview",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1335
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1324
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1325
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-12b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1322
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1318
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1313
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-lite",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1312
+        }
+      }
+    },
+    {
+      "model_id": "glm-4-plus-0111",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1311
+        }
+      }
+    },
+    {
+      "model_id": "qwen-plus-0125",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1310
+        }
+      }
+    },
+    {
+      "model_id": "command-a-03",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1305
+        }
+      }
+    },
+    {
+      "model_id": "step-2-16k-exp",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1305
+        }
+      }
+    },
+    {
+      "model_id": "hunyuan-turbos",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1303
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1305
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-nemotron-49b-super",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1297
+        }
+      }
+    },
+    {
+      "model_id": "o1-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1304
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1302
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1301
+        }
+      }
+    },
+    {
+      "model_id": "hunyuan-turbo",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1296
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1291
+        }
+      }
+    },
+    {
+      "model_id": "grok-2",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1288
+        }
+      }
+    },
+    {
+      "model_id": "yi-lightning",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1287
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-plus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1282
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-4b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1274
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1285
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1283
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v2.5-1210",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1279
+        }
+      }
+    },
+    {
+      "model_id": "hunyuan-large",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1272
+        }
+      }
+    },
+    {
+      "model_id": "athene-v2-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1275
+        }
+      }
+    },
+    {
+      "model_id": "glm-4-plus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1274
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1272
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-flash",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1271
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-nano",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1270
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick-17b-128e-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1269
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-nemotron-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1269
+        }
+      }
+    },
+    {
+      "model_id": "llama-3.1-405b-instruct-bf16",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1269
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-opus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1247
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-0125",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1245
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-haiku",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1237
+        }
+      }
+    },
+    {
+      "model_id": "reka-core",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1235
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1.5-flash",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1227
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1.5-large",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1222
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-coder-32b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1217
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2-27b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1220
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small-24b-instruct-2501",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1217
+        }
+      }
+    },
+    {
+      "model_id": "amazon-nova-lite",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1217
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2-9b-it-simpo",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1216
+        }
+      }
+    },
+    {
+      "model_id": "command-r-plus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1215
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v2.5",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1258
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1257
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-72b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1257
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-turbo",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1256
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-2407",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1251
+        }
+      }
+    },
+    {
+      "model_id": "athene-70b-0725",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1250
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1106",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1250
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-2411",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1249
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1248
+        }
+      }
+    },
+    {
+      "model_id": "amazon-nova-pro",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1245
+        }
+      }
+    },
+    {
+      "model_id": "llama-3.1-tulu-3-70b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1244
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-opus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1247
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-0125",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1245
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-haiku",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1237
+        }
+      }
+    },
+    {
+      "model_id": "reka-core",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1235
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2-9b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1192
+        }
+      }
+    },
+    {
+      "model_id": "command-r-plus",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1190
+        }
+      }
+    },
+    {
+      "model_id": "ministral-8b-2410",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1182
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-72b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1187
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-0314",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1186
+        }
+      }
+    },
+    {
+      "model_id": "c4ai-aya-expanse-8b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1180
+        }
+      }
+    },
+    {
+      "model_id": "command-r-08",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1180
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-coder-v2",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1178
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-haiku",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1179
+        }
+      }
+    },
+    {
+      "model_id": "jamba-1.5-mini",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1176
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-1-8b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1176
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-0613",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1163
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-110b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1161
+        }
+      }
+    },
+    {
+      "model_id": "yi-1.5-34b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1157
+        }
+      }
+    },
+    {
+      "model_id": "reka-flash-21b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1156
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b-preview",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1153
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large-2402",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1157
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-8b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1152
+        }
+      }
+    },
+    {
+      "model_id": "internlm2_5-20b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1149
+        }
+      }
+    },
+    {
+      "model_id": "granite-3.1-8b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1143
+        }
+      }
+    },
+    {
+      "model_id": "command-r",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1149
+        }
+      }
+    },
+    {
+      "model_id": "mixtral-8x22b-instruct-v0.1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1148
+        }
+      }
+    },
+    {
+      "model_id": "mistral-medium",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1148
+        }
+      }
+    },
+    {
+      "model_id": "reka-flash-21b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1147
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-72b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1147
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2-2b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1144
+        }
+      }
+    },
+    {
+      "model_id": "gemini-pro-dev-api",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1131
+        }
+      }
+    },
+    {
+      "model_id": "zephyr-orpo-141b-a35b-v0.1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1127
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-32b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1125
+        }
+      }
+    },
+    {
+      "model_id": "granite-3.1-2b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1119
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-medium-4k-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1123
+        }
+      }
+    },
+    {
+      "model_id": "starling-lm-7b-beta",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1119
+        }
+      }
+    },
+    {
+      "model_id": "gemini-pro",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1111
+        }
+      }
+    },
+    {
+      "model_id": "mixtral-8x7b-instruct-v0.1",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1114
+        }
+      }
+    },
+    {
+      "model_id": "yi-34b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1111
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-14b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1109
+        }
+      }
+    },
+    {
+      "model_id": "wizardlm-70b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1106
+        }
+      }
+    },
+    {
+      "model_id": "gpt-3-5-turbo",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1106
+        }
+      }
+    },
+    {
+      "model_id": "llama-3.2-3b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1103
+        }
+      }
+    },
+    {
+      "model_id": "dbrx-instruct-preview",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1103
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-small-8k-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1102
+        }
+      }
+    },
+    {
+      "model_id": "tulu-2-dpo-70b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1099
+        }
+      }
+    },
+    {
+      "model_id": "granite-3.0-8b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1093
+        }
+      }
+    },
+    {
+      "model_id": "openchat-3-5-0106",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1092
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-70b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1093
+        }
+      }
+    },
+    {
+      "model_id": "vicuna-33b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1091
+        }
+      }
+    },
+    {
+      "model_id": "snowflake-arctic-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1090
+        }
+      }
+    },
+    {
+      "model_id": "starling-lm-7b-alpha",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1088
+        }
+      }
+    },
+    {
+      "model_id": "nous-hermes-2-mixtral-8x7b-dpo",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1084
+        }
+      }
+    },
+    {
+      "model_id": "gemma-1.1-7b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1084
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-70b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1080
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-llm-67b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1077
+        }
+      }
+    },
+    {
+      "model_id": "openhermes-2.5-mistral-7b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1074
+        }
+      }
+    },
+    {
+      "model_id": "openchat-3-5",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1076
+        }
+      }
+    },
+    {
+      "model_id": "granite-3.0-2b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1074
+        }
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1072
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-7b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1070
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-mini-4k-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1070
+        }
+      }
+    },
+    {
+      "model_id": "dolphin-2.2.1-mistral-7b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1063
+        }
+      }
+    },
+    {
+      "model_id": "gpt-3-5-turbo-1106",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1068
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-mini-4k-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1066
+        }
+      }
+    },
+    {
+      "model_id": "solar-10.7b-instruct-v1.0",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1062
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-13b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1063
+        }
+      }
+    },
+    {
+      "model_id": "wizardlm-13b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1059
+        }
+      }
+    },
+    {
+      "model_id": "llama-3.2-1b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1054
+        }
+      }
+    },
+    {
+      "model_id": "zephyr-7b-beta",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1053
+        }
+      }
+    },
+    {
+      "model_id": "smollm2-1.7b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1047
+        }
+      }
+    },
+    {
+      "model_id": "mpt-30b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1046
+        }
+      }
+    },
+    {
+      "model_id": "codellama-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1041
+        }
+      }
+    },
+    {
+      "model_id": "zephyr-7b-alpha",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1040
+        }
+      }
+    },
+    {
+      "model_id": "codellama-34b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1043
+        }
+      }
+    },
+    {
+      "model_id": "falcon-180b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1034
+        }
+      }
+    },
+    {
+      "model_id": "vicuna-13b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1042
+        }
+      }
+    },
+    {
+      "model_id": "phi-3-mini-128k-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1037
+        }
+      }
+    },
+    {
+      "model_id": "llama-2-7b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1037
+        }
+      }
+    },
+    {
+      "model_id": "gemma-7b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1037
+        }
+      }
+    },
+    {
+      "model_id": "qwen-14b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1035
+        }
+      }
+    },
+    {
+      "model_id": "guanaco-33b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1033
+        }
+      }
+    },
+    {
+      "model_id": "gemma-1.1-2b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1021
+        }
+      }
+    },
+    {
+      "model_id": "stripedhyena-nous-7b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1017
+        }
+      }
+    },
+    {
+      "model_id": "olmo-7b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1015
+        }
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1008
+        }
+      }
+    },
+    {
+      "model_id": "vicuna-7b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1005
+        }
+      }
+    },
+    {
+      "model_id": "palm-2",
+      "dimensions": {
+        "overall": {
+          "arena_score": 1003
+        }
+      }
+    },
+    {
+      "model_id": "gemma-2b-it",
+      "dimensions": {
+        "overall": {
+          "arena_score": 989
+        }
+      }
+    },
+    {
+      "model_id": "qwen1.5-4b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 989
+        }
+      }
+    },
+    {
+      "model_id": "koala-13b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 965
+        }
+      }
+    },
+    {
+      "model_id": "chatglm3-6b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 955
+        }
+      }
+    },
+    {
+      "model_id": "gpt4all-13b-snoozy",
+      "dimensions": {
+        "overall": {
+          "arena_score": 932
+        }
+      }
+    },
+    {
+      "model_id": "mpt-7b-chat",
+      "dimensions": {
+        "overall": {
+          "arena_score": 928
+        }
+      }
+    },
+    {
+      "model_id": "chatglm2-6b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 924
+        }
+      }
+    },
+    {
+      "model_id": "rwkv-4-raven-14b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 922
+        }
+      }
+    },
+    {
+      "model_id": "alpaca-13b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 901
+        }
+      }
+    },
+    {
+      "model_id": "oasst-pythia-12b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 893
+        }
+      }
+    },
+    {
+      "model_id": "chatglm-6b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 879
+        }
+      }
+    },
+    {
+      "model_id": "fastchat-t5-3b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 868
+        }
+      }
+    },
+    {
+      "model_id": "stablelm-tuned-alpha-7b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 840
+        }
+      }
+    },
+    {
+      "model_id": "dolly-v2-12b",
+      "dimensions": {
+        "overall": {
+          "arena_score": 822
+        }
+      }
+    }
+  ]
+}

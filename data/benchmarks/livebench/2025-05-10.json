@@ -1,0 +1,414 @@
+{
+  "date": "2025-05-10",
+  "source_url": "https://livebench.ai/#/",
+  "scores": [
+    {
+      "model_id": "o3-high",
+      "dimensions": {
+        "overall": {
+          "global_average": 80.71
+        }
+      }
+    },
+    {
+      "model_id": "o3-medium",
+      "dimensions": {
+        "overall": {
+          "global_average": 79.25
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "global_average": 78.99
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-high",
+      "dimensions": {
+        "overall": {
+          "global_average": 78.72
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-pro",
+      "dimensions": {
+        "overall": {
+          "global_average": 76.69
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet-thinking",
+      "dimensions": {
+        "overall": {
+          "global_average": 74.5
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-medium",
+      "dimensions": {
+        "overall": {
+          "global_average": 74.4
+        }
+      }
+    },
+    {
+      "model_id": "qwen-3-235b-a22b",
+      "dimensions": {
+        "overall": {
+          "global_average": 73.23
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "overall": {
+          "global_average": 72.49
+        }
+      }
+    },
+    {
+      "model_id": "qwen-3-32b",
+      "dimensions": {
+        "overall": {
+          "global_average": 71.03
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-mini-beta-high",
+      "dimensions": {
+        "overall": {
+          "global_average": 70.25
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-5-flash",
+      "dimensions": {
+        "overall": {
+          "global_average": 69.93
+        }
+      }
+    },
+    {
+      "model_id": "qwq-32b",
+      "dimensions": {
+        "overall": {
+          "global_average": 69.5
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "overall": {
+          "global_average": 65.93
+        }
+      }
+    },
+    {
+      "model_id": "qwen-3-30b-a3b",
+      "dimensions": {
+        "overall": {
+          "global_average": 65.32
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-sonnet",
+      "dimensions": {
+        "overall": {
+          "global_average": 64.62
+        }
+      }
+    },
+    {
+      "model_id": "grok-3-beta",
+      "dimensions": {
+        "overall": {
+          "global_average": 63.17
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "overall": {
+          "global_average": 62.99
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-v3-1",
+      "dimensions": {
+        "overall": {
+          "global_average": 62.82
+        }
+      }
+    },
+    {
+      "model_id": "chatgpt-4o",
+      "dimensions": {
+        "overall": {
+          "global_average": 61.65
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash",
+      "dimensions": {
+        "overall": {
+          "global_average": 60.05
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-max",
+      "dimensions": {
+        "overall": {
+          "global_average": 60.03
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-mini",
+      "dimensions": {
+        "overall": {
+          "global_average": 59.05
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-sonnet",
+      "dimensions": {
+        "overall": {
+          "global_average": 57.94
+        }
+      }
+    },
+    {
+      "model_id": "learnlm-2-0-flash-experimental",
+      "dimensions": {
+        "overall": {
+          "global_average": 57.27
+        }
+      }
+    },
+    {
+      "model_id": "phi-4-reasoning-plus",
+      "dimensions": {
+        "overall": {
+          "global_average": 56.64
+        }
+      }
+    },
+    {
+      "model_id": "mistral-medium-3",
+      "dimensions": {
+        "overall": {
+          "global_average": 56.59
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-llama-70b",
+      "dimensions": {
+        "overall": {
+          "global_average": 55.51
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick-17b-128e-instruct",
+      "dimensions": {
+        "overall": {
+          "global_average": 55.19
+        }
+      }
+    },
+    {
+      "model_id": "step-2-16k",
+      "dimensions": {
+        "overall": {
+          "global_average": 54.05
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "overall": {
+          "global_average": 53.95
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash-lite",
+      "dimensions": {
+        "overall": {
+          "global_average": 53.75
+        }
+      }
+    },
+    {
+      "model_id": "hunyuan-turbos",
+      "dimensions": {
+        "overall": {
+          "global_average": 50.77
+        }
+      }
+    },
+    {
+      "model_id": "mistral-large",
+      "dimensions": {
+        "overall": {
+          "global_average": 50.25
+        }
+      }
+    },
+    {
+      "model_id": "learnlm-1-5-pro-experimental",
+      "dimensions": {
+        "overall": {
+          "global_average": 49.3
+        }
+      }
+    },
+    {
+      "model_id": "dracarys2-72b-instruct",
+      "dimensions": {
+        "overall": {
+          "global_average": 49.2
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-72b-instruct-turbo",
+      "dimensions": {
+        "overall": {
+          "global_average": 49.04
+        }
+      }
+    },
+    {
+      "model_id": "llama-3-3-70b-instruct-turbo",
+      "dimensions": {
+        "overall": {
+          "global_average": 48.86
+        }
+      }
+    },
+    {
+      "model_id": "gemma-3-27b",
+      "dimensions": {
+        "overall": {
+          "global_average": 48.44
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1-distill-qwen-32b",
+      "dimensions": {
+        "overall": {
+          "global_average": 47.4
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-nano",
+      "dimensions": {
+        "overall": {
+          "global_average": 46.58
+        }
+      }
+    },
+    {
+      "model_id": "dracarys2-llama-3-1-70b-instruct",
+      "dimensions": {
+        "overall": {
+          "global_average": 46.47
+        }
+      }
+    },
+    {
+      "model_id": "mistral-small",
+      "dimensions": {
+        "overall": {
+          "global_average": 45.92
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-5-haiku",
+      "dimensions": {
+        "overall": {
+          "global_average": 44.98
+        }
+      }
+    },
+    {
+      "model_id": "nova-pro",
+      "dimensions": {
+        "overall": {
+          "global_average": 44.33
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "overall": {
+          "global_average": 43.41
+        }
+      }
+    },
+    {
+      "model_id": "nova-lite",
+      "dimensions": {
+        "overall": {
+          "global_average": 39.11
+        }
+      }
+    },
+    {
+      "model_id": "command-r-plus",
+      "dimensions": {
+        "overall": {
+          "global_average": 34.88
+        }
+      }
+    },
+    {
+      "model_id": "qwen2-5-7b-instruct-turbo",
+      "dimensions": {
+        "overall": {
+          "global_average": 34.37
+        }
+      }
+    },
+    {
+      "model_id": "nova-micro",
+      "dimensions": {
+        "overall": {
+          "global_average": 33.67
+        }
+      }
+    },
+    {
+      "model_id": "command-r",
+      "dimensions": {
+        "overall": {
+          "global_average": 31.39
+        }
+      }
+    }
+  ]
+}

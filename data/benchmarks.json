@@ -2,7 +2,7 @@
   {
     "description": "Community-driven evaluation based on human preference",
     "id": "lmsys",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "lmsys Chatbot Arena",
     "source_url": "https://beta.lmarena.ai/leaderboard/text",
     "type": "human_pref"
@@ -10,7 +10,7 @@
   {
     "description": "Polyglot benchmark testing LLMs on 225 Exercism coding exercises across C++, Go, Java, JavaScript, Python, and Rust",
     "id": "aider_llm_bench",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "Aider LLM Benchmark",
     "source_url": "https://aider.chat/docs/leaderboards/",
     "type": "code_edit"
@@ -18,7 +18,7 @@
   {
     "description": "Multiple-choice benchmark where individuals with high school knowledge outperform SOTA models",
     "id": "simple_bench",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "SimpleBench",
     "source_url": "https://simple-bench.com/",
     "type": "reasoning"
@@ -26,7 +26,7 @@
   {
     "description": "A benchmark for LLMs designed with test set contamination and objective evaluation in mind",
     "id": "livebench",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "LiveBench",
     "source_url": "https://livebench.ai/#/",
     "type": "reasoning"
@@ -34,7 +34,7 @@
   {
     "description": "Evaluates fluid intelligence and generalization in AI systems through novel, human-easy yet AI-hard tasks. Focuses on efficiency and adaptability.",
     "id": "arc_agi",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "ARC-AGI 2 Benchmark",
     "source_url": "https://arcprize.org/leaderboard",
     "type": "reasoning"
@@ -42,7 +42,7 @@
   {
     "description": "A rigorous benchmark evaluating LLMs on expert-level questions across diverse academic disciplines, highlighting the gap between current AI capabilities and human expertise.",
     "id": "humanitys_last_exam",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "Humanity's Last Exam",
     "source_url": "https://scale.com/leaderboard/humanitys_last_exam",
     "type": "reasoning"
@@ -50,7 +50,7 @@
   {
     "description": "Comprehensive evaluation of large language models across key metrics including intelligence, price, speed, and context window",
     "id": "artificial_analysis",
-    "last_updated": "2025-04-28",
+    "last_updated": "2025-05-10",
     "name": "Artificial Analysis LLM Benchmark",
     "source_url": "https://artificialanalysis.ai/leaderboards/models",
     "type": "reasoning"

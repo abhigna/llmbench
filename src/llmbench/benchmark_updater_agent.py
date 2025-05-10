@@ -494,7 +494,7 @@ class BenchmarkUpdateAgent:
         except Exception as save_err: logging.warning(f"Failed to save extraction prompts: {save_err}")
 
         # 3. Call LLM for RAW JSON string
-        model_to_use = "gpt-4o-mini" # Or "google/gemini-flash-1.5" etc. Adjust as needed
+        model_to_use = "openai/gpt-4o-mini" # Or "google/gemini-flash-1.5" etc. Adjust as needed
         logging.info(f"Calling LLM ({model_to_use}) for raw JSON extraction...")
         self._log_extraction_debug(extraction_debug_filepath, f"Calling LLM ({model_to_use}) for raw JSON extraction.")
 

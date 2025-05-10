@@ -1,0 +1,246 @@
+{
+  "date": "2025-05-10",
+  "source_url": "https://arcprize.org/leaderboard",
+  "scores": [
+    {
+      "model_id": "o3-preview",
+      "dimensions": {
+        "performance": {
+          "performance_score": 4.0
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-high",
+      "dimensions": {
+        "performance": {
+          "performance_score": 3.0
+        }
+      }
+    },
+    {
+      "model_id": "o3-medium",
+      "dimensions": {
+        "performance": {
+          "performance_score": 3.0
+        }
+      }
+    },
+    {
+      "model_id": "architects",
+      "dimensions": {
+        "performance": {
+          "performance_score": 2.5
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-medium",
+      "dimensions": {
+        "performance": {
+          "performance_score": 2.4
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-medium",
+      "dimensions": {
+        "performance": {
+          "performance_score": 2.1
+        }
+      }
+    },
+    {
+      "model_id": "o3-low",
+      "dimensions": {
+        "performance": {
+          "performance_score": 2.0
+        }
+      }
+    },
+    {
+      "model_id": "o4-mini-low",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.7
+        }
+      }
+    },
+    {
+      "model_id": "icecuber",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.6
+        }
+      }
+    },
+    {
+      "model_id": "gemini-2-0-flash",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.3
+        }
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.3
+        }
+      }
+    },
+    {
+      "model_id": "o1-medium",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.3
+        }
+      }
+    },
+    {
+      "model_id": "o1-preview",
+      "dimensions": {
+        "performance": {
+          "performance_score": 1.3
+        }
+      }
+    },
+    {
+      "model_id": "o1-pro-low",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.9
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-8k",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.9
+        }
+      }
+    },
+    {
+      "model_id": "o1-mini",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.8
+        }
+      }
+    },
+    {
+      "model_id": "o1-low",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.8
+        }
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.8
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-5",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.8
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-16k",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.7
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7-1k",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.4
+        }
+      }
+    },
+    {
+      "model_id": "claude-3-7",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-maverick",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "llama-4-scout",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-nano",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "gpt-4-1-mini",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    },
+    {
+      "model_id": "o3-mini-low",
+      "dimensions": {
+        "performance": {
+          "performance_score": 0.0
+        }
+      }
+    }
+  ]
+}

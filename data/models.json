@@ -113,6 +113,12 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "claude-21": {
+    "license": "Unknown",
+    "name": "claude-21",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "claude-3-5-haiku": {
     "license": "",
     "name": "claude-3-5-haiku",
@@ -245,6 +251,12 @@
     "organization": "",
     "release_date": ""
   },
+  "command-a-03": {
+    "license": "Unknown",
+    "name": "command-a-03",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "command-a-03-2025-quality": {
     "license": "",
     "name": "command-a-03-2025-quality",
@@ -266,6 +278,12 @@
   "command-r-03-2024": {
     "license": "Unknown",
     "name": "command-r-03-2024",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "command-r-08": {
+    "license": "Unknown",
+    "name": "command-r-08",
     "organization": "Unknown",
     "release_date": "Unknown"
   },
@@ -404,6 +422,12 @@
   "deepseek-v2.5": {
     "license": "Unknown",
     "name": "deepseek-v2.5",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "deepseek-v2.5-1210": {
+    "license": "Unknown",
+    "name": "deepseek-v2.5-1210",
     "organization": "Unknown",
     "release_date": "Unknown"
   },
@@ -617,6 +641,18 @@
     "organization": "",
     "release_date": ""
   },
+  "gemma-1.1-2b-it": {
+    "license": "Unknown",
+    "name": "gemma-1.1-2b-it",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "gemma-1.1-7b-it": {
+    "license": "Unknown",
+    "name": "gemma-1.1-7b-it",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "gemma-2-27b": {
     "license": "Unknown",
     "name": "gemma-2-27b",
@@ -665,6 +701,12 @@
     "organization": "",
     "release_date": ""
   },
+  "gemma-3-12b-it": {
+    "license": "Unknown",
+    "name": "gemma-3-12b-it",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "gemma-3-1b": {
     "license": "Unknown",
     "name": "gemma-3-1b",
@@ -689,6 +731,12 @@
     "organization": "",
     "release_date": ""
   },
+  "gemma-3-4b-it": {
+    "license": "Unknown",
+    "name": "gemma-3-4b-it",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "gemma-7b-it": {
     "license": "",
     "name": "gemma-7b-it",
@@ -712,6 +760,12 @@
     "name": "glm-4-plus",
     "organization": "",
     "release_date": ""
+  },
+  "glm-4-plus-0111": {
+    "license": "Unknown",
+    "name": "glm-4-plus-0111",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "gpt-3-5-turbo": {
     "license": "Unknown",
@@ -821,11 +875,41 @@
     "organization": "",
     "release_date": ""
   },
+  "granite-3.0-2b-instruct": {
+    "license": "Unknown",
+    "name": "granite-3.0-2b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "granite-3.0-8b-instruct": {
+    "license": "Unknown",
+    "name": "granite-3.0-8b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "granite-3.1-2b-instruct": {
+    "license": "Unknown",
+    "name": "granite-3.1-2b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "granite-3.1-8b-instruct": {
+    "license": "Unknown",
+    "name": "granite-3.1-8b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "grok-2": {
     "license": "",
     "name": "grok-2",
     "organization": "",
     "release_date": ""
+  },
+  "grok-2-1212": {
+    "license": "Unknown",
+    "name": "grok-2-1212",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "grok-2-mini": {
     "license": "Unknown",
@@ -971,6 +1055,18 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "jamba-1.5-large": {
+    "license": "Unknown",
+    "name": "jamba-1.5-large",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "jamba-1.5-mini": {
+    "license": "Unknown",
+    "name": "jamba-1.5-mini",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "jamba-instruct": {
     "license": "Unknown",
     "name": "jamba-instruct",
@@ -992,6 +1088,12 @@
   "learnlm-1-5-pro-experimental": {
     "license": "Unknown",
     "name": "learnlm-1-5-pro-experimental",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "learnlm-2-0-flash-experimental": {
+    "license": "Unknown",
+    "name": "learnlm-2-0-flash-experimental",
     "organization": "Unknown",
     "release_date": "Unknown"
   },
@@ -1229,6 +1331,12 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "llama-3-3-nemotron-super-49b-reasoning": {
+    "license": "Unknown",
+    "name": "llama-3-3-nemotron-super-49b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "llama-3-3-nemotron-super-49b-v1": {
     "license": "Unknown",
     "name": "llama-3-3-nemotron-super-49b-v1",
@@ -1271,6 +1379,12 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "llama-3.1-405b-instruct-bf16": {
+    "license": "Unknown",
+    "name": "llama-3.1-405b-instruct-bf16",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "llama-3.1-405b-instruct-fp8": {
     "license": "Unknown",
     "name": "llama-3.1-405b-instruct-fp8",
@@ -1286,6 +1400,18 @@
   "llama-3.1-tulu-3-70b": {
     "license": "Unknown",
     "name": "llama-3.1-tulu-3-70b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "llama-3.2-1b-instruct": {
+    "license": "Unknown",
+    "name": "llama-3.2-1b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "llama-3.2-3b-instruct": {
+    "license": "Unknown",
+    "name": "llama-3.2-3b-instruct",
     "organization": "Unknown",
     "release_date": "Unknown"
   },
@@ -1391,6 +1517,12 @@
     "organization": "",
     "release_date": ""
   },
+  "mistral-large-feb-24": {
+    "license": "Unknown",
+    "name": "mistral-large-feb-24",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "mistral-large-v2": {
     "license": "",
     "name": "mistral-large-v2",
@@ -1402,6 +1534,12 @@
     "name": "mistral-medium",
     "organization": "",
     "release_date": ""
+  },
+  "mistral-medium-3": {
+    "license": "Unknown",
+    "name": "mistral-medium-3",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "mistral-nemo": {
     "license": "Unknown",
@@ -1451,6 +1589,12 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "mistral-small-feb-24": {
+    "license": "Unknown",
+    "name": "mistral-small-feb-24",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "mistral-small-sep-24": {
     "license": "Unknown",
     "name": "mistral-small-sep-24",
@@ -1475,6 +1619,12 @@
     "organization": "",
     "release_date": ""
   },
+  "mixtral-8x22b-instruct-v0.1": {
+    "license": "Unknown",
+    "name": "mixtral-8x22b-instruct-v0.1",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "mixtral-8x7b": {
     "license": "Unknown",
     "name": "mixtral-8x7b",
@@ -1492,6 +1642,12 @@
     "name": "mixtral-8x7b-instruct-v0-1",
     "organization": "",
     "release_date": ""
+  },
+  "mixtral-8x7b-instruct-v0.1": {
+    "license": "Unknown",
+    "name": "mixtral-8x7b-instruct-v0.1",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "mpt-30b-chat": {
     "license": "",
@@ -1528,6 +1684,12 @@
     "name": "nova-micro",
     "organization": "",
     "release_date": ""
+  },
+  "nova-premier": {
+    "license": "Unknown",
+    "name": "nova-premier",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "nova-pro": {
     "license": "",
@@ -1733,6 +1895,12 @@
     "organization": "",
     "release_date": ""
   },
+  "openhermes-2.5-mistral-7b": {
+    "license": "Unknown",
+    "name": "openhermes-2.5-mistral-7b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "optimus-alpha": {
     "license": "",
     "name": "optimus-alpha",
@@ -1811,6 +1979,12 @@
     "organization": "Unknown",
     "release_date": "Unknown"
   },
+  "phi-4-reasoning-plus": {
+    "license": "Unknown",
+    "name": "phi-4-reasoning-plus",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "pixtral": {
     "license": "Unknown",
     "name": "pixtral",
@@ -1834,6 +2008,24 @@
     "name": "qwen-14b-chat",
     "organization": "",
     "release_date": ""
+  },
+  "qwen-3-235b-a22b": {
+    "license": "Unknown",
+    "name": "qwen-3-235b-a22b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen-3-30b-a3b": {
+    "license": "Unknown",
+    "name": "qwen-3-30b-a3b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen-3-32b": {
+    "license": "Unknown",
+    "name": "qwen-3-32b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "qwen-32b-preview": {
     "license": "Unknown",
@@ -2015,6 +2207,12 @@
     "organization": "",
     "release_date": ""
   },
+  "qwen2.5-72b": {
+    "license": "Unknown",
+    "name": "qwen2.5-72b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "qwen2.5-72b-instruct": {
     "license": "Unknown",
     "name": "qwen2.5-72b-instruct",
@@ -2024,6 +2222,120 @@
   "qwen2.5-coder-32b-instruct": {
     "license": "Unknown",
     "name": "qwen2.5-coder-32b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen2.5-instruct-32b": {
+    "license": "Unknown",
+    "name": "qwen2.5-instruct-32b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen2.5-max": {
+    "license": "Unknown",
+    "name": "qwen2.5-max",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-0-6b-instruct": {
+    "license": "Unknown",
+    "name": "qwen3-0-6b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-0-6b-instruct-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-0-6b-instruct-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-1-7b": {
+    "license": "Unknown",
+    "name": "qwen3-1-7b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-1-7b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-1-7b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-14b": {
+    "license": "Unknown",
+    "name": "qwen3-14b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-14b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-14b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-235b-a22b": {
+    "license": "Unknown",
+    "name": "qwen3-235b-a22b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-235b-a22b-diff-no-think-alibaba-api": {
+    "license": "Unknown",
+    "name": "qwen3-235b-a22b-diff-no-think-alibaba-api",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-235b-a22b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-235b-a22b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-30b-a3b": {
+    "license": "Unknown",
+    "name": "qwen3-30b-a3b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-30b-a3b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-30b-a3b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-32b": {
+    "license": "Unknown",
+    "name": "qwen3-32b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-32b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-32b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-4b": {
+    "license": "Unknown",
+    "name": "qwen3-4b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-4b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-4b-reasoning",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-8b": {
+    "license": "Unknown",
+    "name": "qwen3-8b",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
+  "qwen3-8b-reasoning": {
+    "license": "Unknown",
+    "name": "qwen3-8b-reasoning",
     "organization": "Unknown",
     "release_date": "Unknown"
   },
@@ -2099,6 +2411,12 @@
     "organization": "",
     "release_date": ""
   },
+  "smollm2-1.7b-instruct": {
+    "license": "Unknown",
+    "name": "smollm2-1.7b-instruct",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "snowflake-arctic-instruct": {
     "license": "",
     "name": "snowflake-arctic-instruct",
@@ -2110,6 +2428,12 @@
     "name": "solar-10-7b-instruct-v1-0",
     "organization": "",
     "release_date": ""
+  },
+  "solar-10.7b-instruct-v1.0": {
+    "license": "Unknown",
+    "name": "solar-10.7b-instruct-v1.0",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   },
   "sonar": {
     "license": "Unknown",
@@ -2219,6 +2543,12 @@
     "organization": "",
     "release_date": ""
   },
+  "yi-1.5-34b-chat": {
+    "license": "Unknown",
+    "name": "yi-1.5-34b-chat",
+    "organization": "Unknown",
+    "release_date": "Unknown"
+  },
   "yi-34b-chat": {
     "license": "",
     "name": "yi-34b-chat",
@@ -2254,5 +2584,11 @@
     "name": "zephyr-orpo-141b-a35b-v0-1",
     "organization": "",
     "release_date": ""
+  },
+  "zephyr-orpo-141b-a35b-v0.1": {
+    "license": "Unknown",
+    "name": "zephyr-orpo-141b-a35b-v0.1",
+    "organization": "Unknown",
+    "release_date": "Unknown"
   }
 }
